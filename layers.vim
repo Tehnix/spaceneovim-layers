@@ -1,4 +1,3 @@
-echo 'Loading layers.vim...'
 " Add layers {{{
 let g:spacevim_layers = [
 \  '+checkers/syntax-checking'
