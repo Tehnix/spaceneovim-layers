@@ -1,9 +1,12 @@
+echo 'Loading layers.vim...'
+" Add layers {{{
 let g:spacevim_layers = [
 \  '+checkers/syntax-checking'
 \]
 
-" Setup default plugin configuration {{{
+" }}}
 
+" Setup default plugin configuration {{{
 if exists('g:loaded_spacevim')
   finish
 endif
