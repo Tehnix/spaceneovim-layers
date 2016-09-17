@@ -4,7 +4,9 @@ let spacevim_layers_dir = expand(resolve(config_dir . '/spaceneovim-layers'))
 
 for group in split(glob(spacevim_layers_dir . '/layers/*'), '\n')
   for layer in split(glob(group . '/*'), '\n')
-    call add(g:spacevim_layers, substitute(layer, spacevim_layers_dir . '/layers/', '', ''))
+    if filereadable(layer . '/config.vim') && filereadable(layer . '/packages.vim')
+      call add(g:spacevim_layers, substitute(layer, spacevim_layers_dir . '/layers/', '', ''))
+    endif
   endfor
 endfor
 " }}}

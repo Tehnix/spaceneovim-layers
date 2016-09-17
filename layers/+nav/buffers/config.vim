@@ -1,4 +1,16 @@
 if spacevim#is_layer_enabled('+nav/buffers')
+  call spacevim#bind('map', '<C-I>', 'last buffer', 'b#', 1)
+  call spacevim#bind('map', '0', 'window 0', 'buffer 0', 1)
+  call spacevim#bind('map', '1', 'window 1', 'buffer 1', 1)
+  call spacevim#bind('map', '2', 'window 1', 'buffer 2', 1)
+  call spacevim#bind('map', '3', 'window 1', 'buffer 3', 1)
+  call spacevim#bind('map', '4', 'window 1', 'buffer 4', 1)
+  call spacevim#bind('map', '5', 'window 1', 'buffer 5', 1)
+  call spacevim#bind('map', '6', 'window 1', 'buffer 6', 1)
+  call spacevim#bind('map', '7', 'window 1', 'buffer 7', 1)
+  call spacevim#bind('map', '8', 'window 1', 'buffer 8', 1)
+  call spacevim#bind('map', '9', 'window 1', 'buffer 9', 1)
+
   let g:lmap.b = { 'name': '+buffers' }
   call spacevim#bind('map', 'bd', 'kill-this-buffer', 'bd', 1)
   call spacevim#bind('map', 'bD', 'force-kill-this-buffer', 'bd!', 1)
