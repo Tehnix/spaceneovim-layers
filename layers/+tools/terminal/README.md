@@ -1,4 +1,4 @@
-# Windows Layer
+# Terminal Layer
 
 ## Table of contents
 
@@ -10,19 +10,19 @@
 
 ## Description
 
-This layer provides common functionality for windows things.
+This layer provides common functionality for terminal.
 
 
 ## Install
 
 ### Layer
 
-To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+nav/windows` to the existing dotspacevim_configuration_layers list in this file.
+To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+tools/terminal` to the existing dotspacevim_configuration_layers list in this file.
 
 
 ## Key Bindings
 
-| Key Binding | Description               |
-|-------------|---------------------------|
-| SPC w s     | Split window below        |
-| SPC w v     | Split window to the right |
+| Key Binding | Description                |
+|-------------|----------------------------|
+| SPC !       | Start shell command prompt |
+| SPC '       | Open a terminal below      |

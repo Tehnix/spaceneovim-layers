@@ -22,5 +22,9 @@ To use this configuration layer, add it to your `./config/nvim/init.vim`. You wi
 
 ## Key Bindings
 
-| Key Binding | Description          |
-|-------------|----------------------|
+| Key Binding | Description                            |
+|-------------|----------------------------------------|
+| SPC f s     | Save current buffer                    |
+| SPC f t     | Toggle NERDTree                        |
+| SPC f s d   | Open $MYVIMRC                          |
+| SPC f s U   | Update SpaceNeovim layers              |

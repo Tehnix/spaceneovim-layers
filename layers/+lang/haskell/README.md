@@ -29,7 +29,17 @@ To use this configuration layer, add it to your `./config/nvim/init.vim`. You wi
 
 ## Key Bindings
 
+### HLint refactor
+
 | Key Binding | Description                            |
 |-------------|----------------------------------------|
 | SPC m r a   | Hlint refector: Apply one suggestion   |
 | SPC m r A   | Hlint refector: Apply all suggestions  |
+
+
+### Documentation
+
+| Key Binding | Description                            |
+|-------------|----------------------------------------|
+| SPC m d h   | Run hoogle query                       |
+| SPC m d c   | Close hoogle window                    |

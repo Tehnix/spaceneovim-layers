@@ -5,8 +5,8 @@ if spacevim#is_layer_enabled('+lang/haskell')
   call spacevim#bind('map', 'mrA', 'hlint-apply-all-suggestion', 'ApplyAllSuggestions', 1)
 
   let g:lmap.m.d = { 'name': 'haskell/documentation' }
-  call spacevim#bind('map', 'mdh', 'hoogle-lookup', 'Hoogle', 1)
+  call spacevim#bind('map', 'mdh', 'hoogle-lookup', ':Hoogle ', 0)
   call spacevim#bind('map', 'mdi', 'hoogle-info', 'Hoogle', 1)
-  call spacevim#bind('map', 'mdC', 'hoogle-close-search', 'HoogleClose', 1)
+  call spacevim#bind('map', 'mdc', 'hoogle-close-search', 'HoogleClose', 1)
   call spacevim#bind('map', 'mdl', 'hoogle-search-line', 'HoogleLine', 1)
 endif

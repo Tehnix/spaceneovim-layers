@@ -1,3 +1,3 @@
-if spacevim#is_layer_enabled('+nav/windows')
-  " No packages to install for +nav/windows
+if spacevim#is_layer_enabled('+tools/terminal')
+  " No packages to install for +tools/terminal
 endif
