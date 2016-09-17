@@ -17,10 +17,11 @@ This layer provides on the fly syntax checking using [Neomake](https://github.co
 
 ### Layer
 
-To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `syntax-checking` to the existing dotspacevim_configuration_layers list in this file.
+To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+checkers/syntax-checking` to the existing dotspacevim_configuration_layers list in this file.
 
 
 ## Key Bindings
 
 | Key Binding | Description |
 |-------------|-------------|
+| SPC e l     | Run Neomake |

@@ -1,6 +1,11 @@
 " Add layers {{{
 let g:spacevim_layers = [
-\  '+checkers/syntax-checking'
+\  '+nav/quit'
+\, '+nav/buffers'
+\, '+nav/windows'
+\, '+nav/text'
+\, '+nav/start-screen'
+\, '+checkers/syntax-checking'
 \]
 
 " }}}
@@ -31,7 +36,7 @@ function! s:spacevim_preinstall()
   " vim-startify {{{
   let g:startify_custom_header = get(g:, 'startify_custom_header', [
   \'',
-  \'Welcome to your startup screen!',
+  \'                         [S P A C E N E O V I M]',
   \'',
   \ ])
   " }}}

@@ -1,0 +1,15 @@
+if spacevim#is_layer_enabled('+nav/buffer')
+  let g:lmap.b = { 'name': '+buffers' }
+  call spacevim#bind('map', 'bd', 'kill-this-buffer', 'bd', 1)
+  call spacevim#bind('map', 'bD', 'force-kill-this-buffer', 'bd!', 1)
+  call spacevim#bind('map', 'bn', 'next-buffer', 'bnext!', 1)
+  call spacevim#bind('map', 'bp', 'previous-buffer', 'bprevious!', 1)
+  call spacevim#bind('map', 'bN', 'new-empty-buffer', 'new', 1)
+  call spacevim#bind('map', 'bV', 'new-empty-vertical-buffer', 'vnew', 1)
+  call spacevim#bind('map', 'bl', 'list-all-buffers', 'buffers', 1)
+  call spacevim#bind('map', 'bF', 'open-first-buffer', 'bfirst!', 1)
+  call spacevim#bind('map', 'bL', 'open-last-buffer', 'blast!', 1)
+  call spacevim#bind('map', 'bC', 'copy-whole-buffer', '%y *', 1)
+  call spacevim#bind('map', 'bf', 'reveal-in-osx-finder', '! open %:p:h', 1)
+  call spacevim#bind('map', 'bh', 'home', 'Startify', 1)
+endif
