@@ -1,7 +1,7 @@
-let s:config_dir = $HOME . '/.config/nvim'
-let s:spacevim_layers_dir = expand(resolve(s:config_dir . '/spaceneovim-layers'))
-
 function! s:update_spaceneovim_layers()
+  let s:config_dir = $HOME . '/.config/nvim'
+  let s:spacevim_layers_dir = expand(resolve(s:config_dir . '/spaceneovim-layers'))
+  
   let update_layers = jobstart([
   \  'cd'
   \, spacevim_layers_dir
