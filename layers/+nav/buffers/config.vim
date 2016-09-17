@@ -1,4 +1,4 @@
-if spacevim#is_layer_enabled('+nav/buffer')
+if spacevim#is_layer_enabled('+nav/buffers')
   let g:lmap.b = { 'name': '+buffers' }
   call spacevim#bind('map', 'bd', 'kill-this-buffer', 'bd', 1)
   call spacevim#bind('map', 'bD', 'force-kill-this-buffer', 'bd!', 1)

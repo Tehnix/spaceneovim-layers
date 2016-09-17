@@ -1,4 +1,4 @@
-# buffers Layer
+# Buffers Layer
 
 ## Table of contents
 
