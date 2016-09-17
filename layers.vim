@@ -1,5 +1,5 @@
 " Add layers {{{
-let spacevim#layers = [
+let g:spacevim_layers = [
 \  '+nav/quit'
 \, '+nav/buffers'
 \, '+nav/windows'
