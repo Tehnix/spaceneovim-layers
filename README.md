@@ -1,4 +1,4 @@
-# SpaceNeovim Layers
+# SpaceNeovim Layers [![Build Status](https://travis-ci.org/Tehnix/spaceneovim-layers.svg?branch=master)](https://travis-ci.org/Tehnix/spaceneovim-layers)
 
 Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim).
 
