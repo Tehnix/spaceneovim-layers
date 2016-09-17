@@ -1,3 +1,3 @@
-if spacevim#is_layer_enabled('+checkers/syntax-checking')
-  call spacevim#add_plugin('neomake/neomake', {})
+if SpaceNeovimIsLayerEnabled('+checkers/syntax-checking')
+  call SpaceNeovimAddPlugin('neomake/neomake', {})
 endif

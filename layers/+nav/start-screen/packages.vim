@@ -1,3 +1,3 @@
-if spacevim#is_layer_enabled('+nav/start-screen')
-  call spacevim#add_plugin('mhinz/vim-startify', {})
+if SpaceNeovimIsLayerEnabled('+nav/start-screen')
+  call SpaceNeovimAddPlugin('mhinz/vim-startify', {})
 endif

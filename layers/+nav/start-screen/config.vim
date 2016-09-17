@@ -1,3 +1,3 @@
-if spacevim#is_layer_enabled('+nav/start-screen')
+if SpaceNeovimIsLayerEnabled('+nav/start-screen')
   " No configurations available for startify
 endif

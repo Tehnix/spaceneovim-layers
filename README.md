@@ -36,7 +36,7 @@ These files are grouped under a `+category/layer-name` directory hierachy. As an
 In the `config.vim` and `packages.vim` you want to check if the layer is enabled, before doing anything. This can be done with,
 
 ```viml
-if spacevim#is_layer_enabled('+checkers/syntax-checking')
+if SpaceNeovimIsLayerEnabled('+checkers/syntax-checking')
   " Configuration/Package setup goes here...
 endif
 ```
@@ -51,10 +51,10 @@ let g:lmap.e = { 'name': '+syntax-checking' }
 
 __NOTE:__ if you are adding a new language, you don't have to add the grouping, since `let g:lmap.m = { 'name': '+major-mode-cmd' }` already exists.
 
-The `e` in `g:lmap.e` denotes the key that the group is under. Then add your keybinding by using `spacevim#bind`,
+The `e` in `g:lmap.e` denotes the key that the group is under. Then add your keybinding by using `SpaceNeovimBind`,
 
 ```viml
-call spacevim#bind('map', 'el', 'lint-file', 'Neomake!', 1)
+call SpaceNeovimBind('map', 'el', 'lint-file', 'Neomake!', 1)
 ```
 
 which puts the keybinding at `SPC e l`. Note that the first `e` in `el` is necessary to put it under the `e` grouping.
@@ -62,10 +62,10 @@ which puts the keybinding at `SPC e l`. Note that the first `e` in `el` is neces
 
 ### Adding Packages
 
-This time we use `spacevim#add_plugin` to add the plugin and its vim-plug configuration,
+This time we use `SpaceNeovimAddPlugin` to add the plugin and its vim-plug configuration,
 
 ```viml
-call spacevim#add_plugin('neomake/neomake', {})
+call SpaceNeovimAddPlugin('neomake/neomake', {})
 ```
 
 which will add the package 'neomake/neomake' to be installed with the configuration `{}`. The configuration can be used for post-installation commands or to lazy-load the plugin (e.g. only loading a language plugin when that language filetype is active).

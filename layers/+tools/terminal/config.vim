@@ -1,4 +1,4 @@
-if spacevim#is_layer_enabled('+tools/terminal')
+if SpaceNeovimIsLayerEnabled('+tools/terminal')
   " Use <Esc> to escape terminal insert mode
   tnoremap <Esc> <C-\><C-n>
   " Make terminal split moving behave like normal neovim
@@ -7,6 +7,7 @@ if spacevim#is_layer_enabled('+tools/terminal')
   tnoremap <c-k> <C-\><C-n><C-w>k
   tnoremap <c-l> <C-\><C-n><C-w>l
 
-  call spacevim#bind('map', '!', 'shell cmd', ':!', 0)
-  " call spacevim#bind('map', "'", 'open terminal', 'rightbelow split | terminal', 1)
+  call SpaceNeovimNMap('!', 'shell cmd', 'call feedkeys(":! ")')
+  nnoremap <Plug>open-terminal :rightbelow split \| terminal<CR>
+  nmap <leader>' <Plug>open-terminal
 endif

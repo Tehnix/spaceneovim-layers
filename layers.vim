@@ -1,55 +1,71 @@
-" Add layers {{{
-let config_dir = $HOME . '/.config/nvim'
-let spacevim_layers_dir = expand(resolve(config_dir . '/spaceneovim-layers'))
+"
+" Set up the layers, pre/post installation and pull in library files
+"
 
-for group in split(glob(spacevim_layers_dir . '/layers/*'), '\n')
-  for layer in split(glob(group . '/*'), '\n')
-    if filereadable(layer . '/config.vim') && filereadable(layer . '/packages.vim')
-      call add(g:spacevim_layers, substitute(layer, spacevim_layers_dir . '/layers/', '', ''))
-    endif
-  endfor
-endfor
+" Set up path variables {{{
+let s:config_dir = $HOME . '/.config/nvim'
+let s:spacevim_layers_dir = expand(resolve(s:config_dir . '/spaceneovim-layers'))
 " }}}
 
-" Setup default plugin configuration {{{
+
+" Load library files {{{
+execute 'source ' . s:spacevim_layers_dir . '/helpers.vim'
+execute 'source ' . s:spacevim_layers_dir . '/bindings.vim'
+" }}}
+
+
+" Halt if SpaceNeovim is already loaded {{{
 if exists('g:loaded_spacevim')
   finish
 endif
 let g:loaded_spacevim = 1
-
-" vim-leader-guide {{{
-let g:lmap = get(g:, 'lmap', {})
-let g:lmap.m = { 'name': '+major-mode-cmd' }
 " }}}
 
-function! s:spacevim_preinstall()
-  " nerdcommenter {{{
+
+" Setup default plugin configuration {{{
+function! s:spaceneovim_preinstall()
+  " Create default vim-leader-guide map and add +major-mode-cmd grouping {{{
+  let g:lmap = get(g:, 'lmap', {})
+  let g:lmap.m = { 'name': '+major-mode-cmd' }
+  " }}}
+
+  " Add all layers to g:spacevim_layers {{{
+  for l:group in split(glob(s:spacevim_layers_dir . '/layers/*'), '\n')
+    for l:layer in split(glob(l:group . '/*'), '\n')
+      if filereadable(l:layer . '/config.vim') && filereadable(l:layer . '/packages.vim')
+        call add(g:spacevim_layers, substitute(l:layer, s:spacevim_layers_dir . '/layers/', '', ''))
+      endif
+    endfor
+  endfor
+  " }}}
+
+  " Reset nerdcommenter key mappings {{{
   let g:NERDCreateDefaultMappings = get(g:, 'NERDCreateDefaultMappings', 0)
   " }}}
 
-  " vim-easymotion {{{
+  " Reset vim-easymotion key mappings {{{
   let g:EasyMotion_do_mapping = get(g:, 'EasyMotion_do_mapping', 0)
   " }}}
 
-  " vim-gitgutter {{{
+  " Reset vim-gitgutter key mappings {{{
   let g:gitgutter_map_keys = get(g:, 'gitgutter_map_keys', 0)
   " }}}
 
-  " vim-startify {{{
+  " Reset vim-swoop key mappings {{{
+  let g:swoopUseDefaultKeyMap = get(g:, 'swoopUseDefaultKeyMap', 0)
+  " }}}
+
+  " Configure vim-startify startup message {{{
   let g:startify_custom_header = get(g:, 'startify_custom_header', [
   \'',
   \'                         [S P A C E N E O V I M]',
   \'',
   \ ])
   " }}}
-
-  " vim-swoop {{{
-  let g:swoopUseDefaultKeyMap = get(g:, 'swoopUseDefaultKeyMap', 0)
-  " }}}
 endfunction
 
-function! s:spacevim_postinstall()
-  " vim-arpeggio {{{
+function! s:spaceneovim_postinstall()
+  " Configure vim-arpeggio {{{
   if exists('g:loaded_arpeggio')
     if exists('g:dotspacevim_escape_key_sequence')
       call arpeggio#map('i', '', 0, g:dotspacevim_escape_key_sequence, '<Esc>')
@@ -58,29 +74,32 @@ function! s:spacevim_postinstall()
   endif
   " }}}
 
-  " vim-leader-guide {{{
+  " Configure vim-leader-guide {{{
   if exists('g:loaded_leaderGuide_vim')
+    " Clean up the displayed key bindings
     function! s:spacevim_displayfunc()
       let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '\c<cr>$', '', '')
       let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '^<SID>', '', '')
+      let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '^<Plug>', '', '')
       let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '#', '', '')
     endfunction
+    " Add custom display func if found
     if exists('g:leaderGuide_displayfunc')
       call add(g:leaderGuide_displayfunc, function('s:spacevim_displayfunc'))
     else
       let g:leaderGuide_displayfunc = [function('s:spacevim_displayfunc')]
     endif
-
+    " Register g:lmap to the <Space> key
     call leaderGuide#register_prefix_descriptions('<Space>', 'g:lmap')
-    nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
-    vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
+    nnoremap <silent> <Leader> :<c-u>LeaderGuide '<Space>'<CR>
+    vnoremap <silent> <Leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
   endif
   " }}}
 endfunction
 
-call s:spacevim_preinstall()
-augroup spacevim_postinstall
+call s:spaceneovim_preinstall()
+augroup spaceneovim_postinstall
   autocmd!
-  autocmd VimEnter * call s:spacevim_postinstall()
+  autocmd VimEnter * call s:spaceneovim_postinstall()
 augroup END
 " }}}

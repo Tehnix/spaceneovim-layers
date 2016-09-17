@@ -40,13 +40,3 @@ To use this configuration layer, add it to your `./config/nvim/init.vim`. You wi
 | Key Binding | Description                            |
 |-------------|----------------------------------------|
 | SPC TAB     | Go to last used buffer                 |
-| SPC 0       | Go to buffer 0                         |
-| SPC 1       | Go to buffer 1                         |
-| SPC 2       | Go to buffer 2                         |
-| SPC 3       | Go to buffer 3                         |
-| SPC 4       | Go to buffer 4                         |
-| SPC 5       | Go to buffer 5                         |
-| SPC 6       | Go to buffer 6                         |
-| SPC 7       | Go to buffer 7                         |
-| SPC 8       | Go to buffer 8                         |
-| SPC 9       | Go to buffer 9                         |

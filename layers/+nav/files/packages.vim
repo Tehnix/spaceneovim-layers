@@ -1,3 +1,3 @@
-if spacevim#is_layer_enabled('+nav/files')
-  call spacevim#add_plugin('scrooloose/nerdtree', {})
+if SpaceNeovimIsLayerEnabled('+nav/files')
+  call SpaceNeovimAddPlugin('scrooloose/nerdtree', {})
 endif
