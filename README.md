@@ -12,12 +12,15 @@ Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim)
 
 | Name                      | Description                                |
 |---------------------------|--------------------------------------------|
+| +applications/spaceneovim | SpaceNeovim specific operations            |
 | +nav/quit                 | Common quit functionality                  |
 | +nav/buffers              | Common buffer functionality                |
 | +nav/windows              | Common window functionality                |
 | +nav/text                 | Common text operations                     |
+| +nav/files                | Common file operations                     |
 | +nav/start-screen         | Add start screen when opening Neovim       |
 | +checkers/syntax-checking | Syntax checking with Neomake               |
+| +lang/haskell             | Support for the Haskell language           |
 
 
 ## Adding a New Layer
