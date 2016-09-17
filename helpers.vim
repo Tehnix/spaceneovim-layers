@@ -10,14 +10,17 @@ function! NewScratchBuffer()
   return bufnr('%')
 endfunction
 
+" Avoid vint complaining about self
+" vint: -ProhibitImplicitScopeVariable -ProhibitUsingUndeclaredVariable
 function! OutputJobToBuffer(job_id, data, event)
   " Output an async job to a buffer without needing focus on the buffer
-  if a:event == 'stdout' || a:event == 'stderr'
+  if a:event ==? 'stdout' || a:event ==? 'stderr'
     let self.out += a:data
     " Use the Neovim internal API to update the buffer
     call nvim_buf_set_lines(self.buf, 0, -1, v:true, self.out)
   endif
 endfunction
+" vint: +ProhibitImplicitScopeVariable +ProhibitUsingUndeclaredVariable
 " }}}
 
 

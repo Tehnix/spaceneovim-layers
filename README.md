@@ -6,10 +6,9 @@ Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim)
 * [Adding a New Layer](#adding-a-new-layer)
   * [Add a Keybinding](#add-a-keybinding)
   * [Adding Packages](#adding-packages)
-  * [Including Files (e.g. _func.vim_)](#including-files)
+  * [Including Files (e.g. func.vim)](#including-files)
 * [Adding a New Language Layer](#adding-a-new-language-layer)
   * [Add a Language Keybinding](#add-a-language-keybinding)
-
 
 ## Current Layers
 
@@ -23,7 +22,6 @@ Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim)
 | +nav/start-screen         | Add start screen when opening Neovim       |
 | +checkers/syntax-checking | Syntax checking with Neomake               |
 | +lang/haskell             | Support for the Haskell language           |
-
 
 ## Adding a New Layer
 
@@ -69,7 +67,6 @@ which puts the keybinding at `SPC e l`. Note that the first `e` in `el` is neces
 
 For more check out the `+nav/buffers` layer for an example of usage, and `bindings.vim` for the helper functions.
 
-
 ### Adding Packages
 
 This time we use `SpaceNeovimAddPlugin` to add the plugin and its vim-plug configuration,
@@ -79,7 +76,6 @@ call SpaceNeovimAddPlugin('neomake/neomake', {})
 ```
 
 which will add the package 'neomake/neomake' to be installed with the configuration `{}`. The configuration can be used for post-installation commands or to lazy-load the plugin (e.g. only loading a language plugin when that language filetype is active).
-
 
 ### Including Files
 
@@ -97,7 +93,6 @@ The `expand('<sfile>:p')` bit is to include the path of the current layer that i
 
 For more check out the `+nav/files` layer for an example of usage, and `helpers.vim` for the helper functions.
 
-
 ## Adding a New Language Layer
 
 Most of adding a new language layer is just like adding a normal layer, except for keybindings, as described below.
@@ -109,8 +104,8 @@ Adding a language keybinding is a bit different, since we only want it shown whe
 It consist of three steps:
 
 1. Add your groupings
-2. Add your mappings
-3. Add clean up autocmd
+1. Add your mappings
+1. Add clean up autocmd
 
 __Step 1.__ is done using `SpaceNeovimFileTypeGroup`, for example to add the group `SPC m d` when using `haskell`,
 
