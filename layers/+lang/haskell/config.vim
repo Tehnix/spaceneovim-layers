@@ -1,3 +1,3 @@
-if g:spacevim_is_layer_enabled('+lang/haskell')
+if spacevim#is_layer_enabled('+lang/haskell')
 
 endif

@@ -1,5 +1,5 @@
 " Add layers {{{
-let g:spacevim_layers = [
+let spacevim#layers = [
 \  '+nav/quit'
 \, '+nav/buffers'
 \, '+nav/windows'
@@ -85,24 +85,24 @@ augroup END
 " }}}
 
 " Helper functions {{{
-function! g:spacevim_add_plugin(name, config)
+function! spacevim#add_plugin(name, config)
   " Add a plugin to the list of plugins
   if exists('g:spacevim_plugins')
-    call add(g:spacevim_plugins, {'name': a:name, 'config': a:config})
+    call add(spacevim#plugins, {'name': a:name, 'config': a:config})
     return 1
   endif
   return 0
 endfunction
 
-function! g:spacevim_is_layer_enabled(name)
+function! spacevim#is_layer_enabled(name)
   " Check if a layer is enabled
   if !exists('g:spacevim_enabled_layers')
     return 1
   endif
-  return index(g:spacevim_enabled_layers, a:name) != -1
+  return index(spacevim#enabled_layers, a:name) != -1
 endfunction
 
-function! g:spacevim_bind(map, binding, name, value, isCmd)
+function! spacevim#bind(map, binding, name, value, isCmd)
   if a:isCmd
     let l:value = ':' . a:value . '<cr>'
   else
@@ -124,7 +124,7 @@ function! g:spacevim_bind(map, binding, name, value, isCmd)
   endif
 endfunction
 
-function! g:spacevim_bind_plug(map, binding, name, value)
+function! spacevim#bind_plug(map, binding, name, value)
   if a:map ==# 'map' && maparg('<Leader>' . a:binding, '') ==# ''
     let l:map = 'map'
   elseif a:map ==# 'nmap' && maparg('<Leader>' . a:binding, 'n') ==# ''
