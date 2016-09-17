@@ -1,4 +1,4 @@
-# Buffers Layer
+# Haskell Layer
 
 ## Table of contents
 
@@ -10,29 +10,26 @@
 
 ## Description
 
-This layer provides common functionality for buffers.
+This layer provides support for the Haskell language with the following packages:
+
+* `neovimhaskell/haskell-vim`
+* `mpickering/hlint-refactor-vim`
+* `Twinside/vim-hoogle`
+* `bitc/vim-hdevtools`
+* `eagletmt/neco-ghc`
+* `parsonsmatt/intero-neovim`
 
 
 ## Install
 
 ### Layer
 
-To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+nav/buffers` to the existing dotspacevim_configuration_layers list in this file.
+To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+lang/haskell` to the existing dotspacevim_configuration_layers list in this file.
 
 
 ## Key Bindings
 
 | Key Binding | Description                            |
 |-------------|----------------------------------------|
-| SPC b N     | Open new empty buffer                  |
-| SPC b V     | Open new empty buffer to the left      |
-| SPC b d     | Kill the current buffer                |
-| SPC b D     | Force kill the current buffer          |
-| SPC b n     | Go to next buffer                      |
-| SPC b p     | Go to previous buffer                  |
-| SPC b l     | List all buffers                       |
-| SPC b F     | Open first buffer                      |
-| SPC b L     | Open last buffer                       |
-| SPC b h     | Open start screen                      |
-| SPC b C     | Copy whole contents of the buffer      |
-| SPC b f     | Reveal the current directory in Finder |
+| SPC m r a   | Hlint refector: Apply one suggestion   |
+| SPC m r A   | Hlint refector: Apply all suggestions  |
