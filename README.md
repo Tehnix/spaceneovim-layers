@@ -33,20 +33,22 @@ A layer consists of, as minimum:
 
 These files are grouped under a `+category/layer-name` directory hierachy. As an example, the layer `buffers` is located under the group `+nav` (short for navigation).
 
-In the `config.vim` and `packages.vim` you want to check if the layer is enabled, before doing anything. This can be done with,
+A layer is only ever run if it is enabled, so there is no need to check for it. However, if you want to check if another layer is enabled, before doing anything, it can be done with,
 
 ```viml
-if SpaceNeovimIsLayerEnabled('+checkers/syntax-checking')
-  " Configuration/Package setup goes here...
+if SpaceNeovimIsLayerEnabled('+checkers/neomake')
+  " Make specific configuration for neomake here...
 endif
 ```
+
+This can especially be useful in the `+lang` layers, to add information to checkers and completions.
 
 ### Add a Keybinding
 
 To add a keybinding, first make sure that the vim-leader-guide grouping exists with
 
 ```viml
-let g:lmap.e = { 'name': '+syntax-checking' }
+let g:lmap.e = { 'name': '+errors' }
 ```
 
 __NOTE:__ if you are adding a new language, you don't have to add the grouping, since `let g:lmap.m = { 'name': '+major-mode-cmd' }` already exists.
@@ -54,13 +56,13 @@ __NOTE:__ if you are adding a new language, you don't have to add the grouping, 
 The `e` in `g:lmap.e` denotes the key that the group is under. Then add your keybinding by using `SpaceNeovimBind` or the shorter `SpaceNeovimNMap`/`SpaceNeovimMap`,
 
 ```viml
-call SpaceNeovimBind('map', 'el', 'lint-file', 'Neomake!', 1)
+call SpaceNeovimBind('map', 'eC', 'neomake-check-file', 'Neomake', 1)
 " Is equivalent to
-SpaceNeovimMap('el', 'lint-file', 'Neomake!')
+SpaceNeovimMap('eC', 'neomake-check-file', 'Neomake')
 
-call SpaceNeovimBind('nmap', 'el', 'lint-file', 'Neomake!', 0)
+call SpaceNeovimBind('nmap', 'eC', 'neomake-check-file', 'Neomake', 0)
 " Is equivalent to
-SpaceNeovimNMap('el', 'lint-file', 'Neomake!', 0)
+SpaceNeovimNMap('eC', 'neomake-check-file', 'Neomake', 0)
 ```
 
 which puts the keybinding at `SPC e l`. Note that the first `e` in `el` is necessary to put it under the `e` grouping.

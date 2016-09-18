@@ -17,7 +17,7 @@ This layer provides common functionality for terminal.
 
 ### Layer
 
-To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+tools/terminal` to the existing dotspacevim_configuration_layers list in this file.
+To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+tools/terminal` to the existing dotspaceneovim_configuration_layers list in this file.
 
 
 ## Key Bindings

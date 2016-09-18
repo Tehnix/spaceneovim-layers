@@ -21,3 +21,5 @@ function! UpdateSpaceNeovimLayers()
   \, 'master'
   \], l:job_options)
 endfunction
+
+command! UpdateSpaceNeovimLayers call UpdateSpaceNeovimLayers()

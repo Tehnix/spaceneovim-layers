@@ -1,3 +1,1 @@
-if SpaceNeovimIsLayerEnabled('+nav/start-screen')
-  " No configurations available for startify
-endif
+" No configurations available for +nav/start-screen

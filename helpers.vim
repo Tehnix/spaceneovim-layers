@@ -27,8 +27,8 @@ endfunction
 " SpeaceNeovim Helper functions {{{
 function! SpaceNeovimAddPlugin(name, config)
   " Add a plugin to the list of plugins
-  if exists('g:spacevim_plugins')
-    call add(g:spacevim_plugins, {'name': a:name, 'config': a:config})
+  if exists('g:spaceneovim_plugins')
+    call add(g:spaceneovim_plugins, {'name': a:name, 'config': a:config})
     return 1
   endif
   return 0
@@ -36,10 +36,10 @@ endfunction
 
 function! SpaceNeovimIsLayerEnabled(name)
   " Check if a layer is enabled
-  if !exists('g:spacevim_enabled_layers')
+  if !exists('g:spaceneovim_enabled_layers')
     return 1
   endif
-  return index(g:spacevim_enabled_layers, a:name) != -1
+  return index(g:spaceneovim_enabled_layers, a:name) != -1
 endfunction
 
 function! SpaceNeovimLoadFunc(spath, ...)
