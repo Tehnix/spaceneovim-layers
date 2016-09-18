@@ -14,13 +14,17 @@ Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim)
 
 | Name                      | Description                                |
 |---------------------------|--------------------------------------------|
-| +nav/quit                 | Common quit functionality                  |
+| +checkers/neomake         | Syntax checking with Neomake               |
+| +completion/deoplete      | Auto-completion with deoplete              |
 | +nav/buffers              | Common buffer functionality                |
-| +nav/windows              | Common window functionality                |
-| +nav/text                 | Common text operations                     |
 | +nav/files                | Common file operations                     |
+| +nav/quit                 | Common quit functionality                  |
 | +nav/start-screen         | Add start screen when opening Neovim       |
-| +checkers/syntax-checking | Syntax checking with Neomake               |
+| +nav/text                 | Common text operations                     |
+| +nav/windows              | Common window functionality                |
+| +tools/terminal           | Defaults and keybindings for the terminal  |
+| +ui/airline               | Replace the status bar with airline        |
+| +ui/toggles               | Toggles for common components              |
 | +lang/haskell             | Support for the Haskell language           |
 
 ## Adding a New Layer
@@ -109,13 +113,17 @@ It consist of three steps:
 1. Add your mappings
 1. Add clean up autocmd
 
-__Step 1.__ is done using `SpaceNeovimFileTypeGroup`, for example to add the group `SPC m d` when using `haskell`,
+__Step 1.__ is done using `au FileType haskell`, for example to add the group `SPC m g`, `SPC m r` and `SPC m d` when using `haskell`,
 
 ```viml
-call SpaceNeovimFileTypeGroup('haskell', 'd', 'haskell/documentation')
+" Start by resetting the major-mode and then add the new groups
+au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd" }
+                 \| let g:lmap.m.g = { "name": "haskell/ghc-mod" }
+                 \| let g:lmap.m.r = { "name": "haskell/refactor" }
+                 \| let g:lmap.m.d = { "name": "haskell/documentation" }
 ```
 
-No need to specify `m` since that is assumed.
+Note: you need to reset to `let g:lmap.m = { "name": "+major-mode-cmd" }` at the start, to clear any other filetype specific groupings.
 
 Going to __step 2.__, you either use the longer `SpaceNeovimFTBind` or the wrappers `SpaceNeovimFTNMap`/`SpaceNeovimFTMap` depending on what you want, as such,
 

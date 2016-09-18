@@ -27,6 +27,8 @@ function! s:spaceneovim_preinstall()
   " Create default vim-leader-guide map and add +major-mode-cmd grouping {{{
   let g:lmap = get(g:, 'lmap', {})
   let g:lmap.m = { 'name': '+major-mode-cmd' }
+  " Cleanup the 'SPC m' on buffer leave
+  "au BufLeave * let g:lmap.m = { "name": "+major-mode-cmd" }
   " }}}
 
   let g:spaceneovim_layers = get(g:, 'spaceneovim_layers', [])

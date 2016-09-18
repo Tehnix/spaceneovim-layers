@@ -97,16 +97,16 @@ endfunction
 " Grouping functions for file type groups (under SPC m) {{{
 function! SpaceNeovimFileTypeGroup(ft, group, name)
   " Register keybindings for a specific filetype for the various modes
-  execute 'au BufEnter * if &ft ==# "' . a:ft . '" | let g:lmap.m.' . a:group . ' = { "name": "' . a:name . '" } | endif '
+  execute 'au FileType ' . a:ft . ' let g:lmap.m.' . a:group . ' = { "name": "' . a:name . '" }'
 endfunction
 
 function! SpaceNeovimFileTypeGroup2(ft, group1, group2, name)
   " Register keybindings for a specific filetype for the various modes
-  execute 'au BufEnter * if &ft ==# "' . a:ft . '" | let g:lmap.m.' . a:group1 . '.' . a:group2 . ' = { "name": "' . a:name . '" } | endif '
+  execute 'au BufEnter * if &ft ==? "' . a:ft . '" | let g:lmap.m.' . a:group1 . '.' . a:group2 . ' = { "name": "' . a:name . '" } | endif '
 endfunction
 
 function! SpaceNeovimFileTypeGroup3(ft, group1, group2, group3, name)
   " Register keybindings for a specific filetype for the various modes
-  execute 'au BufEnter * if &ft ==# "' . a:ft . '" | let g:lmap.m.' . a:group1 . '.' . a:group2 . '.' . a:group3 . ' = { "name": "' . a:name . '" } | endif '
+  execute 'au BufEnter * if &ft ==? "' . a:ft . '" | let g:lmap.m.' . a:group1 . '.' . a:group2 . '.' . a:group3 . ' = { "name": "' . a:name . '" } | endif '
 endfunction
 " }}}
