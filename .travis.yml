@@ -5,4 +5,4 @@ before_install:
 - pip install --user vim-vint
 script:
 - mdl -c ./.mdlrc *.md
-- vint layers.vim bindings.vim helpers.vim
+- vint auto-layers.vim keybinding-helpers.vim helpers.vim
