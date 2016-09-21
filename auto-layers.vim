@@ -1,5 +1,5 @@
 "
-" Set up the layers, pre/post installation and pull in library files
+" Set up pre/post installation and pull in library files
 "
 
 " Set up path variables {{{
@@ -27,19 +27,6 @@ function! s:spaceneovim_preinstall()
   " Create default vim-leader-guide map and add +major-mode-cmd grouping {{{
   let g:lmap = get(g:, 'lmap', {})
   let g:lmap.m = { 'name': '+major-mode-cmd' }
-  " Cleanup the 'SPC m' on buffer leave
-  "au BufLeave * let g:lmap.m = { "name": "+major-mode-cmd" }
-  " }}}
-
-  let g:spaceneovim_layers = get(g:, 'spaceneovim_layers', [])
-  " Add all layers to g:spaceneovim_layers {{{
-  for l:group in split(glob(s:spaceneovim_layers_dir . '/layers/*'), '\n')
-    for l:layer in split(glob(l:group . '/*'), '\n')
-      if filereadable(l:layer . '/config.vim') && filereadable(l:layer . '/packages.vim')
-        call add(g:spaceneovim_layers, substitute(l:layer, s:spaceneovim_layers_dir . '/layers/', '', ''))
-      endif
-    endfor
-  endfor
   " }}}
 
   " Reset nerdcommenter key mappings {{{
