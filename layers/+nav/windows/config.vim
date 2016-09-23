@@ -17,8 +17,11 @@ call SpaceNeovimNMap('wj', 'window-down', 'wincmd j')
 call SpaceNeovimNMap('wk', 'window-up', 'wincmd k')
 call SpaceNeovimNMap('wh', 'window-left', 'wincmd h')
 call SpaceNeovimNMap('wl', 'window-right', 'wincmd l')
-" Terminal specific mappings
-call SpaceNeovimBind('tmap', 'wj', 'window-down', 'wincmd j', 1)
-call SpaceNeovimBind('tmap', 'wk', 'window-up', 'wincmd k', 1)
-call SpaceNeovimBind('tmap', 'wh', 'window-left', 'wincmd h', 1)
-call SpaceNeovimBind('tmap', 'wl', 'window-right', 'wincmd l', 1)
+
+if has('nvim')
+  " Terminal specific mappings
+  call SpaceNeovimBind('tmap', 'wj', 'window-down', 'wincmd j', 1)
+  call SpaceNeovimBind('tmap', 'wk', 'window-up', 'wincmd k', 1)
+  call SpaceNeovimBind('tmap', 'wh', 'window-left', 'wincmd h', 1)
+  call SpaceNeovimBind('tmap', 'wl', 'window-right', 'wincmd l', 1)
+endif
