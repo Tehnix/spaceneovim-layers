@@ -32,6 +32,7 @@ To use this configuration layer, add it to your `./config/nvim/init.vim`. You wi
 | SPC w h     | Go to window on the left                                 |
 | SPC w l     | Go to window on the right                                |
 | SPC w w     | Go to the other window                                   |
+| SPC w d     | Close current window                                     |
 
 
 | Key Binding | Description                            |
