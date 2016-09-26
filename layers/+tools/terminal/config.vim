@@ -10,5 +10,5 @@ if has('nvim')
   tnoremap <c-l> <C-\><C-n><C-w>l
 
   nnoremap <Plug>open-terminal :rightbelow split \| terminal<CR>
-  nmap <leader>' <Plfug>open-terminal
+  nmap <leader>' <Plug>open-terminal
 endif
