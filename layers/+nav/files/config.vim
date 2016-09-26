@@ -1,7 +1,7 @@
 call SpaceNeovimLoadFunc(expand('<sfile>:p'), 'func.vim')
 
 let g:lmap.f = { 'name': '+files' }
-call SpaceNeovimNMap('fs', 'save-buffer', 'w')
+call SpaceNeovimNMap('fs', 'save-buffer', 'update')
 call SpaceNeovimNMap('ft', 'nerdtree-toggle', 'NERDTreeToggle')
 
 let g:lmap.f.e = { 'name': 'spaceneovim/files' }
