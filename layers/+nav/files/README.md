@@ -26,5 +26,5 @@ To use this configuration layer, add it to your `./config/nvim/init.vim`. You wi
 |-------------|----------------------------------------|
 | SPC f s     | Save current buffer                    |
 | SPC f t     | Toggle NERDTree                        |
-| SPC f s d   | Open $MYVIMRC                          |
-| SPC f s U   | Update SpaceNeovim layers              |
+| SPC f e d   | Open $MYVIMRC                          |
+| SPC f e U   | Update SpaceNeovim layers              |
