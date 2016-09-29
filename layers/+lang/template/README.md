@@ -5,7 +5,6 @@
 * [Description](#description)
 * [Install](#install)
   * [Layer](#layer)
-  * [Completion](#completion)
   * [Checkers](#checkers)
 * [Key Bindings](#key-bindings)
 
@@ -14,10 +13,6 @@
 This layer provides support for the Haskell language with the following packages:
 
 * `neovimhaskell/haskell-vim`
-* `mpickering/hlint-refactor-vim`
-* `Twinside/vim-hoogle`
-* `bitc/vim-hdevtools`
-* `eagletmt/neco-ghc`
 
 ## Install
 
@@ -29,15 +24,11 @@ $ stack install apply-refact ghc-mod hlint
 
 ### Layer
 
-To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+lang/haskell` to the existing dotspaceneovim_configuration_layers list in this file.
+To use this configuration layer, add it to your `init.vim`/`.vimrc`. You will need to add `+lang/haskell` to the existing `g:dotspaceneovim_configuration_layers` list in this file.
 
 ### indentation
 
 You can configure the indentation by setting `g:sp_haskell_indentation` in your user-init block (i.e. before loading the plugin). By default it is set to `2`.
-
-### Completion
-
-By default `g:necoghc_enable_detailed_browse` is enabled. It can be disabled by setting `g:sp_necoghc_enable_detailed_browse` to either 1 or 0.
 
 ### Checkers
 
@@ -47,20 +38,15 @@ By default `g:neomake_haskell_enabled_makers` is set to use all makers. This can
 
 | Key Binding | Description                                                    |
 |-------------|----------------------------------------------------------------|
-| SPC m g     | Run ghc-mod check and lint                                     |
 
-### HLint refactor
+### Ghc-mod
 
 | Key Binding | Description                                                    |
 |-------------|----------------------------------------------------------------|
-| SPC m r r   | Apply Hlint refector suggestion at point                       |
-| SPC m r b   | Apply all Hlint refactor suggestions                           |
+| SPC m g c   | Check and lint with ghc-mod                                    |
 
 ### Documentation
 
 | Key Binding | Description                                                    |
 |-------------|----------------------------------------------------------------|
 | SPC m d h   | Start a Hoogle search query                                    |
-| SPC m d H   | Start a Hoogle search query with --info                        |
-| SPC m d c   | Close Hoogle window                                            |
-| SPC m d t   | Show type at cursor (using hdevtools)                          |

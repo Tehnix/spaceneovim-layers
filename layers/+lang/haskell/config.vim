@@ -24,6 +24,9 @@ call SpaceNeovimFTNMap('haskell', 'mdc', 'close-hoogle', 'HoogleClose')
 call SpaceNeovimFTNMap('haskell', 'mdt', 'hdevtools-type-at', 'HdevtoolsType')
 
 " Set layer specific configurations {{{
+" Set the default indentation for haskell
+call SpaceNeovimSetFTIndentation('haskell', 2)
+
 if SpaceNeovimIsLayerEnabled('+completion/deoplete')
   " Disable haskell-vim omnifunc
   let g:haskellmode_completion_ghc = 0
@@ -39,9 +42,6 @@ if SpaceNeovimIsLayerEnabled('+completion/deoplete')
 endif
 
 if SpaceNeovimIsLayerEnabled('+checkers/neomake')
-  let g:neomake_haskell_enabled_makers = ['ghcmod', 'hlint']
-  if exists('g:sp_neomake_haskell_enabled_makers')
-    let g:neomake_haskell_enabled_makers = g:sp_neomake_haskell_enabled_makers
-  endif
+  let g:neomake_haskell_enabled_makers = get(g:, 'sp_neomake_haskell_enabled_makers', ['ghcmod', 'hlint'])
 endif
 " }}}
