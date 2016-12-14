@@ -12,9 +12,10 @@ call SpaceNeovimNMap('tr', 'relative-line-numbers', 'setlocal invrelativenumber'
 call SpaceNeovimNMap('tl', 'truncate-lines', 'setlocal invwrap')
 call SpaceNeovimNMap('ts', 'syntax-checking', 'call SpaceNeovimToggleSyntax()')
 call SpaceNeovimNMap('tS', 'spell-checking', 'setlocal invspell')
-call SpaceNeovimNMap('th', 'hidden-symbols', 'set list!')
+call SpaceNeovimNMap('tH', 'hidden-symbols', 'set list!')
 
 let g:lmap.t.h = { 'name': '+highlight' }
 call SpaceNeovimNMap('thh', 'highlight-current-line-globally', 'setlocal invcursorline')
 call SpaceNeovimNMap('thc', 'highlight-indentation-current-column', 'setlocal invcursorcolumn')
 call SpaceNeovimNMap('thp', 'parenthesis-highlight-mode', 'setlocal invshowmatch')
+call SpaceNeovimNMap('ths', 'highlight-search', 'set hlsearch!')
