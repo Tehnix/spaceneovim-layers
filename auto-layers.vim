@@ -65,21 +65,23 @@ function! s:spaceneovim_postinit()
   " }}}
 
   " Configure vim-leader-guide {{{
-    " Clean up the displayed key bindings
-    function! s:spaceneovim_displayfunc()
-      let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '\c<cr>$', '', '')
-      let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '^<SID>', '', '')
-      let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '^<Plug>', '', '')
-      let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '#', '', '')
-    endfunction
-    " Add custom display func if found
-    if exists('g:leaderGuide_displayfunc')
-      call add(g:leaderGuide_displayfunc, function('s:spaceneovim_displayfunc'))
-    else
-      let g:leaderGuide_displayfunc = [function('s:spaceneovim_displayfunc')]
+    if exists('g:loaded_leaderGuide_vim')
+      " Clean up the displayed key bindings
+      function! s:spaceneovim_displayfunc()
+        let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '\c<cr>$', '', '')
+        let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '^<SID>', '', '')
+        let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '^<Plug>', '', '')
+        let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '#', '', '')
+      endfunction
+      " Add custom display func if found
+      if exists('g:leaderGuide_displayfunc')
+        call add(g:leaderGuide_displayfunc, function('s:spaceneovim_displayfunc'))
+      else
+        let g:leaderGuide_displayfunc = [function('s:spaceneovim_displayfunc')]
+      endif
+      nnoremap <silent> <Leader> :<c-u>LeaderGuide '<Space>'<CR>
+      vnoremap <silent> <Leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
     endif
-    nnoremap <silent> <Leader> :<c-u>LeaderGuide '<Space>'<CR>
-    vnoremap <silent> <Leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
   " }}}
 endfunction
 
