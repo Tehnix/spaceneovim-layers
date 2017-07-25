@@ -1,6 +1,8 @@
 " Display git marks on the side
-Plug 'airblade/vim-gitgutter'
+call SpaceNeovimAddPlugin('airblade/vim-gitgutter', {})
+
 " Browse Git commits nicely
-Plug 'junegunn/gv.vim'
+call SpaceNeovimAddPlugin('junegunn/gv.vim', {})
+
 " Git commands
-Plug 'tpope/vim-fugitive'
+call SpaceNeovimAddPlugin('tpope/vim-fugitive', {})
