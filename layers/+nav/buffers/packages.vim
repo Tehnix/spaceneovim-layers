@@ -1,1 +1,1 @@
-" No packages to install for +nav/buffers
+call SpaceNeovimAddPlugin('schickling/vim-bufonly', {})

@@ -4,6 +4,7 @@
 let g:lmap.b = { 'name': '+buffers' }
 call SpaceNeovimNMap('bd', 'kill-this-buffer', 'bd')
 call SpaceNeovimNMap('bD', 'force-kill-this-buffer', 'bd!')
+call SpaceNeovimNMap('bo', 'kill-other-buffers', 'BufOnly')
 call SpaceNeovimNMap('bn', 'next-buffer', 'bnext!')
 call SpaceNeovimNMap('bp', 'previous-buffer', 'bprevious!')
 call SpaceNeovimNMap('bN', 'new-empty-buffer', 'new')
