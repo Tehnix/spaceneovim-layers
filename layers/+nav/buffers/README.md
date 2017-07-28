@@ -25,9 +25,10 @@ To use this configuration layer, add it to your `./config/nvim/init.vim`. You wi
 | Key Binding | Description                            |
 |-------------|----------------------------------------|
 | SPC b N     | Open new empty buffer                  |
-| SPC b V     | Open new empty buffer to the left      |
+| SPC b V     | Open new empty buffer in a split       |
 | SPC b d     | Kill the current buffer                |
 | SPC b D     | Force kill the current buffer          |
+| SPC b o     | Kill all buffers except existing one   |
 | SPC b n     | Go to next buffer                      |
 | SPC b p     | Go to previous buffer                  |
 | SPC b l     | List all buffers                       |
@@ -36,7 +37,3 @@ To use this configuration layer, add it to your `./config/nvim/init.vim`. You wi
 | SPC b h     | Open start screen                      |
 | SPC b C     | Copy whole contents of the buffer      |
 | SPC b f     | Reveal the current directory in Finder |
-
-| Key Binding | Description                            |
-|-------------|----------------------------------------|
-| SPC TAB     | Go to last used buffer                 |
