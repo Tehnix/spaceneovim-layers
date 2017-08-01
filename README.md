@@ -22,6 +22,7 @@ Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim)
 | +nav/start-screen         | Add start screen when opening Neovim       |
 | +nav/text                 | Common text operations                     |
 | +nav/windows              | Common window functionality                |
+| +specs/testing            | Run tests directly from the editor         |
 | +tools/terminal           | Defaults and keybindings for the terminal  |
 | +ui/airline               | Replace the status bar with airline        |
 | +ui/toggles               | Toggles for common components              |

@@ -15,7 +15,7 @@ This layer provides common functionality for running tests (specs) from the edit
 
 ### Layer
 
-To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+tools/testing` to the existing dotspaceneovim_configuration_layers list in this file.
+To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+specs/testing` to the existing dotspaceneovim_configuration_layers list in this file.
 
 ## Key Bindings
 
