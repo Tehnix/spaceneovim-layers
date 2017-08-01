@@ -21,6 +21,7 @@ Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim)
 | +nav/quit                 | Common quit functionality                  |
 | +nav/start-screen         | Add start screen when opening Neovim       |
 | +nav/text                 | Common text operations                     |
+| +nav/tmux                 | Navigate between VIM and TMUX panes        |
 | +nav/windows              | Common window functionality                |
 | +specs/testing            | Run tests directly from the editor         |
 | +tools/terminal           | Defaults and keybindings for the terminal  |
