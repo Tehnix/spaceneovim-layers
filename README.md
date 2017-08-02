@@ -12,22 +12,23 @@ Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim)
 
 ## Current Layers
 
-| Name                      | Description                                |
-|---------------------------|--------------------------------------------|
-| +checkers/neomake         | Syntax checking with Neomake               |
-| +completion/deoplete      | Auto-completion with deoplete              |
-| +nav/buffers              | Common buffer functionality                |
-| +nav/files                | Common file operations                     |
-| +nav/quit                 | Common quit functionality                  |
-| +nav/start-screen         | Add start screen when opening Neovim       |
-| +nav/text                 | Common text operations                     |
-| +nav/tmux                 | Navigate between VIM and TMUX panes        |
-| +nav/windows              | Common window functionality                |
-| +specs/testing            | Run tests directly from the editor         |
-| +tools/terminal           | Defaults and keybindings for the terminal  |
-| +ui/airline               | Replace the status bar with airline        |
-| +ui/toggles               | Toggles for common components              |
-| +lang/haskell             | Support for the Haskell language           |
+| Name                      | Description                                      |
+|---------------------------|--------------------------------------------------|
+| +checkers/neomake         | Syntax checking with Neomake                     |
+| +completion/deoplete      | Auto-completion with deoplete                    |
+| +nav/buffers              | Common buffer functionality                      |
+| +nav/files                | Common file operations                           |
+| +nav/fuzzy                | Fuzzy search for files, buffers and methods      |
+| +nav/quit                 | Common quit functionality                        |
+| +nav/start-screen         | Add start screen when opening Neovim             |
+| +nav/text                 | Common text operations                           |
+| +nav/tmux                 | Navigate between VIM and TMUX panes              |
+| +nav/windows              | Common window functionality                      |
+| +specs/testing            | Run tests directly from the editor               |
+| +tools/terminal           | Defaults and keybindings for the terminal        |
+| +ui/airline               | Replace the status bar with airline              |
+| +ui/toggles               | Toggles for common components                    |
+| +lang/haskell             | Support for the Haskell language                 |
 
 ## Adding a New Layer
 
