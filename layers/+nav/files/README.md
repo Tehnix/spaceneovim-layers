@@ -24,7 +24,10 @@ To use this configuration layer, add it to your `./config/nvim/init.vim`. You wi
 
 | Key Binding | Description                            |
 |-------------|----------------------------------------|
+| SPC f r     | Reveal current file on NERDTree        |
 | SPC f s     | Save current buffer                    |
 | SPC f t     | Toggle NERDTree                        |
 | SPC f e d   | Open $MYVIMRC                          |
-| SPC f e U   | Update SpaceNeovim layers              |
+| SPC f e p   | Update plugins                         |
+| SPC f e r   | Reload config file                     |
+| SPC f e u   | Update SpaceNeovim layers              |
