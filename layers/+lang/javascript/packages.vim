@@ -1,1 +1,1 @@
-call SpaceNeovimAddPlugin('jelera/vim-javascript-syntax', { 'for': 'javascript' })
+" No packages to install for +lang/javascript
