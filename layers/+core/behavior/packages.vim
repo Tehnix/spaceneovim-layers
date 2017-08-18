@@ -1,3 +1,2 @@
+call SpaceNeovimAddPlugin('hecal3/vim-leader-guide', {})
 call SpaceNeovimAddPlugin('sheerun/vim-polyglot', {})
-call SpaceNeovimAddPlugin('tpope/vim-surround', {})
-call SpaceNeovimAddPlugin('tpope/vim-commentary', {})
