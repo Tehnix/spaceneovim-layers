@@ -14,6 +14,8 @@ Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim)
 
 | Name                      | Description                                      |
 |---------------------------|--------------------------------------------------|
+| +core/behavior            | Core functionality for SpaceNeovim               |
+| +core/sensible            | Sensible default settings                        |
 | +checkers/neomake         | Syntax checking with Neomake                     |
 | +completion/deoplete      | Auto-completion with deoplete                    |
 | +nav/buffers              | Common buffer functionality                      |
