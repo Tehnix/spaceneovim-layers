@@ -1,3 +1,6 @@
+" Map the leader key to <Space>
+let g:mapleader = ' '
+
 " Shorten the time before the vim-leader-guide buffer appears
 set timeoutlen=300
 set ttimeoutlen=0

@@ -1,18 +1,18 @@
-# Haskell Layer
+# Example Language Layer
 
 ## Table of contents
 
-* [Description](#description)
-* [Install](#install)
-  * [Layer](#layer)
-  * [Checkers](#checkers)
-* [Key Bindings](#key-bindings)
+-   [Description](#description)
+-   [Install](#install)
+    -   [Layer](#layer)
+    -   [Checkers](#checkers)
+-   [Key Bindings](#key-bindings)
 
 ## Description
 
 This layer provides support for the Haskell language with the following packages:
 
-* `neovimhaskell/haskell-vim`
+-   `neovimhaskell/haskell-vim`
 
 ## Install
 
@@ -36,17 +36,17 @@ By default `g:neomake_haskell_enabled_makers` is set to use all makers. This can
 
 ## Key Bindings
 
-| Key Binding | Description                                                    |
-|-------------|----------------------------------------------------------------|
+| Key Binding | Description |
+| ----------- | ----------- |
 
 ### Ghc-mod
 
-| Key Binding | Description                                                    |
-|-------------|----------------------------------------------------------------|
-| SPC m g c   | Check and lint with ghc-mod                                    |
+| Key Binding | Description                 |
+| ----------- | --------------------------- |
+| SPC m g c   | Check and lint with ghc-mod |
 
 ### Documentation
 
-| Key Binding | Description                                                    |
-|-------------|----------------------------------------------------------------|
-| SPC m d h   | Start a Hoogle search query                                    |
+| Key Binding | Description                 |
+| ----------- | --------------------------- |
+| SPC m d h   | Start a Hoogle search query |
