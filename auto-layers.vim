@@ -1,5 +1,5 @@
-"
-" Set up pre/post installation and pull in library files
+""
+" Set up pre/post installation and pull in library files.
 "
 
 " Set up path variables {{{
@@ -66,28 +66,35 @@ function! s:spaceneovim_postinit()
 
   " Configure vim-leader-guide {{{
   if exists('g:loaded_leaderGuide_vim')
-    " Clean up the displayed key bindings
+    " Clean up the displayed key bindings.
     function! s:spaceneovim_displayfunc()
       let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '\c<cr>$', '', '')
       let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '^<SID>', '', '')
       let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '^<Plug>', '', '')
       let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '#', '', '')
     endfunction
-    " Add custom display func if found
+    " Add custom display func if found.
     if exists('g:leaderGuide_displayfunc')
       call add(g:leaderGuide_displayfunc, function('s:spaceneovim_displayfunc'))
     else
       let g:leaderGuide_displayfunc = [function('s:spaceneovim_displayfunc')]
     endif
-    nnoremap <silent> <Leader> :<c-u>LeaderGuide '<Space>'<CR>
-    vnoremap <silent> <Leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
+    " Map the leader key to <Space> (or use defined one).
+    let l:leader_key = spaceneovim#get_leader_key()
+    if l:leader_key ==? '<Space>'
+      let g:mapleader = ' '
+    else
+      let g:mapleader = l:leader_key
+    endif
+    execute 'nnoremap <silent> <Leader> :<c-u>LeaderGuide "' . l:leader_key . '"<CR>'
+    execute 'vnoremap <silent> <Leader> :<c-u>LeaderGuideVisual "' . l:leader_key . '"<CR>'
   endif
   " }}}
 endfunction
 
 " Setup default plugin configuration after all autoload/*.vim {{{
 function! g:Spaceneovim_postinstall()
-  " Register g:lmap to the <Space> key
+  " Register g:lmap to the <Space> key.
   call leaderGuide#register_prefix_descriptions('<Space>', 'g:lmap')
 endfunction
 " }}}
