@@ -94,10 +94,11 @@ endfunction
 
 " Setup default plugin configuration after all autoload/*.vim {{{
 function! g:Spaceneovim_postinstall()
-  if exists('leaderGuide#register_prefix_descriptions')
+  try
     " Register g:lmap to the <Space> key.
     call leaderGuide#register_prefix_descriptions('<Space>', 'g:lmap')
-  endif
+  catch
+  endtry
 endfunction
 " }}}
 
