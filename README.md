@@ -4,9 +4,10 @@ Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim)
 
 -   [Current Layers](#current-layers)
 -   [Adding a New Layer](#adding-a-new-layer)
+    -   [API](#api)
     -   [Add a Keybinding](#add-a-keybinding)
     -   [Adding Packages](#adding-packages)
-    -   [Including Files (e.g. func.vim)](#including-files)
+    -   [Including Files](#including-files)
 -   [Adding a New Language Layer](#adding-a-new-language-layer)
     -   [Add a Language Keybinding](#add-a-language-keybinding)
 
@@ -49,9 +50,10 @@ Language layers
 
 A layer consists of, as minimum:
 
--   `README.md` describing the layer (configuration, keybindings etc)
--   `config.vim` adding the layer key bindings
--   `packages.vim` adding the packages that needs to be installed
+-   a `README.md` describing the layer (configuration, keybindings etc),
+-   either a `config.vim`, adding the layer key bindings, or
+-   a `packages.vim`, adding the packages that needs to be installed
+-   optionally, if a `func.vim` is present, it is loaded first (define commands and helper functions in this to keep things clean)
 
 These files are grouped under a `+category/layer-name` directory hierachy. As an example, the layer `buffers` is located under the group `+nav` (short for navigation).
 
@@ -65,61 +67,89 @@ endif
 
 This can especially be useful in the `+lang` layers, to add information to checkers and completions.
 
+### API
+
+The API available to layers are (`<arg>` are required, `[arg]` are optional), for keybindings,
+
+| Command        | Arguments                                                          | Description                                                                                                                                                                                      | Example                                                         |
+| -------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- |
+| SpBind         | `<map>`, `<binding>`, `<name>`, `<value>`, `<isCmd>`               | Map a key to a specific mapping type, with a description and command to execute. The `<isCmd>` argument adds `<CR>` on the end if `1` and nothing if `0`.                                        | `SpBind 'tmap', 'wj', 'window-down', 'wincmd j', 1`             |
+| SpMap          | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `map`/`noremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                         | `SpMap 'wk', 'window-up', 'wincmd k'`                           |
+| SpNMap         | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `nmap`/`nnoremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                       | `SpNMap 'wk', 'window-up', 'wincmd k'`                          |
+| SpFileTypeBind | `<filetype>`, `<map>`, `<binding>`, `<name>`, `<value>`, `<isCmd>` | Map a key, only shown under a specific filetype, to a specific mapping type, with a description and command to execute. The `<isCmd>` argument adds `<CR>` on the end if `1` and nothing if `0`. | `SpBind 'tmap', 'wj', 'window-down', 'wincmd j', 1`             |
+| SpFileTypeMap  | `<filetype>`, `<binding>`, `<name>`, `<value>`, `[isCmd]`          | Map a key with `map`/`noremap`, only shown under a specific filetype, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                   | `SpFileTypeMap 'haskell', 'mgt', 'show-type-at', 'GhcModType'`  |
+| SpFileTypeNMap | `<filetype>`, `<binding>`, `<name>`, `<value>`, `[isCmd]`          | Map a key with `nmap`/`nnoremap`, only shown under a specific filetype, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                 | `SpFileTypeNMap 'haskell', 'mgt', 'show-type-at', 'GhcModType'` |
+
+And the API for various helper functions,
+
+| Command       | Arguments                         | Description                                                                       | Example                                                                                                |
+| ------------- | --------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| SpAddPlugin   | `<PluginName>`, `[Configuration]` | Adds a plugin to load with `vim-plug` optionally with a `vim-plug` configuration. | `SpAddPlugin 'Shougo/vimproc.vim', { 'for': 'haskell', 'do' : 'make' }`                                |
+| SpSpaceIndent | `<filetype>`, `<indentation>`     | Set the amount of spaces a certain filetype is indented.                          | `SpSpaceIndent 'haskell', 2`                                                                           |
+| SpTabsIndent  | `<filetype>`, `<indentation>`     | Set the amount of tabs a certain filetype is indented.                            | `SpTabsIndent 'go', 8`                                                                                 |
+| SpLoadFunc    | `<path-to-script>`, `<file-name>` | Load (source) a file into Vim.                                                    | `SpLoadFunc expand('<sfile>:p') 'other-file.vim'`' for loading 'other-file.vim' in the layer directory |
+
 ### Add a Keybinding
 
 To add a keybinding, first make sure that the vim-leader-guide grouping exists with
 
 ```viml
-let g:lmap.e = { 'name': '+errors' }
+" Top level grouping (i.e. SPC e)
+let g:lmap.e = get(g:lmap, 'e', { 'name': '+errors' })
+" Deeper level Grouping under SPC e m
+let g:lmap.e.h = get(g:lmap.t, 'm', { 'name': '+more' })
 ```
 
-**NOTE:** if you are adding a new language, you don't have to add the grouping, since `let g:lmap.m = { 'name': '+major-mode-cmd' }` already exists.
+**NOTE:** It is important to use `get()` to avoid overwriting the mapping if it exists in another layer already.
 
-The `e` in `g:lmap.e` denotes the key that the group is under. Then add your keybinding by using `SpaceNeovimBind` or the shorter `SpaceNeovimNMap`/`SpaceNeovimMap`,
+**ANOTHER NOTE:** if you are adding a new language, you don't have to add the grouping, since `let g:lmap.m = { 'name': '+major-mode-cmd' }` already exists.
+
+The `e` in `g:lmap.e` denotes the key that the group is under. Then add your keybinding by using `SpBind` or the shorter `SpNMap`/`SpMap`,
 
 ```viml
-call SpaceNeovimBind('map', 'eC', 'neomake-check-file', 'Neomake', 1)
-" Is equivalent to
-SpaceNeovimMap('eC', 'neomake-check-file', 'Neomake')
+SpBind 'map', 'eC', 'neomake-check-file', 'Neomake', 1
+" Is equivalent to,
+SpMap 'eC', 'neomake-check-file', 'Neomake'
 
-call SpaceNeovimBind('nmap', 'eC', 'neomake-check-file', 'Neomake', 0)
-" Is equivalent to
-SpaceNeovimNMap('eC', 'neomake-check-file', 'Neomake', 0)
+SpBind 'nmap', 'eC', 'neomake-check-file', 'Neomake', 0
+" Is equivalent to (default value is `1`, so we explicitly say `0` to not automaticaly add `<CR>` behind),
+SpNMap 'eC', 'neomake-check-file', 'Neomake', 0
 ```
 
 which puts the keybinding at `SPC e l`. Note that the first `e` in `el` is necessary to put it under the `e` grouping.
 
-For more check out the `+nav/buffers` layer for an example of usage, and `bindings.vim` for the helper functions.
+For more check out the `+nav/buffers` layer for an example of usage, and `keybinding-helpers.vim` for the helper functions.
 
 ### Adding Packages
 
-This time we use `SpaceNeovimAddPlugin` to add the plugin and its vim-plug configuration,
+This time we use `SpAddPlugin` to add the plugin and its vim-plug configuration,
 
 ```viml
-call SpaceNeovimAddPlugin('neomake/neomake', {})
+SpAddPlugin 'neomake/neomake'
+SpAddPlugin 'Shougo/vimproc.vim', { 'for': 'haskell', 'do' : 'make' }
 ```
 
-which will add the package 'neomake/neomake' to be installed with the configuration `{}`. The configuration can be used for post-installation commands or to lazy-load the plugin (e.g. only loading a language plugin when that language filetype is active).
+which will add the package 'neomake/neomake' to be installed with the configuration `{}` (default value), and 'Shougo/vimproc.vim' with the more complex configuration `{ 'for': 'haskell', 'do' : 'make' }`. The configuration can be used for post-installation commands or to lazy-load the plugin (e.g. only loading a language plugin when that language filetype is active).
 
 ### Including Files
 
-To keep the files a bit more clean, your functions should reside in separate files, such as `func.vim`. To easily include them use
+To keep the files a bit more clean, your functions should reside in separate files, such as `func.vim`. If `func.vim` is found in your layer, it is automaticaly included as the first item. To easily include other files, use,
 
 ```viml
 " Load `func.vim` in the current layer directory
-call SpaceNeovimLoadFunc(expand('<sfile>:p'))
+SpLoadFunc expand('<sfile>:p')
 
 " Load `other-file.vim` in current layer directory
-call SpaceNeovimLoadFunc(expand('<sfile>:p'), 'other-file.vim')
+SpLoadFunc expand('<sfile>:p'), 'other-file.vim'
 ```
 
-The `expand('<sfile>:p')` bit is to include the path of the current layer that is calling the `SpaceNeovimLoadFunc` function. If no second argument is given it defaults to `func.vim`, since that is the normal convention.
+The `expand('<sfile>:p')` bit is to include the path of the current layer that is calling the `SpLoadFunc` function. If no second argument is given it defaults to `func.vim`, since that is the normal convention.
 
 For more check out the `+nav/files` layer for an example of usage, and `helpers.vim` for the helper functions.
 
 ## Adding a New Language Layer
 
-Most of adding a new language layer is just like adding a normal layer, except for keybindings, as described below.
+Most of adding a new language layer is just like adding a normal layer, except for keybindings and groupings, as described below.
 
 ### Add a language keybinding
 
@@ -143,16 +173,16 @@ au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd" }
 
 Note: you need to reset to `let g:lmap.m = { "name": "+major-mode-cmd" }` at the start, to clear any other filetype specific groupings.
 
-Going to **step 2.**, you either use the longer `SpaceNeovimFTBind` or the wrappers `SpaceNeovimFTNMap`/`SpaceNeovimFTMap` depending on what you want, as such,
+Going to **step 2.**, you either use the longer `SpFileTypeBind` or the wrappers `SpFileTypeMap`/`SpFileTypeNMap` depending on what you want, as such,
 
 ```viml
-call SpaceNeovimFTNMap('haskell', 'mdh', 'search-hoogle', 'call feedkeys(":Hoogle ")')
+SpFileTypeNMap 'haskell', 'mgc', 'ghc-mod-check', 'GhcModCheckAndLintAsync'
 ```
 
 Finally for **step 3.**, we call `SpaceNeovimCleanupFileTypeGroups` as such,
 
 ```viml
-call SpaceNeovimCleanupFileTypeGroups('haskell')
+SpCleanupFileTypeGroups 'haskell'
 ```
 
 Which will clear the mappings upon leaving the buffer (`BufLeave`).

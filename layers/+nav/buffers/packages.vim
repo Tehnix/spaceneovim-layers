@@ -1,1 +1,1 @@
-call SpaceNeovimAddPlugin('schickling/vim-bufonly', {})
+SpAddPlugin 'schickling/vim-bufonly'

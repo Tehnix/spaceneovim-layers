@@ -2,14 +2,29 @@
 " Set up pre/post installation and pull in library files.
 "
 
+""
+" Debug messages to the console.
+"
+function! s:debug(msg)
+  if g:dotspaceneovim_debug
+    echom a:msg
+  endif
+endfunction
+
 " Set up path variables {{{
-let s:config_dir = $HOME . '/.config/nvim'
+if has('nvim')
+  let s:config_dir = $HOME . '/.config/nvim'
+else
+  let s:config_dir = $HOME . '/.vim'
+endif
 let s:spaceneovim_layers_dir = expand(resolve(s:config_dir . '/spaceneovim-layers'))
 " }}}
 
 
 " Load library files {{{
+call s:debug('>>> Loading helpers')
 execute 'source ' . s:spaceneovim_layers_dir . '/helpers.vim'
+call s:debug('>>> Loading keybinding-helpers')
 execute 'source ' . s:spaceneovim_layers_dir . '/keybinding-helpers.vim'
 " }}}
 
@@ -24,9 +39,10 @@ let g:loaded_spaceneovim = 1
 
 " Setup default plugin configuration {{{
 function! s:spaceneovim_preinstall()
+  call s:debug('>>> Run pre install')
   " Create default vim-leader-guide map and add +major-mode-cmd grouping {{{
   let g:lmap = get(g:, 'lmap', {})
-  let g:lmap.m = { 'name': '+major-mode-cmd' }
+  let g:lmap.m = get(g:lmap, 'm', { 'name': '+major-mode-cmd' })
   " }}}
 
   " Reset nerdcommenter key mappings {{{
@@ -44,17 +60,10 @@ function! s:spaceneovim_preinstall()
   " Reset vim-swoop key mappings {{{
   let g:swoopUseDefaultKeyMap = get(g:, 'swoopUseDefaultKeyMap', 0)
   " }}}
-
-  " Configure vim-startify startup message {{{
-  let g:startify_custom_header = get(g:, 'startify_custom_header', [
-  \'',
-  \'                         [S P A C E N E O V I M]',
-  \'',
-  \ ])
-  " }}}
 endfunction
 
 function! s:spaceneovim_postinit()
+  call s:debug('>>> Run postinit')
   " Configure vim-arpeggio {{{
   if exists('g:loaded_arpeggio')
     if exists('g:dotspaceneovim_escape_key_sequence')
@@ -66,6 +75,7 @@ function! s:spaceneovim_postinit()
 
   " Configure vim-leader-guide {{{
   if exists('g:loaded_leaderGuide_vim')
+    call s:debug('>>> Configure vim-leader-guide')
     " Clean up the displayed key bindings.
     function! s:spaceneovim_displayfunc()
       let g:leaderGuide#displayname = substitute(g:leaderGuide#displayname, '\c<cr>$', '', '')
@@ -88,6 +98,7 @@ function! s:spaceneovim_postinit()
     endif
     execute 'nnoremap <silent> <Leader> :<c-u>LeaderGuide "' . l:leader_key . '"<CR>'
     execute 'vnoremap <silent> <Leader> :<c-u>LeaderGuideVisual "' . l:leader_key . '"<CR>'
+
   endif
   " }}}
 endfunction
@@ -95,8 +106,10 @@ endfunction
 " Setup default plugin configuration after all autoload/*.vim {{{
 function! g:Spaceneovim_postinstall()
   try
+    call s:debug('>>> Run post install')
     " Register g:lmap to the <Space> key.
-    call leaderGuide#register_prefix_descriptions('<Space>', 'g:lmap')
+    let l:leader_key = spaceneovim#get_leader_key()
+    call leaderGuide#register_prefix_descriptions(l:leader_key, 'g:lmap')
   catch
   endtry
 endfunction
@@ -104,8 +117,11 @@ endfunction
 
 call s:spaceneovim_preinstall()
 
-augroup spaceneovim_postinit
-  autocmd!
-  autocmd VimEnter * call s:spaceneovim_postinit()
-augroup END
+if !exists("g:spaceneovim_postinit_loaded")
+  let g:spaceneovim_postinit_loaded = 1
+  augroup spaceneovim_postinit
+    autocmd!
+    autocmd VimEnter * call s:spaceneovim_postinit()
+  augroup END
+endif
 " }}}

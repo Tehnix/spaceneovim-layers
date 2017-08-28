@@ -1,1 +1,1 @@
-call SpaceNeovimAddPlugin('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
+SpAddPlugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

@@ -1,1 +1,1 @@
-call SpaceNeovimAddPlugin('neovimhaskell/haskell-vim', { 'for': 'haskell' })
+SpAddPlugin 'neovimhaskell/haskell-vim', { 'for': 'haskell' }

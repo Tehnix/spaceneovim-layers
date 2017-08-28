@@ -1,1 +1,1 @@
-call SpaceNeovimAddPlugin('janko-m/vim-test', {})
+SpAddPlugin 'janko-m/vim-test'

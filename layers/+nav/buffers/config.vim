@@ -1,17 +1,18 @@
-" FIXME: Currently deletes the content in the buffer
-"call SpaceNeovimNMap('<Tab>', 'last buffer', 'b#')
+let g:lmap.b = get(g:lmap, 'b', { 'name': '+buffers' })
 
-let g:lmap.b = { 'name': '+buffers' }
-call SpaceNeovimNMap('bd', 'kill-this-buffer', 'bd')
-call SpaceNeovimNMap('bD', 'force-kill-this-buffer', 'bd!')
-call SpaceNeovimNMap('bo', 'kill-other-buffers', 'BufOnly')
-call SpaceNeovimNMap('bn', 'next-buffer', 'bnext!')
-call SpaceNeovimNMap('bp', 'previous-buffer', 'bprevious!')
-call SpaceNeovimNMap('bN', 'new-empty-buffer', 'new')
-call SpaceNeovimNMap('bV', 'new-empty-vertical-buffer', 'vnew')
-call SpaceNeovimNMap('bl', 'list-all-buffers', 'buffers')
-call SpaceNeovimNMap('bF', 'open-first-buffer', 'bfirst!')
-call SpaceNeovimNMap('bL', 'open-last-buffer', 'blast!')
-call SpaceNeovimNMap('bC', 'copy-whole-buffer', '%y *')
-call SpaceNeovimNMap('bf', 'reveal-in-osx-finder', '! open %:p:h')
-call SpaceNeovimNMap('bh', 'home', 'Startify')
+let g:lmap.b['<C-I>'] = ['b#', 'last-buffer']
+SpNMap 'bd', 'kill-this-buffer', 'bd'
+SpNMap 'bD', 'force-kill-this-buffer', 'bd!'
+SpNMap 'bo', 'kill-other-buffers', 'BufOnly'
+SpNMap 'bn', 'next-buffer', 'bnext!'
+SpNMap 'bp', 'previous-buffer', 'bprevious!'
+SpNMap 'bN', 'new-empty-buffer', 'new'
+SpNMap 'bV', 'new-empty-vertical-buffer', 'vnew'
+SpNMap 'bl', 'list-all-buffers', 'buffers'
+SpNMap 'bF', 'open-first-buffer', 'bfirst!'
+SpNMap 'bL', 'open-last-buffer', 'blast!'
+SpNMap 'bC', 'copy-whole-buffer', '%y *'
+if has('macunix')
+  SpNMap 'bf', 'reveal-in-finder', '! open %:p:h'
+endif
+SpNMap 'bh', 'home', 'Startify'

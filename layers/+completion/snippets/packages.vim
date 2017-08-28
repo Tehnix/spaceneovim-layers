@@ -1,3 +1,2 @@
-call SpaceNeovimAddPlugin('Shougo/neosnippet', {})
-call SpaceNeovimAddPlugin('Shougo/neosnippet-snippets', {})
-
+SpAddPlugin 'Shougo/neosnippet'
+SpAddPlugin 'Shougo/neosnippet-snippets'

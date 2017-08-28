@@ -1,4 +1,5 @@
 " Remove any default mappings {{{
+let g:hlintRefactor#disableDefaultKeybindings = 1
 " }}}
 
 " Create groupings under SPC m {{{
@@ -12,15 +13,15 @@ au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd" }
 " Set the key mappings for the various commands {{{
 " Call the command `GhcModCheckAndLintAsync` on the keybinding SPC m g c and
 " give it the name 'ghc-mod-check'
-call SpaceNeovimFTNMap('haskell', 'mgc', 'ghc-mod-check', 'GhcModCheckAndLintAsync')
+SpFileTypeNMap 'haskell', 'mgc', 'ghc-mod-check', 'GhcModCheckAndLintAsync'
 " Call the command `Hoogle` on the keybinding SPC m d h, give it the name
 " 'search-hoogle' and wait for user input
-call SpaceNeovimFTNMap('haskell', 'mdh', 'search-hoogle', 'call feedkeys(":Hoogle ")')
+SpFileTypeNMap 'haskell', 'mdh', 'search-hoogle', 'SpaceNeovimExampleHoogle'
 " }}}
 
 " Layer specific configurations {{{
 " Set the default indentation for the language
-call SpaceNeovimSetFTIndentation('haskell', 2)
+SpSpaceIndent 'example-language', 2
 
 if SpaceNeovimIsLayerEnabled('+completion/deoplete')
   " Configure deoplete

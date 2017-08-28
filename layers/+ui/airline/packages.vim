@@ -1,2 +1,2 @@
-call SpaceNeovimAddPlugin('vim-airline/vim-airline', {})
-call SpaceNeovimAddPlugin('vim-airline/vim-airline-themes', {})
+SpAddPlugin 'vim-airline/vim-airline'
+SpAddPlugin 'vim-airline/vim-airline-themes'

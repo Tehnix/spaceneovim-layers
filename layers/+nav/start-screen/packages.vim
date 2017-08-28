@@ -1,1 +1,1 @@
-call SpaceNeovimAddPlugin('mhinz/vim-startify', {})
+SpAddPlugin 'mhinz/vim-startify'

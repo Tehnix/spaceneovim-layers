@@ -1,15 +1,15 @@
-let g:lmap.e = { 'name': '+errors' }
-call SpaceNeovimNMap('er', 'neomake-check-file', 'Neomake')
-call SpaceNeovimNMap('ev', 'neomake-version', 'NeomakeInfo')
-call SpaceNeovimNMap('el', 'neomake-error-list', 'lopen')
-call SpaceNeovimNMap('ec', 'neomake-close-error-list', 'lclose')
-call SpaceNeovimNMap('en', 'neomake-next-error', 'lnext')
-call SpaceNeovimNMap('ep', 'neomake-previous-error', 'lprevious')
+let g:lmap.e = get(g:lmap, 'e', { 'name': '+errors' })
+SpNMap 'er', 'neomake-check-file', 'Neomake'
+SpNMap 'ev', 'neomake-version', 'NeomakeInfo'
+SpNMap 'el', 'neomake-error-list', 'lopen'
+SpNMap 'ec', 'neomake-close-error-list', 'lclose'
+SpNMap 'en', 'neomake-next-error', 'lnext'
+SpNMap 'ep', 'neomake-previous-error', 'lprevious'
 
-call SpaceNeovimNMap('eC', 'quickfix-close-error-list', 'ccopen')
-call SpaceNeovimNMap('eL', 'quickfix-error-list', 'copen')
-call SpaceNeovimNMap('eN', 'quickfix-next-error', 'cn')
-call SpaceNeovimNMap('eP', 'quickfix-previous-error', 'cp')
+SpNMap 'eC', 'quickfix-close-error-list', 'ccopen'
+SpNMap 'eL', 'quickfix-error-list', 'copen'
+SpNMap 'eN', 'quickfix-next-error', 'cn'
+SpNMap 'eP', 'quickfix-previous-error', 'cp'
 
 augroup neomakeConfig
   au!

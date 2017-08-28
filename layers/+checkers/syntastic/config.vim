@@ -11,15 +11,15 @@ let g:syntastic_aggregate_errors = 0
 " Make statusline look a bit more condensed and nicer
 let g:syntastic_stl_format = '%E{E:%e (%fe)}%B{, }%W{W:%w (%fw)}'
 
-let g:lmap.e = { 'name': '+errors' }
-call SpaceNeovimNMap('er', 'syntastic-check-file', 'SyntasticCheck')
-call SpaceNeovimNMap('ev', 'syntastic-version', 'SyntasticInfo')
-call SpaceNeovimNMap('el', 'syntastic-error-list', 'lopen')
-call SpaceNeovimNMap('ec', 'syntastic-close-error-list', 'lclose')
-call SpaceNeovimNMap('en', 'syntastic-next-error', 'lnext')
-call SpaceNeovimNMap('ep', 'syntastic-previous-error', 'lprevious')
+let g:lmap.e = get(g:lmap, 'e', { 'name': '+errors' })
+SpNMap 'er', 'syntastic-check-file', 'SyntasticCheck'
+SpNMap 'ev', 'syntastic-version', 'SyntasticInfo'
+SpNMap 'el', 'syntastic-error-list', 'lopen'
+SpNMap 'ec', 'syntastic-close-error-list', 'lclose'
+SpNMap 'en', 'syntastic-next-error', 'lnext'
+SpNMap 'ep', 'syntastic-previous-error', 'lprevious'
 
-call SpaceNeovimNMap('eC', 'quickfix-close-error-list', 'cclose')
-call SpaceNeovimNMap('eL', 'quickfix-error-list', 'copen')
-call SpaceNeovimNMap('eN', 'quickfix-next-error', 'cn')
-call SpaceNeovimNMap('eP', 'quickfix-previous-error', 'cp')
+SpNMap 'eC', 'quickfix-close-error-list', 'cclose'
+SpNMap 'eL', 'quickfix-error-list', 'copen'
+SpNMap 'eN', 'quickfix-next-error', 'cn'
+SpNMap 'eP', 'quickfix-previous-error', 'cp'

@@ -9,19 +9,19 @@ au FileType elm let g:lmap.m = { "name": "+major-mode-cmd" }
 " }}}
 
 " Set the key mappings for the various commands {{{
-call SpaceNeovimFTNMap('elm', 'mm', 'elm-make', 'call feedkeys(":ElmMake ")')
-call SpaceNeovimFTNMap('elm', 'mM', 'elm-make-main', 'ElmMakeMain')
-call SpaceNeovimFTNMap('elm', 'mt', 'elm-test', 'call feedkeys(":ElmTest ")')
-call SpaceNeovimFTNMap('elm', 'mr', 'elm-repl', 'ElmRepl')
-call SpaceNeovimFTNMap('elm', 'mf', 'elm-format', 'ElmFormat')
-call SpaceNeovimFTNMap('elm', 'me', 'error-detail', 'ElmErrorDetail')
-call SpaceNeovimFTNMap('elm', 'mds', 'show-docs', 'ElmShowDocs')
-call SpaceNeovimFTNMap('elm', 'mdb', 'browse-docs', 'ElmBrowseDocs')
+SpFileTypeNMap 'elm', 'mm', 'elm-make', 'SpaceNeovimElmMake'
+SpFileTypeNMap 'elm', 'mM', 'elm-make-main', 'ElmMakeMain'
+SpFileTypeNMap 'elm', 'mt', 'elm-test', 'SpaceNeovimElmTest'
+SpFileTypeNMap 'elm', 'mr', 'elm-repl', 'ElmRepl'
+SpFileTypeNMap 'elm', 'mf', 'elm-format', 'ElmFormat'
+SpFileTypeNMap 'elm', 'me', 'error-detail', 'ElmErrorDetail'
+SpFileTypeNMap 'elm', 'mds', 'show-docs', 'ElmShowDocs'
+SpFileTypeNMap 'elm', 'mdb', 'browse-docs', 'ElmBrowseDocs'
 " }}}
 
 " Layer specific configurations {{{
 " Set the default indentation for the language
-call SpaceNeovimSetFTIndentation('elm', 4)
+SpSpaceIndent 'elm', 4
 
 if SpaceNeovimIsLayerEnabled('+checkers/syntastic')
   let g:syntastic_always_populate_loc_list = 1
@@ -37,9 +37,9 @@ if SpaceNeovimIsLayerEnabled('+completion/youcompleteme')
 endif
 
 if SpaceNeovimIsLayerEnabled('+completion/neocomplete')
-  call neocomplete#util#set_default_dictionary(
-  \ 'g:neocomplete#sources#omni#input_patterns',
-  \ 'elm',
-  \ '\.')
+  " call neocomplete#util#set_default_dictionary(
+  " \ 'g:neocomplete#sources#omni#input_patterns',
+  " \ 'elm',
+  " \ '\.')
 endif
 " }}}

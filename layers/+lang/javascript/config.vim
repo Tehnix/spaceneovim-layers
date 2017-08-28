@@ -11,7 +11,7 @@ au FileType javascript let g:lmap.m = { "name": "+major-mode-cmd" }
 
 " Layer specific configurations {{{
 " Set the default indentation for the language
-call SpaceNeovimSetFTIndentation('javascript', 2)
+SpSpaceIndent 'javascript', 2
 
 if SpaceNeovimIsLayerEnabled('+completion/deoplete')
   " Configure deoplete

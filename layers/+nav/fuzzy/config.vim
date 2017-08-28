@@ -1,11 +1,9 @@
-call SpaceNeovimLoadFunc(expand('<sfile>:p'), 'func.vim')
-
 let g:lmap.f = get(g:lmap, 'f', { 'name': '+files' })
-call SpaceNeovimNMap('fb', 'find-buffer', 'CtrlPBuffer')
-call SpaceNeovimNMap('ff', 'find-file', 'CtrlP')
-call SpaceNeovimNMap('fm', 'find-method', 'CtrlPFunky')
-call SpaceNeovimNMap('fM', 'find-method-under-cursor', 'CtrlPFunkyUnderCursor')
-call SpaceNeovimNMap('fr', 'find-recently-used', 'CtrlPMRU')
+SpNMap 'fb', 'find-buffer', 'CtrlPBuffer'
+SpNMap 'ff', 'find-file', 'CtrlP'
+SpNMap 'fm', 'find-method', 'CtrlPFunky'
+SpNMap 'fM', 'find-method-under-cursor', 'CtrlPFunkyUnderCursor'
+SpNMap 'fR', 'find-recently-used', 'CtrlPMRU'
 
 " Disable default mapping for CtrlP
 let g:ctrlp_map = ''

@@ -1,1 +1,1 @@
-call SpaceNeovimAddPlugin('scrooloose/syntastic', {})
+SpAddPlugin 'scrooloose/syntastic'
