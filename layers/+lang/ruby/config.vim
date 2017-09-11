@@ -3,16 +3,13 @@
   let g:blockle_mapping = '<F37>'
 " }}}
 
-" Create groupings under SPC m {{{
-  " Start by resetting the major-mode and then add the new groups
-  au FileType ruby let g:lmap.m = { "name": "+major-mode-cmd" }
-" }}}
-
 " Set the key mappings for the various commands {{{
-  SpFileTypeNMap 'ruby', 'mb', 'blockie', ''
-  SpFileTypeNMap 'ruby', 'm:', 'not-rocket', 'NotRocket'
-  SpFileTypeNMap 'ruby', 'ml', 'extract-let', '<Plug>ExtractRspecLet'
-  SpFileTypeNMap 'ruby', 'ms', 'convert-struct', '<Plug>ConvertStructToClass'
+  au FileType ruby let g:lmap.m = { "name": "+major-mode-cmd",
+    \"b": ["echo 'Not implemented yet!'", "blockie"],
+    \":": ["NotRocket", "not-rocket"],
+    \"l": ["<Plug>ExtractRspecLet", "extract-let"],
+    \"s": ["<Plug>ConvertStructToClass", "convert-struct"]
+    \}
 " }}}
 
 " Layer specific configurations {{{

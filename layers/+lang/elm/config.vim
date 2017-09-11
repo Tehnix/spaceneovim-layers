@@ -2,21 +2,19 @@
 let g:elm_setup_keybindings = 0
 " }}}
 
-" Create groupings under SPC m {{{
-" Start by resetting the major-mode and then add the new groups
-au FileType elm let g:lmap.m = { "name": "+major-mode-cmd" }
-             \| let g:lmap.m.d = { "name": "elm/documentation" }
-" }}}
-
 " Set the key mappings for the various commands {{{
-SpFileTypeNMap 'elm', 'mm', 'elm-make', 'SpaceNeovimElmMake'
-SpFileTypeNMap 'elm', 'mM', 'elm-make-main', 'ElmMakeMain'
-SpFileTypeNMap 'elm', 'mt', 'elm-test', 'SpaceNeovimElmTest'
-SpFileTypeNMap 'elm', 'mr', 'elm-repl', 'ElmRepl'
-SpFileTypeNMap 'elm', 'mf', 'elm-format', 'ElmFormat'
-SpFileTypeNMap 'elm', 'me', 'error-detail', 'ElmErrorDetail'
-SpFileTypeNMap 'elm', 'mds', 'show-docs', 'ElmShowDocs'
-SpFileTypeNMap 'elm', 'mdb', 'browse-docs', 'ElmBrowseDocs'
+  au FileType elm let g:lmap.m = { "name": "+major-mode-cmd",
+    \"m": ["SpaceNeovimElmMake", "elm-make"],
+    \"M": ["ElmMakeMain", "elm-make-main"],
+    \"t": ["SpaceNeovimElmTest", "elm-test"],
+    \"r": ["ElmRepl", "elm-repl"],
+    \"f": ["ElmFormat", "elm-format"],
+    \"e": ["ElmErrorDetail", "error-detail"],
+    \"d": { "name": "+elm/documentation"
+         \, "s": ["ElmShowDocs", "show-docs"]
+         \, "b": ["ElmBrowseDocs", "browse-docs"]
+      \ },
+    \}
 " }}}
 
 " Layer specific configurations {{{

@@ -1,6 +1,6 @@
 let g:lmap.b = get(g:lmap, 'b', { 'name': '+buffers' })
 
-let g:lmap.b['<C-I>'] = ['b#', 'last-buffer']
+let g:lmap['<C-I>'] = ['b#', 'last-buffer']
 SpNMap 'bd', 'kill-this-buffer', 'bd'
 SpNMap 'bD', 'force-kill-this-buffer', 'bd!'
 SpNMap 'bo', 'kill-other-buffers', 'BufOnly'

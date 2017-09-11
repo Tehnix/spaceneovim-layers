@@ -2,29 +2,38 @@
   let g:hlintRefactor#disableDefaultKeybindings = 1
 " }}}
 
-" Create groupings under SPC m {{{
-" Start by resetting the major-mode and then add the new groups
-  au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd" }
-" }}}
-
 " Set the key mappings for the various commands {{{
-  SpFileTypeGroup 'haskell', 'g', '+haskell/ghc-mod'
-  SpFileTypeNMap 'haskell', 'mgc', 'ghc-mod-check', 'GhcModCheckAndLintAsync'
-  SpFileTypeNMap 'haskell', 'mgs', 'ghc-mod-split-fun', 'GhcModSplitFunCase'
-  SpFileTypeNMap 'haskell', 'mgs', 'ghc-mod-sig-gen-code', 'GhcModSigCodegen'
-  SpFileTypeNMap 'haskell', 'mge', 'ghc-mod-expand', 'GhcModExpand'
-  SpFileTypeNMap 'haskell', 'mgt', 'show-type-at', 'GhcModType'
-  SpFileTypeNMap 'haskell', 'mgc', 'clear-type', 'GhcModTypeClear'
-
-  SpFileTypeGroup 'haskell', 'r', '+haskell/refactor'
-  SpFileTypeNMap 'haskell', 'mrb', 'hlint-refactor-buffer', 'call ApplyAllSuggestion()'
-  SpFileTypeNMap 'haskell', 'mrr', 'hlint-refactor-at-point', 'call ApplyOneSuggestion()'
-
-  SpFileTypeGroup 'haskell', 'd', '+haskell/documentation'
-  SpFileTypeNMap 'haskell', 'mdh', 'search-hoogle', 'SpaceNeovimHaskellHoogle'
-  SpFileTypeNMap 'haskell', 'mdH', 'search-hoogle-info', 'SpaceNeovimHaskellHoogleInfo'
-  SpFileTypeNMap 'haskell', 'mdc', 'close-hoogle', 'HoogleClose'
-  SpFileTypeNMap 'haskell', 'mdt', 'hdevtools-type-at', 'HdevtoolsType'
+  au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd",
+    \"i": { "name": "+haskell/ghcmod"
+         \, "c": ["GhcModCheckAndLintAsync", "ghcmod/check"]
+      \ },
+    \"r": { "name": "+haskell/refactor"
+         \, "b": ["call ApplyAllSuggestion()", "hlint/refactor-buffer"]
+         \, "r": ["all ApplyOneSuggestion()", "hlint/refactor-at-point"]
+         \, "f": ["GhcModSplitFunCase", "ghcmod/split-fun"]
+         \, "g": ["GhcModSigCodegen", "ghcmod/sig-gen-code"]
+         \, "e": ["GhcModExpand", "ghcmod/expand'"]
+      \ },
+    \"h": { "name": "+haskell/documentation"
+         \, "h": ["SpaceNeovimHaskellHoogle", "search-hoogle"]
+         \, "H": ["SpaceNeovimHaskellHoogleInfo", "search-hoogle-info"]
+         \, "C": ["HoogleClose", "close-hoogle"]
+         \, "t": ["GhcModType", "ghcmod/type-at"]
+         \, "i": ["GhcModInfo", "ghcmod/info"]
+         \, "T": ["GhcModTypeInsert", "ghcmod/insert-type"]
+         \, "c": ["GhcModTypeClear", "ghcmod/clear-type"]
+      \ },
+    \"g": { "name": "+haskell/navigation"
+         \, "G": ["echo 'Not Implemented yet!'", "jump-to-definition-other-window"]
+         \, "g": ["echo 'Not Implemented yet!'", "jump-to-definition"]
+         \, "i": ["echo 'Not Implemented yet!'", "haskell-navigate-imports"]
+      \ },
+    \"s": { "name": "+haskell/repl"
+         \, "b": ["echo 'Not Implemented yet!'", "repl-load"]
+         \, "S": ["echo 'Not Implemented yet!'", "pop-to-repl"]
+         \, "s": ["echo 'Not Implemented yet!'", "display-repl"]
+      \ },
+    \}
 " }}}
 
 " Set layer specific configurations {{{

@@ -93,10 +93,8 @@ function! SpaceNeovimBufBind(map, binding, name, value, isCmd)
   endif
 
   if l:noremap !=# ''
-    execute 'au VimEnter * ' . l:noremap . ' <buffer> <SID>' . a:name . '# ' . l:value
-    execute 'au VimEnter * ' . a:map . ' <buffer> <Leader>' . a:binding . ' <SID>' . a:name . '#'
-    " execute 'au BufEnter * ' . l:noremap . ' <buffer> <SID>' . a:name . '# ' . l:value
-    " execute 'au BufEnter * ' . a:map . ' <buffer> <Leader>' . a:binding . ' <SID>' . a:name . '#'
+    execute 'au VimEnter * ' . l:noremap . ' <SID>' . a:name . '# ' . l:value
+    execute 'au VimEnter * ' . a:map . ' <Leader>' . a:binding . ' <SID>' . a:name . '#'
   endif
 endfunction
 
@@ -144,9 +142,6 @@ function! SpaceNeovimFTBind(ft, map, binding, name, value, isCmd)
     execute 'au VimEnter * if &ft ==? "' . a:ft . '" | ' . l:noremap . ' <buffer> <SID>' . a:name . '# ' . l:value . '  | endif '
     execute 'au VimEnter * if &ft ==? "' . a:ft . '" | ' . a:map . ' <buffer> <Leader>' . a:binding . ' <SID>' . a:name . '#  | endif '
 
-    " execute 'au BufEnter * if &ft ==? "' . a:ft . '" | ' . l:noremap . ' <buffer> <SID>' . a:name . '# ' . l:value . '  | endif '
-    " execute 'au BufEnter * if &ft ==? "' . a:ft . '" | ' . a:map . ' <buffer> <Leader>' . a:binding . ' <SID>' . a:name . '#  | endif '
-
     execute 'au FileType ' . a:ft . ' ' . l:noremap . ' <buffer> <SID>' . a:name . '# ' . l:value
     execute 'au FileType ' . a:ft . ' ' . a:map . ' <buffer> <Leader>' . a:binding . ' <SID>' . a:name . '#'
   endif
@@ -175,8 +170,9 @@ endfunction
 " Grouping functions for file type groups (under SPC m) {{{
 function! SpaceNeovimFileTypeGroup(ft, group, name)
   " Register keybindings for a specific filetype for the various modes.
-  execute 'au VimEnter * if &ft ==? "' . a:ft . '" | let g:lmap.m.' . a:group . ' = { "name": "' . a:name . '" } | endif '
-  execute 'au FileType ' . a:ft . ' let g:lmap.m.' . a:group . ' = { "name": "' . a:name . '" } '
+  " execute 'au VimEnter * if &ft ==? "' . a:ft . '" | let g:lmap.m.' . a:group . ' = { "name": "' . a:name . '" } | endif '
+  " execute 'au FileType ' . a:ft . ' let g:lmap.m.' . a:group . ' = { "name": "' . a:name . '" } '
+  execute 'au FileType ' . a:ft . ' let g:lmap.m.' . a:group . ' = get(g:lmap, "' . a:group . '", { "name": "' . a:name . '" })'
 endfunction
 
 function! SpaceNeovimFileTypeGroup2(ft, group1, group2, name)
