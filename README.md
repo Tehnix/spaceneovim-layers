@@ -188,3 +188,20 @@ SpCleanupFileTypeGroups 'haskell'
 Which will clear the mappings upon leaving the buffer (`BufLeave`).
 
 For more check out the `+lang/haskell` layer for an example of usage, and `bindings.vim` for the helper functions.
+
+
+## Pre-commit linting
+
+It is recommended to add the following to `.git/hooks/pre-commit`,
+
+```bash
+# Get the current dir
+startDir=$(pwd)
+# Get the project root
+rootDir=$(git rev-parse --show-toplevel)
+
+cd $rootDir
+
+# Run vint
+vint auto-layers.vim keybinding-helpers.vim helpers.vim
+```
