@@ -117,7 +117,7 @@ endfunction
 
 call s:spaceneovim_preinstall()
 
-if !exists("g:spaceneovim_postinit_loaded")
+if !exists('g:spaceneovim_postinit_loaded')
   let g:spaceneovim_postinit_loaded = 1
   augroup spaceneovim_postinit
     autocmd!
