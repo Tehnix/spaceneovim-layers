@@ -37,14 +37,15 @@ Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim)
 
 Language layers
 
-| Name             | Description            |
-| ---------------- | ---------------------- |
-| +lang/elm        | Support for Elm        |
-| +lang/haskell    | Support for Haskell    |
-| +lang/javascript | Support for JavaScript |
-| +lang/python     | Support for python     |
-| +lang/ruby       | Support for ruby       |
-| +lang/vim        | Support for vim        |
+| Name             | Description                                 |
+| ---------------- | ------------------------------------------- |
+| +lang/-example   | A template for creating new language layers |
+| +lang/elm        | Support for Elm                             |
+| +lang/haskell    | Support for Haskell                         |
+| +lang/javascript | Support for JavaScript                      |
+| +lang/python     | Support for python                          |
+| +lang/ruby       | Support for ruby                            |
+| +lang/vim        | Support for vim                             |
 
 ## Adding a New Layer
 
@@ -71,14 +72,14 @@ This can especially be useful in the `+lang` layers, to add information to check
 
 The API available to layers are (`<arg>` are required, `[arg]` are optional), for keybindings,
 
-| Command        | Arguments                                                          | Description                                                                                                                                                                                      | Example                                                         |
-| -------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- |
-| SpBind         | `<map>`, `<binding>`, `<name>`, `<value>`, `<isCmd>`               | Map a key to a specific mapping type, with a description and command to execute. The `<isCmd>` argument adds `<CR>` on the end if `1` and nothing if `0`.                                        | `SpBind 'tmap', 'wj', 'window-down', 'wincmd j', 1`             |
-| SpMap          | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `map`/`noremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                         | `SpMap 'wk', 'window-up', 'wincmd k'`                           |
-| SpNMap         | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `nmap`/`nnoremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                       | `SpNMap 'wk', 'window-up', 'wincmd k'`                          |
-| SpFileTypeBind | `<filetype>`, `<map>`, `<binding>`, `<name>`, `<value>`, `<isCmd>` | Map a key, only shown under a specific filetype, to a specific mapping type, with a description and command to execute. The `<isCmd>` argument adds `<CR>` on the end if `1` and nothing if `0`. | `SpBind 'tmap', 'wj', 'window-down', 'wincmd j', 1`             |
-| SpFileTypeMap  | `<filetype>`, `<binding>`, `<name>`, `<value>`, `[isCmd]`          | Map a key with `map`/`noremap`, only shown under a specific filetype, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                   | `SpFileTypeMap 'haskell', 'mgt', 'show-type-at', 'GhcModType'`  |
-| SpFileTypeNMap | `<filetype>`, `<binding>`, `<name>`, `<value>`, `[isCmd]`          | Map a key with `nmap`/`nnoremap`, only shown under a specific filetype, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                 | `SpFileTypeNMap 'haskell', 'mgt', 'show-type-at', 'GhcModType'` |
+| Command        | Arguments                                                          | Description                                                                                                                                                                                                                          | Example                                                         |
+| -------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- |
+| SpBind         | `<map>`, `<binding>`, `<name>`, `<value>`, `<isCmd>`               | Map a key to a specific mapping type, with a description and command to execute. The `<isCmd>` argument adds `<CR>` on the end if `1` and nothing if `0`.                                                                            | `SpBind 'tmap', 'wj', 'window-down', 'wincmd j', 1`             |
+| SpMap          | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `map`/`noremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                                                             | `SpMap 'wk', 'window-up', 'wincmd k'`                           |
+| SpNMap         | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `nmap`/`nnoremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                                                           | `SpNMap 'wk', 'window-up', 'wincmd k'`                          |
+| SpFileTypeBind | `<filetype>`, `<map>`, `<binding>`, `<name>`, `<value>`, `<isCmd>` | **NOTE: This is currently broken!** Map a key, only shown under a specific filetype, to a specific mapping type, with a description and command to execute. The `<isCmd>` argument adds `<CR>` on the end if `1` and nothing if `0`. | `SpBind 'tmap', 'wj', 'window-down', 'wincmd j', 1`             |
+| SpFileTypeMap  | `<filetype>`, `<binding>`, `<name>`, `<value>`, `[isCmd]`          | **NOTE: This is currently broken!** Map a key with `map`/`noremap`, only shown under a specific filetype, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                   | `SpFileTypeMap 'haskell', 'mgt', 'show-type-at', 'GhcModType'`  |
+| SpFileTypeNMap | `<filetype>`, `<binding>`, `<name>`, `<value>`, `[isCmd]`          | **NOTE: This is currently broken!** Map a key with `nmap`/`nnoremap`, only shown under a specific filetype, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                 | `SpFileTypeNMap 'haskell', 'mgt', 'show-type-at', 'GhcModType'` |
 
 And the API for various helper functions,
 
@@ -133,7 +134,7 @@ which will add the package 'neomake/neomake' to be installed with the configurat
 
 ### Including Files
 
-To keep the files a bit more clean, your functions should reside in separate files, such as `func.vim`. If `func.vim` is found in your layer, it is automaticaly included as the first item. To easily include other files, use,
+To keep the files a bit more clean, your functions should reside in separate files, such as `func.vim`. If `func.vim` is found in your layer, it is **automaticaly included** as the first item. To easily include other files, use,
 
 ```viml
 " Load `func.vim` in the current layer directory
@@ -155,40 +156,35 @@ Most of adding a new language layer is just like adding a normal layer, except f
 
 Adding a language keybinding is a bit different, since we only want it shown when the language is actually active. All language keybindings should be under `SPC m`, and if you use the helper functions, that's also where they'll go.
 
-It consist of three steps:
+It consist of two combined steps:
 
 1.  Add your groupings
 2.  Add your mappings
-3.  Add clean up autocmd
 
-**Step 1.** is done using `au FileType haskell`, for example to add the group `SPC m g`, `SPC m r` and `SPC m d` when using `haskell`,
-
-```viml
-" Start by resetting the major-mode and then add the new groups
-au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd" }
-                 \| let g:lmap.m.g = { "name": "haskell/ghc-mod" }
-                 \| let g:lmap.m.r = { "name": "haskell/refactor" }
-                 \| let g:lmap.m.d = { "name": "haskell/documentation" }
-```
-
-Note: you need to reset to `let g:lmap.m = { "name": "+major-mode-cmd" }` at the start, to clear any other filetype specific groupings.
-
-Going to **step 2.**, you either use the longer `SpFileTypeBind` or the wrappers `SpFileTypeMap`/`SpFileTypeNMap` depending on what you want, as such,
+**Step 1.** and **step 2.** is done using `au FileType MYFILETYPE`, for example, a snippet of the `haskell` keybindings,
 
 ```viml
-SpFileTypeNMap 'haskell', 'mgc', 'ghc-mod-check', 'GhcModCheckAndLintAsync'
+" Set the key mappings for the various commands {{{
+  au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd",
+    \"c": ["GhcModCheckAndLintAsync", "ghcmod/check"],
+    \"r": { "name": "+haskell/refactor"
+         \, "b": ["call ApplyAllSuggestion()", "hlint/refactor-buffer"]
+         \, "r": ["all ApplyOneSuggestion()", "hlint/refactor-at-point"]
+      \ },
+    \"h": { "name": "+haskell/documentation"
+         \, "h": ["SpaceNeovimHaskellHoogle", "search-hoogle"]
+         \, "t": ["GhcModType", "ghcmod/type-at"]
+         \, "i": ["GhcModInfo", "ghcmod/info"]
+      \ },
+    \}
+" }}}
 ```
 
-Finally for **step 3.**, we call `SpaceNeovimCleanupFileTypeGroups` as such,
+We simply construct a new dictionary mapping for `g:lmap.m` which is only valid under our filetype, and contains the commands we want to bind. A `"name": "+haskell/grouping"` defines a simple grouping and a `["GhcModCheckAndLintAsync", "ghcmod/check"]` defines a command and description respectively.
 
-```viml
-SpCleanupFileTypeGroups 'haskell'
-```
-
-Which will clear the mappings upon leaving the buffer (`BufLeave`).
+Note: The reason it's defined under a filetype in this tedious way, is so that we get unique mappings for each filetype and that the change happens automatically.
 
 For more check out the `+lang/haskell` layer for an example of usage, and `bindings.vim` for the helper functions.
-
 
 ## Pre-commit linting
 
