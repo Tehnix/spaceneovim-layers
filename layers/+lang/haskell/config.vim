@@ -29,9 +29,12 @@
          \, "i": ["echo 'Not Implemented yet!'", "haskell-navigate-imports"]
       \ },
     \"s": { "name": "+haskell/repl"
-         \, "b": ["echo 'Not Implemented yet!'", "repl-load"]
-         \, "S": ["echo 'Not Implemented yet!'", "pop-to-repl"]
-         \, "s": ["echo 'Not Implemented yet!'", "display-repl"]
+         \, "b": ["GhciLoadCurrentFile", "repl-load"]
+         \, "S": ["GhciOpen", "pop-to-repl"]
+         \, "s": ["GhciOpen", "display-repl"]
+         \, "H": ["GhciHide", "hide-repl"]
+         \, "r": ["GhciReload", "reload-repl"]
+         \, "e": ["SpaceNeovimHaskellGhciExpression", "eval-expression"]
       \ },
     \}
 " }}}
@@ -39,6 +42,16 @@
 " Set layer specific configurations {{{
   " Set the default indentation for haskell
   SpSpaceIndent 'haskell', 2
+
+  " Using the Stack REPL for neovim-ghci.
+  let g:ghci_command = 'stack repl'
+  let g:ghci_command_line_options = '--ghci-options="-fobject-code"'
+
+  augroup spaceneovim_haskell_check
+    autocmd!
+    au BufWritePost *.hs GhcModCheckAndLintAsync
+    au BufWritePost *.hs GhciReload
+  augroup END
 
   if SpaceNeovimIsLayerEnabled('+completion/deoplete')
     " Disable haskell-vim omnifunc
