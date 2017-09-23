@@ -1,1 +1,1 @@
-call SpaceNeovimAddPlugin('zchee/deoplete-jedi', { 'for': 'python' })
+SpAddPlugin 'zchee/deoplete-jedi', { 'for': 'python' }

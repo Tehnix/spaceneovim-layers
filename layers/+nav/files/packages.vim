@@ -1,1 +1,1 @@
-call SpaceNeovimAddPlugin('scrooloose/nerdtree', {})
+SpAddPlugin 'scrooloose/nerdtree'

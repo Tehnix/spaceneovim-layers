@@ -1,4 +1,4 @@
-call SpaceNeovimNMap('!', 'shell cmd', 'call feedkeys(":! ")')
+let g:lmap['!'] = ['SpaceNeovimTerminalShellCmd', 'shell-cmd']
 
 if has('nvim')
   " Use <Esc> to escape terminal insert mode
@@ -9,6 +9,5 @@ if has('nvim')
   tnoremap <c-k> <C-\><C-n><C-w>k
   tnoremap <c-l> <C-\><C-n><C-w>l
 
-  nnoremap <Plug>open-terminal :rightbelow split \| terminal<CR>
-  nmap <leader>' <Plug>open-terminal
+  let g:lmap["'"] = ['SpaceNeovimTerminalOpen', 'terminal']
 endif

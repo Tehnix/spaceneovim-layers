@@ -22,4 +22,4 @@ function! UpdateSpaceNeovimLayers()
   \], l:job_options)
 endfunction
 
-command! UpdateSpaceNeovimLayers call UpdateSpaceNeovimLayers()
+command! -nargs=0 -bar UpdateSpaceNeovimLayers call UpdateSpaceNeovimLayers()

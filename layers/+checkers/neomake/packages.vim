@@ -1,1 +1,1 @@
-call SpaceNeovimAddPlugin('neomake/neomake', {})
+SpAddPlugin 'neomake/neomake'

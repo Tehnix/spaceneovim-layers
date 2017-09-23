@@ -1,47 +1,73 @@
 " Remove default mappings {{{
-let g:hlintRefactor#disableDefaultKeybindings = 1
+  let g:hlintRefactor#disableDefaultKeybindings = 1
 " }}}
 
-" Start by resetting the major-mode and then add the new groups
-au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd" }
-                 \| let g:lmap.m.g = { "name": "haskell/ghc-mod" }
-                 \| let g:lmap.m.r = { "name": "haskell/refactor" }
-                 \| let g:lmap.m.d = { "name": "haskell/documentation" }
-
-call SpaceNeovimFTNMap('haskell', 'mgc', 'ghc-mod-check', 'GhcModCheckAndLintAsync')
-call SpaceNeovimFTNMap('haskell', 'mgs', 'ghc-mod-split-fun', 'GhcModSplitFunCase')
-call SpaceNeovimFTNMap('haskell', 'mgs', 'ghc-mod-sig-gen-code', 'GhcModSigCodegen')
-call SpaceNeovimFTNMap('haskell', 'mge', 'ghc-mod-expand', 'GhcModExpand')
-call SpaceNeovimFTNMap('haskell', 'mgt', 'show-type-at', 'GhcModType')
-call SpaceNeovimFTNMap('haskell', 'mgc', 'clear-type', 'GhcModTypeClear')
-
-call SpaceNeovimFTNMap('haskell', 'mrb', 'hlint-refactor-buffer', 'call ApplyAllSuggestion()')
-call SpaceNeovimFTNMap('haskell', 'mrr', 'hlint-refactor-at-point', 'call ApplyOneSuggestion()')
-
-call SpaceNeovimFTNMap('haskell', 'mdh', 'search-hoogle', 'call feedkeys(":Hoogle ")')
-call SpaceNeovimFTNMap('haskell', 'mdH', 'search-hoogle-info', 'call feedkeys(":HoogleInfo ")')
-call SpaceNeovimFTNMap('haskell', 'mdc', 'close-hoogle', 'HoogleClose')
-call SpaceNeovimFTNMap('haskell', 'mdt', 'hdevtools-type-at', 'HdevtoolsType')
+" Set the key mappings for the various commands {{{
+  au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd",
+    \"i": { "name": "+haskell/ghcmod"
+         \, "c": ["GhcModCheckAndLintAsync", "ghcmod/check"]
+      \ },
+    \"r": { "name": "+haskell/refactor"
+         \, "b": ["call ApplyAllSuggestion()", "hlint/refactor-buffer"]
+         \, "r": ["all ApplyOneSuggestion()", "hlint/refactor-at-point"]
+         \, "f": ["GhcModSplitFunCase", "ghcmod/split-fun"]
+         \, "g": ["GhcModSigCodegen", "ghcmod/sig-gen-code"]
+         \, "e": ["GhcModExpand", "ghcmod/expand'"]
+      \ },
+    \"h": { "name": "+haskell/documentation"
+         \, "h": ["SpaceNeovimHaskellHoogle", "search-hoogle"]
+         \, "H": ["SpaceNeovimHaskellHoogleInfo", "search-hoogle-info"]
+         \, "C": ["HoogleClose", "close-hoogle"]
+         \, "t": ["GhcModType", "ghcmod/type-at"]
+         \, "i": ["GhcModInfo", "ghcmod/info"]
+         \, "T": ["GhcModTypeInsert", "ghcmod/insert-type"]
+         \, "c": ["GhcModTypeClear", "ghcmod/clear-type"]
+      \ },
+    \"g": { "name": "+haskell/navigation"
+         \, "G": ["echo 'Not Implemented yet!'", "jump-to-definition-other-window"]
+         \, "g": ["echo 'Not Implemented yet!'", "jump-to-definition"]
+         \, "i": ["echo 'Not Implemented yet!'", "haskell-navigate-imports"]
+      \ },
+    \"s": { "name": "+haskell/repl"
+         \, "b": ["GhciLoadCurrentFile", "repl-load"]
+         \, "S": ["GhciOpen", "pop-to-repl"]
+         \, "s": ["GhciOpen", "display-repl"]
+         \, "H": ["GhciHide", "hide-repl"]
+         \, "r": ["GhciReload", "reload-repl"]
+         \, "e": ["SpaceNeovimHaskellGhciExpression", "eval-expression"]
+      \ },
+    \}
+" }}}
 
 " Set layer specific configurations {{{
-" Set the default indentation for haskell
-call SpaceNeovimSetFTIndentation('haskell', 2)
+  " Set the default indentation for haskell
+  SpSpaceIndent 'haskell', 2
 
-if SpaceNeovimIsLayerEnabled('+completion/deoplete')
-  " Disable haskell-vim omnifunc
-  let g:haskellmode_completion_ghc = 0
-  if exists('g:sp_necoghc_enable_detailed_browse')
-    let g:necoghc_enable_detailed_browse = g:sp_necoghc_enable_detailed_browse
-  else
-    let g:necoghc_enable_detailed_browse = 1
-  endif
-  augroup haskellDeopleteConfig
-    au!
-    au FileType haskell setlocal omnifunc=necoghc#omnifunc
+  " Using the Stack REPL for neovim-ghci.
+  let g:ghci_command = 'stack repl'
+  let g:ghci_command_line_options = '--ghci-options="-fobject-code"'
+
+  augroup spaceneovim_haskell_check
+    autocmd!
+    au BufWritePost *.hs GhcModCheckAndLintAsync
+    au BufWritePost *.hs GhciReload
   augroup END
-endif
 
-if SpaceNeovimIsLayerEnabled('+checkers/neomake')
-  let g:neomake_haskell_enabled_makers = get(g:, 'sp_neomake_haskell_enabled_makers', ['ghcmod', 'hlint'])
-endif
+  if SpaceNeovimIsLayerEnabled('+completion/deoplete')
+    " Disable haskell-vim omnifunc
+    let g:haskellmode_completion_ghc = 0
+    if exists('g:sp_necoghc_enable_detailed_browse')
+      let g:necoghc_enable_detailed_browse = g:sp_necoghc_enable_detailed_browse
+    else
+      let g:necoghc_enable_detailed_browse = 1
+    endif
+    augroup haskellDeopleteConfig
+      au!
+      au FileType haskell setlocal omnifunc=necoghc#omnifunc
+    augroup END
+  endif
+
+  if SpaceNeovimIsLayerEnabled('+checkers/neomake')
+    let g:neomake_haskell_enabled_makers = get(g:, 'sp_neomake_haskell_enabled_makers', ['ghcmod', 'hlint'])
+  endif
 " }}}

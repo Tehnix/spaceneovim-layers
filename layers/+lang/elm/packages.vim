@@ -1,1 +1,1 @@
-call SpaceNeovimAddPlugin('elmcast/elm-vim', { 'for': 'elm' })
+SpAddPlugin 'elmcast/elm-vim', { 'for': 'elm' }

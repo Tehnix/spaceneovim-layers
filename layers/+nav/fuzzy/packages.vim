@@ -1,2 +1,2 @@
-call SpaceNeovimAddPlugin('kien/ctrlp.vim', {})
-call SpaceNeovimAddPlugin('tacahiroy/ctrlp-funky', {})
+SpAddPlugin 'kien/ctrlp.vim'
+SpAddPlugin 'tacahiroy/ctrlp-funky'

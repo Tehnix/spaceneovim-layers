@@ -2,6 +2,13 @@
 " Helper functions for creating layers
 "
 
+" Cleaned up API.
+command! -nargs=+ -bar SpAddPlugin call SpaceNeovimAddPlugin(<args>)
+command! -nargs=+ -bar SpSpaceIndent call SpaceNeovimSetFTIndentation(<args>)
+command! -nargs=+ -bar SpTabsIndent call SpaceNeovimSetFTTabsIndentation(<args>)
+command! -nargs=1 -bar SpCleanupFileTypeGroups call SpaceNeovimCleanupFileTypeGroups(<args>)
+command! -nargs=+ -bar SpLoadFunc call SpaceNeovimLoadFunc(<args>)
+
 " General Helper functions {{{
 function! NewScratchBuffer()
   " Create an empty buffer in a split below
@@ -30,13 +37,15 @@ function! SpaceNeovimSetFTIndentation(ft, indentation)
   execute 'au FileType ' . a:ft . ' setlocal expandtab shiftwidth=' . l:indent . ' tabstop=' . l:indent
 endfunction
 
-function! SpaceNeovimAddPlugin(name, config)
+function! SpaceNeovimSetFTTabsIndentation(ft, indentation)
+  let l:indent = get(g:, 'sp_' . a:ft . '_indentation', a:indentation)
+  execute 'au FileType ' . a:ft . ' setlocal noexpandtab shiftwidth=' . l:indent . ' tabstop=' . l:indent
+endfunction
+
+function! SpaceNeovimAddPlugin(name, ...)
+  let l:config = get(a:, '1', {})
   " Add a plugin to the list of plugins
-  if exists('g:spaceneovim_plugins')
-    call add(g:spaceneovim_plugins, {'name': a:name, 'config': a:config})
-    return 1
-  endif
-  return 0
+  call spaceneovim#layer_plugin(a:name, l:config)
 endfunction
 
 function! SpaceNeovimIsLayerEnabled(name)

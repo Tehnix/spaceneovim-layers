@@ -1,4 +1,4 @@
-let g:lmap.q = { 'name': '+quit' }
-call SpaceNeovimNMap('qq', 'quit', 'q')
-call SpaceNeovimNMap('qz', 'save-and-quit', 'ZZ')
-call SpaceNeovimNMap('q!', 'save-and-quit', 'q!')
+let g:lmap.q = get(g:lmap, 'q', { 'name': '+quit' })
+SpNMap 'qq', 'quit', 'q'
+SpNMap 'qz', 'save-and-quit', 'ZZ'
+SpNMap 'q!', 'quit-with-no-save', 'q!'

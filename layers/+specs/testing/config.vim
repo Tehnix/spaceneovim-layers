@@ -1,6 +1,6 @@
-let g:lmap.s = { 'name': '+specs' }
-call SpaceNeovimNMap('sa', 'test-all', 'TestSuite')
-call SpaceNeovimNMap('sf', 'test-file', 'TestFile')
-call SpaceNeovimNMap('ss', 'test-latest', 'TestLast')
-call SpaceNeovimNMap('st', 'test-nearest', 'TestNearest')
-call SpaceNeovimNMap('sv', 'visit-last-test', 'TestVisit')
+let g:lmap.s = get(g:lmap, 's', { 'name': '+specs' })
+SpNMap 'sa', 'test-all', 'TestSuite'
+SpNMap 'sf', 'test-file', 'TestFile'
+SpNMap 'ss', 'test-latest', 'TestLast'
+SpNMap 'st', 'test-nearest', 'TestNearest'
+SpNMap 'sv', 'visit-last-test', 'TestVisit'

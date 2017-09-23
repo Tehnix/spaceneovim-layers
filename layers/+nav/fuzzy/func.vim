@@ -2,4 +2,4 @@ function! CtrlPFunkyUnderCursor()
   execute 'CtrlPFunky ' . expand('<cword>')
 endfunction
 
-command! CtrlPFunkyUnderCursor call CtrlPFunkyUnderCursor()
+command! -nargs=0 -bar CtrlPFunkyUnderCursor call CtrlPFunkyUnderCursor()

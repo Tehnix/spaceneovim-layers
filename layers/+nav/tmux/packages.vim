@@ -1,1 +1,1 @@
-call SpaceNeovimAddPlugin('christoomey/vim-tmux-navigator', {})
+SpAddPlugin 'christoomey/vim-tmux-navigator'
