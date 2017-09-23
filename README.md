@@ -164,20 +164,18 @@ It consist of two combined steps:
 **Step 1.** and **step 2.** is done using `au FileType MYFILETYPE`, for example, a snippet of the `haskell` keybindings,
 
 ```viml
-" Set the key mappings for the various commands {{{
-  au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd",
-    \"c": ["GhcModCheckAndLintAsync", "ghcmod/check"],
-    \"r": { "name": "+haskell/refactor"
-         \, "b": ["call ApplyAllSuggestion()", "hlint/refactor-buffer"]
-         \, "r": ["all ApplyOneSuggestion()", "hlint/refactor-at-point"]
-      \ },
-    \"h": { "name": "+haskell/documentation"
-         \, "h": ["SpaceNeovimHaskellHoogle", "search-hoogle"]
-         \, "t": ["GhcModType", "ghcmod/type-at"]
-         \, "i": ["GhcModInfo", "ghcmod/info"]
-      \ },
-    \}
-" }}}
+au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd",
+\"c": ["GhcModCheckAndLintAsync", "ghcmod/check"],
+\"r": { "name": "+haskell/refactor"
+     \, "b": ["call ApplyAllSuggestion()", "hlint/refactor-buffer"]
+     \, "r": ["all ApplyOneSuggestion()", "hlint/refactor-at-point"]
+  \ },
+\"h": { "name": "+haskell/documentation"
+     \, "h": ["SpaceNeovimHaskellHoogle", "search-hoogle"]
+     \, "t": ["GhcModType", "ghcmod/type-at"]
+     \, "i": ["GhcModInfo", "ghcmod/info"]
+  \ },
+\}
 ```
 
 We simply construct a new dictionary mapping for `g:lmap.m` which is only valid under our filetype, and contains the commands we want to bind. A `"name": "+haskell/grouping"` defines a simple grouping and a `["GhcModCheckAndLintAsync", "ghcmod/check"]` defines a command and description respectively.
