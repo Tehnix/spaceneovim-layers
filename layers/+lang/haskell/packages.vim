@@ -6,3 +6,4 @@ SpAddPlugin 'eagletmt/neco-ghc', { 'for': 'haskell' }
 SpAddPlugin 'Twinside/vim-hoogle', { 'for': 'haskell' }
 SpAddPlugin 'Shougo/vimproc.vim', { 'for': 'haskell', 'do' : 'make' }
 SpAddPlugin 'vmchale/cabal-project-vim'
+SpAddPlugin 'vmchale/ghci-syntax'
