@@ -2,34 +2,53 @@
 
 ## Table of contents
 
-* [Description](#description)
-* [Install](#install)
-  * [Layer](#layer)
-  * [Completion](#completion)
-  * [Checkers](#checkers)
-* [Key Bindings](#key-bindings)
+- [Description](#description)
+- [Install](#install)
+
+  - [Binaries](#binaries)
+  - [Completion](#completion)
+  - [Checkers](#checkers)
+
+- [Key Bindings](#key-bindings)
 
 ## Description
 
 This layer provides support for the Haskell language with the following packages:
 
-* `neovimhaskell/haskell-vim`
-* `mpickering/hlint-refactor-vim`
-* `Twinside/vim-hoogle`
-* `bitc/vim-hdevtools`
-* `eagletmt/neco-ghc`
+- `neovimhaskell/haskell-vim`
+- `vmchale/cabal-project-vim`
+- `vmchale/ghci-syntax`
+- `Twinside/vim-hoogle`
+- `mpickering/hlint-refactor-vim`
+- `eagletmt/neco-ghc`
+- `Shougo/vimproc.vim'`
+- `parsonsmatt/intero-neovim`
+- `owickstrom/neovim-ghci`
+- `eagletmt/ghcmod-vim`
 
 ## Install
+
+Add the `+lang/haskell` layer in your configuration file,
+
+```viml
+function! Layers()
+  " ...
+  Layer '+lang/haskell'
+  " ...
+endfunction
+```
+
+By default the backend is set to use `ghc-mod`, but you can change it to `intero` with `SpHaskellBackend 'intero'` in your `UserInit`.
+
+There is also a backend called `both` that will try to enable both backends in a compatible way.
+
+### Binaries
 
 To utilize this layer you need `ghc-mod`, `hlint` and `apply-refact` on your path. This can be done with,
 
 ```bash
 $ stack install apply-refact ghc-mod hlint
 ```
-
-### Layer
-
-To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+lang/haskell` to the existing dotspaceneovim_configuration_layers list in this file.
 
 ### indentation
 
@@ -45,22 +64,90 @@ By default `g:neomake_haskell_enabled_makers` is set to use all makers. This can
 
 ## Key Bindings
 
-| Key Binding | Description                                                    |
-|-------------|----------------------------------------------------------------|
-| SPC m g     | Run ghc-mod check and lint                                     |
+### REPL
 
-### HLint refactor
+With `ghc-mod` backend enabled,
 
-| Key Binding | Description                                                    |
-|-------------|----------------------------------------------------------------|
-| SPC m r r   | Apply Hlint refector suggestion at point                       |
-| SPC m r b   | Apply all Hlint refactor suggestions                           |
+Key Binding | Description
+----------- | -------------------------------
+SPC s b     | Load current buffer into repl
+SPC s S     | Jump to repl
+SPC s s     | Open repl
+SPC s H     | Hide repl
+SPC s r     | Reload the repl
+SPC s e     | Evaluate expression in the repl
+
+With `intero` backend enabled,
+
+Key Binding | Description
+----------- | -----------------------------
+SPC s b     | Load current buffer into repl
+SPC s S     | Jump to repl
+SPC s s     | Open repl
+SPC s H     | Hide repl
+SPC s r     | Reload the repl
+
+### Navigation
+
+With `intero` backend enabled,
+
+Key Binding | Description
+----------- | ----------------
+SPC g g     | Go to definition
+
+### Refactor
+
+Key Binding | Description
+----------- | ----------------------------------------
+SPC m r r   | Apply Hlint refector suggestion at point
+SPC m r b   | Apply all Hlint refactor suggestions
+
+Additionally some commands depend on the backend. With `ghc-mod`,
+
+Key Binding | Description
+----------- | ----------------------------------------------------------
+SPC m r f   | Split the function case by examining a type's constructors
+SPC m r g   | Insert initial code from the given signature
+SPC m r e   | You can see the expansion of splices
 
 ### Documentation
 
-| Key Binding | Description                                                    |
-|-------------|----------------------------------------------------------------|
-| SPC m d h   | Start a Hoogle search query                                    |
-| SPC m d H   | Start a Hoogle search query with --info                        |
-| SPC m d c   | Close Hoogle window                                            |
-| SPC m d t   | Show type at cursor (using hdevtools)                          |
+Key Binding | Description
+----------- | ---------------------------------------
+SPC m h h   | Start a Hoogle search query
+SPC m h H   | Start a Hoogle search query with --info
+SPC m h C   | Close Hoogle window
+
+Additionally some commands depend on the backend. With `ghc-mod`,
+
+Key Binding | Description
+----------- | ------------------------------------------------------------
+SPC m h t   | Display the type of the identifier under the cursor
+SPC m h i   | Display the info of the identifier under the cursor
+SPC m h T   | Insert the type signature of the identifier under the cursor
+SPC m h c   | Clear ghc-mod type highlights
+
+With `intero`,
+
+Key Binding | Description
+----------- | ------------------------------------------------------------
+SPC m h t   | Display the type of the identifier under the cursor
+SPC m h g   | Display the generic type of the identifier under the cursor
+SPC m h T   | Insert the type signature of the identifier under the cursor
+
+### Backend
+
+With `ghc-mod` backend enabled,
+
+Key Binding | Description
+----------- | -----------------------
+SPC i c     | Check file with ghc-mod
+
+With `intero` backend enabled,
+
+Key Binding | Description
+----------- | ------------------
+SPC i d     | Reload intero
+SPC i k     | Destroy intero
+SPC i r     | Start intero
+SPC i t     | Set intero targets

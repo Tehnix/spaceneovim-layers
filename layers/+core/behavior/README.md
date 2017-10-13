@@ -1,22 +1,20 @@
-# Core Layer
+# Core Behavior Layer
 
-## Table of contents
+This layer provides core functionality for SpaceNeovim. It includes common default settings and the following packages:
 
-* [Description](#description)
-* [Install](#install)
-  * [Layer](#layer)
+- [sheerun/vim-polyglot](https://github.com/sheerun/vim-polyglot)
+- [hecal3/vim-leader-guide](https://github.com/hecal3/vim-leader-guide).
 
-## Description
-
-This layer provides core functionality for SpaceNeovim.
-
-It includes common default settings and the following packages:
-
-* [sheerun/vim-polyglot](https://github.com/sheerun/vim-polyglot)
-* [hecal3/vim-leader-guide](https://github.com/hecal3/vim-leader-guide)
+- [Install](#install)
 
 ## Install
 
-### Layer
+Add the `+core/behavior` layer in your configuration file,
 
-To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+core/bahvior` to the existing dotspacevim_configuration_layers list in this file.
+```viml
+function! Layers()
+  " ...
+  Layer '+core/behavior'
+  " ...
+endfunction
+```

@@ -10,7 +10,7 @@ function! UpdateSpaceNeovimLayers()
   \  'on_stdout': function('OutputJobToBuffer')
   \, 'on_stderr': function('OutputJobToBuffer')
   \, 'on_exit': function('OutputJobToBuffer')
-  \, 'out': ["Updating SpaceNeovim layers"]
+  \, 'out': ['Updating SpaceNeovim layers']
   \, 'cwd': a:spacevim_layers_dir
   \, 'buf': a:scratch_buffer
   \}

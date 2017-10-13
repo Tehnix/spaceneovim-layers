@@ -1,28 +1,25 @@
 # Terminal Layer
 
-## Table of contents
-
-* [Description](#description)
-* [Install](#install)
-  * [Layer](#layer)
-* [Key Bindings](#key-bindings)
-
-
-## Description
-
 This layer provides common functionality for terminal.
 
+- [Install](#install)
+- [Key Bindings](#key-bindings)
 
 ## Install
 
-### Layer
+Add the `+tools/terminal` layer in your configuration file,
 
-To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+tools/terminal` to the existing dotspaceneovim_configuration_layers list in this file.
-
+```viml
+function! Layers()
+  " ...
+  Layer '+tools/terminal'
+  " ...
+endfunction
+```
 
 ## Key Bindings
 
-| Key Binding | Description                |
-|-------------|----------------------------|
-| SPC !       | Start shell command prompt |
-| SPC '       | Open a terminal below      |
+Key Binding | Description
+----------- | --------------------------
+SPC !       | Start shell command prompt
+SPC '       | Open a terminal below

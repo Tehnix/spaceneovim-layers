@@ -2,59 +2,62 @@
 
 Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim).
 
--   [Current Layers](#current-layers)
--   [Adding a New Layer](#adding-a-new-layer)
-    -   [API](#api)
-    -   [Add a Keybinding](#add-a-keybinding)
-    -   [Adding Packages](#adding-packages)
-    -   [Including Files](#including-files)
--   [Adding a New Language Layer](#adding-a-new-language-layer)
-    -   [Add a Language Keybinding](#add-a-language-keybinding)
+- [Current Layers](#current-layers)
+- [Adding a New Layer](#adding-a-new-layer)
+
+  - [API](#api)
+  - [Add a Keybinding](#add-a-keybinding)
+  - [Adding Packages](#adding-packages)
+  - [Including Files](#including-files)
+
+- [Adding a New Language Layer](#adding-a-new-language-layer)
+
+  - [Add a Language Keybinding](#add-a-language-keybinding)
 
 ## Current Layers
 
-| Name                 | Description                                 |
-| -------------------- | ------------------------------------------- |
-| +core/behavior       | Core functionality for SpaceNeovim          |
-| +core/sensible       | Sensible default settings                   |
-| +completion/deoplete | Auto-completion with deoplete               |
-| +completion/snippets | Snippet support                             |
-| +checkers/neomake    | Syntax checking with Neomake                |
-| +checkers/syntastic  | Syntax checking with Syntastic              |
-| +nav/buffers         | Common buffer functionality                 |
-| +nav/files           | Common file operations                      |
-| +nav/fuzzy           | Fuzzy search for files, buffers and methods |
-| +nav/quit            | Common quit functionality                   |
-| +nav/start-screen    | Add start screen when opening Neovim        |
-| +nav/text            | Common text operations                      |
-| +nav/tmux            | Navigate between VIM and TMUX panes         |
-| +nav/windows         | Common window functionality                 |
-| +scm/git             | Git and fugitive support                    |
-| +specs/testing       | Run tests directly from the editor          |
-| +tools/terminal      | Defaults and keybindings for the terminal   |
-| +ui/airline          | Replace the status bar with airline         |
-| +ui/toggles          | Toggles for common components               |
+Name                 | Description
+-------------------- | -------------------------------------------
++core/behavior       | Core functionality for SpaceNeovim
++core/sensible       | Sensible default settings
++completion/deoplete | Auto-completion with deoplete
++completion/snippets | Snippet support
++checkers/neomake    | Syntax checking with Neomake
++checkers/syntastic  | Syntax checking with Syntastic
++nav/buffers         | Common buffer functionality
++nav/files           | Common file operations
++nav/fuzzy           | Fuzzy search for files, buffers and methods
++nav/quit            | Common quit functionality
++nav/start-screen    | Add start screen when opening Neovim
++nav/text            | Common text operations
++nav/tmux            | Navigate between VIM and TMUX panes
++nav/windows         | Common window functionality
++scm/git             | Git and fugitive support
++specs/testing       | Run tests directly from the editor
++tools/terminal      | Defaults and keybindings for the terminal
++ui/airline          | Replace the status bar with airline
++ui/toggles          | Toggles for common components
 
 Language layers
 
-| Name             | Description                                 |
-| ---------------- | ------------------------------------------- |
-| +lang/-example   | A template for creating new language layers |
-| +lang/elm        | Support for Elm                             |
-| +lang/haskell    | Support for Haskell                         |
-| +lang/javascript | Support for JavaScript                      |
-| +lang/python     | Support for python                          |
-| +lang/ruby       | Support for ruby                            |
-| +lang/vim        | Support for vim                             |
+Name             | Description
+---------------- | -------------------------------------------
++lang/-example   | A template for creating new language layers
++lang/elm        | Support for Elm
++lang/haskell    | Support for Haskell
++lang/javascript | Support for JavaScript
++lang/python     | Support for python
++lang/ruby       | Support for ruby
++lang/vim        | Support for vim
 
 ## Adding a New Layer
 
 A layer consists of, as minimum:
 
--   a `README.md` describing the layer (configuration, keybindings etc),
--   either a `config.vim`, adding the layer key bindings, or
--   a `packages.vim`, adding the packages that needs to be installed
--   optionally, if a `func.vim` is present, it is loaded first (define commands and helper functions in this to keep things clean)
+- a `README.md` describing the layer (configuration, keybindings etc),
+- either a `config.vim`, adding the layer key bindings, or
+- a `packages.vim`, adding the packages that needs to be installed
+- optionally, if a `func.vim` is present, it is loaded first (define commands and helper functions in this to keep things clean)
 
 These files are grouped under a `+category/layer-name` directory hierachy. As an example, the layer `buffers` is located under the group `+nav` (short for navigation).
 
@@ -72,23 +75,23 @@ This can especially be useful in the `+lang` layers, to add information to check
 
 The API available to layers are (`<arg>` are required, `[arg]` are optional), for keybindings,
 
-| Command        | Arguments                                                          | Description                                                                                                                                                                                                                          | Example                                                         |
-| -------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- |
-| SpBind         | `<map>`, `<binding>`, `<name>`, `<value>`, `<isCmd>`               | Map a key to a specific mapping type, with a description and command to execute. The `<isCmd>` argument adds `<CR>` on the end if `1` and nothing if `0`.                                                                            | `SpBind 'tmap', 'wj', 'window-down', 'wincmd j', 1`             |
-| SpMap          | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `map`/`noremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                                                             | `SpMap 'wk', 'window-up', 'wincmd k'`                           |
-| SpNMap         | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `nmap`/`nnoremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                                                           | `SpNMap 'wk', 'window-up', 'wincmd k'`                          |
-| SpFileTypeBind | `<filetype>`, `<map>`, `<binding>`, `<name>`, `<value>`, `<isCmd>` | **NOTE: This is currently broken!** Map a key, only shown under a specific filetype, to a specific mapping type, with a description and command to execute. The `<isCmd>` argument adds `<CR>` on the end if `1` and nothing if `0`. | `SpBind 'tmap', 'wj', 'window-down', 'wincmd j', 1`             |
-| SpFileTypeMap  | `<filetype>`, `<binding>`, `<name>`, `<value>`, `[isCmd]`          | **NOTE: This is currently broken!** Map a key with `map`/`noremap`, only shown under a specific filetype, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                   | `SpFileTypeMap 'haskell', 'mgt', 'show-type-at', 'GhcModType'`  |
-| SpFileTypeNMap | `<filetype>`, `<binding>`, `<name>`, `<value>`, `[isCmd]`          | **NOTE: This is currently broken!** Map a key with `nmap`/`nnoremap`, only shown under a specific filetype, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                 | `SpFileTypeNMap 'haskell', 'mgt', 'show-type-at', 'GhcModType'` |
+Command        | Arguments                                                          | Description                                                                                                                                                                                                                          | Example
+-------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------
+SpBind         | `<map>`, `<binding>`, `<name>`, `<value>`, `<isCmd>`               | Map a key to a specific mapping type, with a description and command to execute. The `<isCmd>` argument adds `<CR>` on the end if `1` and nothing if `0`.                                                                            | `SpBind 'tmap', 'wj', 'window-down', 'wincmd j', 1`
+SpMap          | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `map`/`noremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                                                             | `SpMap 'wk', 'window-up', 'wincmd k'`
+SpNMap         | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `nmap`/`nnoremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                                                           | `SpNMap 'wk', 'window-up', 'wincmd k'`
+SpFileTypeBind | `<filetype>`, `<map>`, `<binding>`, `<name>`, `<value>`, `<isCmd>` | **NOTE: This is currently broken!** Map a key, only shown under a specific filetype, to a specific mapping type, with a description and command to execute. The `<isCmd>` argument adds `<CR>` on the end if `1` and nothing if `0`. | `SpBind 'tmap', 'wj', 'window-down', 'wincmd j', 1`
+SpFileTypeMap  | `<filetype>`, `<binding>`, `<name>`, `<value>`, `[isCmd]`          | **NOTE: This is currently broken!** Map a key with `map`/`noremap`, only shown under a specific filetype, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                   | `SpFileTypeMap 'haskell', 'mgt', 'show-type-at', 'GhcModType'`
+SpFileTypeNMap | `<filetype>`, `<binding>`, `<name>`, `<value>`, `[isCmd]`          | **NOTE: This is currently broken!** Map a key with `nmap`/`nnoremap`, only shown under a specific filetype, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                 | `SpFileTypeNMap 'haskell', 'mgt', 'show-type-at', 'GhcModType'`
 
 And the API for various helper functions,
 
-| Command       | Arguments                         | Description                                                                       | Example                                                                                                |
-| ------------- | --------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| SpAddPlugin   | `<PluginName>`, `[Configuration]` | Adds a plugin to load with `vim-plug` optionally with a `vim-plug` configuration. | `SpAddPlugin 'Shougo/vimproc.vim', { 'for': 'haskell', 'do' : 'make' }`                                |
-| SpSpaceIndent | `<filetype>`, `<indentation>`     | Set the amount of spaces a certain filetype is indented.                          | `SpSpaceIndent 'haskell', 2`                                                                           |
-| SpTabsIndent  | `<filetype>`, `<indentation>`     | Set the amount of tabs a certain filetype is indented.                            | `SpTabsIndent 'go', 8`                                                                                 |
-| SpLoadFunc    | `<path-to-script>`, `<file-name>` | Load (source) a file into Vim.                                                    | `SpLoadFunc expand('<sfile>:p') 'other-file.vim'`' for loading 'other-file.vim' in the layer directory |
+Command       | Arguments                         | Description                                                                       | Example
+------------- | --------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------
+SpAddPlugin   | `<PluginName>`, `[Configuration]` | Adds a plugin to load with `vim-plug` optionally with a `vim-plug` configuration. | `SpAddPlugin 'Shougo/vimproc.vim', { 'for': 'haskell', 'do' : 'make' }`
+SpSpaceIndent | `<filetype>`, `<indentation>`     | Set the amount of spaces a certain filetype is indented.                          | `SpSpaceIndent 'haskell', 2`
+SpTabsIndent  | `<filetype>`, `<indentation>`     | Set the amount of tabs a certain filetype is indented.                            | `SpTabsIndent 'go', 8`
+SpLoadFunc    | `<path-to-script>`, `<file-name>` | Load (source) a file into Vim.                                                    | `SpLoadFunc expand('<sfile>:p') 'other-file.vim'`' for loading 'other-file.vim' in the layer directory
 
 ### Add a Keybinding
 
@@ -158,8 +161,8 @@ Adding a language keybinding is a bit different, since we only want it shown whe
 
 It consist of two combined steps:
 
-1.  Add your groupings
-2.  Add your mappings
+1. Add your groupings
+2. Add your mappings
 
 **Step 1.** and **step 2.** is done using `au FileType MYFILETYPE`, for example, a snippet of the `haskell` keybindings,
 

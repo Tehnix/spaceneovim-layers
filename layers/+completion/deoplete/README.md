@@ -1,27 +1,17 @@
-# Syntax Checking Layer
+# Deoplete
 
-## Table of contents
+This layer provides an asynchronous keyword completion system in the current buffer [deoplete](https://github.com/Shougo/deoplete.nvim).
 
-* [Description](#description)
-* [Install](#install)
-  * [Layer](#layer)
-* [Key Bindings](#key-bindings)
-
-
-## Description
-
-This layer provides on the fly syntax checking using [Neomake](https://github.com/neomake/neomake).
-
+- [Install](#install)
 
 ## Install
 
-### Layer
+Add the `+core/deoplete` layer in your configuration file,
 
-To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+checkers/syntax-checking` to the existing dotspaceneovim_configuration_layers list in this file.
-
-
-## Key Bindings
-
-| Key Binding | Description |
-|-------------|-------------|
-| SPC e l     | Run Neomake |
+```viml
+function! Layers()
+  " ...
+  Layer '+core/deoplete'
+  " ...
+endfunction
+```

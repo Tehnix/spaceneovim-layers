@@ -1,31 +1,30 @@
 # Git Layer
 
-## Table of contents
+This layer provides common functionality for git.
 
-* [Description](#description)
-* [Install](#install)
-  * [Layer](#layer)
-* [Key Bindings](#key-bindings)
-
+- [Install](#install)
+- [Key Bindings](#key-bindings)
 
 ## Description
 
-This layer provides common functionality for git.
-
-
 ## Install
 
-### Layer
+Add the `+scm/git` layer in your configuration file,
 
-To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+scm/git` to the existing dotspaceneovim_configuration_layers list in this file.
-
+```viml
+function! Layers()
+  " ...
+  Layer '+scm/git'
+  " ...
+endfunction
+```
 
 ## Key Bindings
 
-| Key Binding | Description                |
-|-------------|----------------------------|
-| SPC gc      | Commit a change            |
-| SPC gl      | Log latest changes         |
-| SPC gL      | Log current file           |
-| SPC gp      | Push current branch        |
-| SPC gs      | Status                     |
+Key Binding | Description
+----------- | -------------------
+SPC gc      | Commit a change
+SPC gl      | Log latest changes
+SPC gL      | Log current file
+SPC gp      | Push current branch
+SPC gs      | Status

@@ -1,30 +1,27 @@
 # Text Layer
 
-## Table of contents
-
-* [Description](#description)
-* [Install](#install)
-  * [Layer](#layer)
-* [Key Bindings](#key-bindings)
-
-
-## Description
-
 This layer provides common functionality for text things.
 
+- [Install](#install)
+- [Key Bindings](#key-bindings)
 
 ## Install
 
-### Layer
+Add the `+nav/text` layer in your configuration file,
 
-To use this configuration layer, add it to your `./config/nvim/init.vim`. You will need to add `+nav/text` to the existing dotspacevim_configuration_layers list in this file.
-
+```viml
+function! Layers()
+  " ...
+  Layer '+nav/text'
+  " ...
+endfunction
+```
 
 ## Key Bindings
 
-| Key Binding | Description            |
-|-------------|------------------------|
-| SPC x J     | Move current line down |
-| SPC x K     | Move current line up   |
-| SPC x U     | Uppercase current word |
-| SPC x u     | Downcase current word  |
+Key Binding | Description
+----------- | ----------------------
+SPC x J     | Move current line down
+SPC x K     | Move current line up
+SPC x U     | Uppercase current word
+SPC x u     | Downcase current word
