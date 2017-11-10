@@ -51,6 +51,11 @@ let s:sp_haskell_ghcmod_refactor = {
      \, "e": ["GhcModExpand", "ghcmod/expand"]
   \ }
 
+" LSP backend (HIE).
+let s:sp_haskell_lsp_jump_to_definition = {'g': ["call LanguageClient_textDocument_definition()", "lsp/jump-to-definition"]}
+let s:sp_haskell_lsp_refactor = {'R': ["call LanguageClient_textDocument_rename()", "lsp/rename"]}
+
+" Stitch together the correct keymappings based on the backends.
 if g:sp_haskell_backend == 'intero'
   let s:sp_haskell_backend = s:sp_haskell_intero_backend
   let s:sp_haskell_jump_to_definition = s:sp_haskell_intero_jump_to_definition
@@ -63,6 +68,12 @@ elseif g:sp_haskell_backend == 'both'
   let s:sp_haskell_repl = extend(s:sp_haskell_ghcmod_repl, s:sp_haskell_intero_repl)
   let s:sp_haskell_documentation = extend(s:sp_haskell_ghcmod_documentation, s:sp_haskell_intero_documentation)
   let s:sp_haskell_refactor = extend(s:sp_haskell_intero_refactor, s:sp_haskell_ghcmod_refactor)
+elseif g:sp_haskell_backend == 'lsp'
+  let s:sp_haskell_backend = s:sp_haskell_ghcmod_backend
+  let s:sp_haskell_jump_to_definition = s:sp_haskell_lsp_jump_to_definition
+  let s:sp_haskell_repl = s:sp_haskell_ghcmod_repl
+  let s:sp_haskell_documentation = s:sp_haskell_ghcmod_documentation
+  let s:sp_haskell_refactor = extend(s:sp_haskell_ghcmod_refactor, s:sp_haskell_lsp_refactor)
 else
   let s:sp_haskell_backend = s:sp_haskell_ghcmod_backend
   let s:sp_haskell_jump_to_definition = s:sp_haskell_ghcmod_jump_to_definition
@@ -87,7 +98,7 @@ endif
          \, "G": ["echo 'Not Implemented yet!'", "jump-to-definition-other-window"]
          \, "i": ["echo 'Not Implemented yet!'", "haskell-navigate-imports"]
       \ }, s:sp_haskell_jump_to_definition),
-    \"s": s:sp_haskell_repl,
+    \"s": s:sp_haskell_repl
     \}
 " }}}
 
@@ -116,6 +127,22 @@ endif
       au BufWritePost *.hs GhcModCheckAndLintAsync
       au BufWritePost *.hs InteroReload
     augroup END
+  elseif g:sp_haskell_backend == 'lsp'
+    let g:intero_start_immediately = 0
+    let g:ghci_start_immediately = 1
+    " Add HIE as the Haskell language server.
+    let g:LanguageClient_serverCommands = get(g:, 'LanguageClient_serverCommands', {})
+    let g:LanguageClient_serverCommands.haskell = ['hie', '--lsp']
+    augroup haskellLinter
+      au!
+      " Automatically reload on save
+      au BufWritePost *.hs GhciReload
+      au BufWritePost *.hs SpaceNeovimHLSPUpdateSymbolList
+      " FIXME: Currently not very ergonomic, since multi lines will
+      " prompt the "Enter to continue".
+      " au CursorMoved *.hs SpaceNeovimHLSPDisplayInfo
+      " au CursorMovedI *.hs SpaceNeovimHLSPDisplayInfo
+    augroup END
   else
     let g:intero_start_immediately = 0
     let g:ghci_start_immediately = 1
@@ -135,15 +162,19 @@ endif
   if SpaceNeovimIsLayerEnabled('+completion/deoplete')
     " Disable haskell-vim omnifunc
     let g:haskellmode_completion_ghc = 0
-    if exists('g:sp_necoghc_enable_detailed_browse')
-      let g:necoghc_enable_detailed_browse = g:sp_necoghc_enable_detailed_browse
+    if g:sp_haskell_backend == 'lsp'
+      " Use the auto completion info from HIE.
     else
-      let g:necoghc_enable_detailed_browse = 0
+      if exists('g:sp_necoghc_enable_detailed_browse')
+        let g:necoghc_enable_detailed_browse = g:sp_necoghc_enable_detailed_browse
+      else
+        let g:necoghc_enable_detailed_browse = 0
+      endif
+      augroup haskellDeopleteConfig
+        au!
+        au FileType haskell setlocal omnifunc=necoghc#omnifunc
+      augroup END
     endif
-    augroup haskellDeopleteConfig
-      au!
-      au FileType haskell setlocal omnifunc=necoghc#omnifunc
-    augroup END
   endif
 
   if SpaceNeovimIsLayerEnabled('+checkers/neomake')
@@ -152,5 +183,9 @@ endif
     else
       let g:neomake_haskell_enabled_makers = get(g:, 'sp_neomake_haskell_enabled_makers', ['ghcmod', 'hlint'])
     endif
+  endif
+
+  if SpaceNeovimIsLayerEnabled('+checkers/ale')
+    let g:intero_use_neomake = 0
   endif
 " }}}

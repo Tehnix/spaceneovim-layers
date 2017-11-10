@@ -38,9 +38,16 @@ function! Layers()
 endfunction
 ```
 
-By default the backend is set to use `ghc-mod`, but you can change it to `intero` with `SpHaskellBackend 'intero'` in your `UserInit`.
+The available backends are:
 
-There is also a backend called `both` that will try to enable both backends in a compatible way.
+- `ghc-mod` (default)
+- `intero`
+- `lsp` (uses HIE underneath, so assumes that installed)
+- `both`
+
+You can change it to `intero` etc with `let g:spHaskellBackend 'intero'` in your `UserInit`.
+
+The backend called `both` will try to enable both `intero` and `ghc-mod` in a compatible way.
 
 ### Binaries
 
@@ -89,7 +96,7 @@ SPC s r     | Reload the repl
 
 ### Navigation
 
-With `intero` backend enabled,
+With `intero` or `lsp` backend enabled,
 
 Key Binding | Description
 ----------- | ----------------
@@ -109,6 +116,12 @@ Key Binding | Description
 SPC m r f   | Split the function case by examining a type's constructors
 SPC m r g   | Insert initial code from the given signature
 SPC m r e   | You can see the expansion of splices
+
+Additionally some commands depend on the backend. With `lsp`,
+
+Key Binding | Description
+----------- | ----------------------------------------------------------
+SPC m r R   | Rename the item under the cursor
 
 ### Documentation
 

@@ -6,12 +6,12 @@ This layer provides an asynchronous keyword completion system in the current buf
 
 ## Install
 
-Add the `+core/deoplete` layer in your configuration file,
+Add the `+completion/deoplete` layer in your configuration file,
 
 ```viml
 function! Layers()
   " ...
-  Layer '+core/deoplete'
+  Layer '+completion/deoplete'
   " ...
 endfunction
 ```
