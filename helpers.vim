@@ -53,7 +53,11 @@ function! SpaceNeovimIsLayerEnabled(name)
   if !exists('g:spaceneovim_enabled_layers')
     return 1
   endif
-  return index(g:spaceneovim_enabled_layers, a:name) != -1
+  for l:layer_source in g:dotspaceneovim_layer_sources
+    if index(g:spaceneovim_enabled_layers[l:layer_source], a:name) != -1
+      return 1
+    endif
+  endfor
 endfunction
 
 function! SpaceNeovimLoadFunc(spath, ...)
