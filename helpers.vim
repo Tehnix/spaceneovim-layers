@@ -59,7 +59,7 @@ endfunction
 function! SpaceNeovimLoadFunc(spath, ...)
   " Source func.vim if no argument given, else load the given script
   let l:script_name = 'func.vim'
-  if a:0 > 1
+  if a:0 > 0
     let l:script_name = a:1
   endif
   let l:path = fnamemodify(resolve(a:spath), ':h')
