@@ -55,7 +55,7 @@ endfunction
 function! SpaceNeovimMap(binding, name, value, ...)
   " Convenience function for SpaceNeovimBind using map/noremap.
   let l:isCmd = 1
-  if a:0 > 1
+  if a:0 > 0
     let l:isCmd = a:1
   endif
   call SpaceNeovimBind('map', a:binding, a:name, a:value, l:isCmd)
@@ -64,7 +64,7 @@ endfunction
 function! SpaceNeovimNMap(binding, name, value, ...)
   " Convenience function for SpaceNeovimBind using nmap/nnoremap.
   let l:isCmd = 1
-  if a:0 > 1
+  if a:0 > 0
     let l:isCmd = a:1
   endif
   call SpaceNeovimBind('nmap', a:binding, a:name, a:value, l:isCmd)
@@ -101,7 +101,7 @@ endfunction
 function! SpaceNeovimBufMap(binding, name, value, ...)
   " Convenience function for SpaceNeovimBind using map/noremap.
   let l:isCmd = 1
-  if a:0 > 1
+  if a:0 > 0
     let l:isCmd = a:1
   endif
   call SpaceNeovimBufBind('map', a:binding, a:name, a:value, l:isCmd)
@@ -110,7 +110,7 @@ endfunction
 function! SpaceNeovimBufNMap(binding, name, value, ...)
   " Convenience function for SpaceNeovimBind using nmap/nnoremap.
   let l:isCmd = 1
-  if a:0 > 1
+  if a:0 > 0
     let l:isCmd = a:1
   endif
   call SpaceNeovimBufBind('nmap', a:binding, a:name, a:value, l:isCmd)
@@ -150,7 +150,7 @@ endfunction
 function! SpaceNeovimFTMap(tfile, binding, name, value, ...)
   " Convenience function for SpaceNeovimBind using map/noremap.
   let l:isCmd = 1
-  if a:0 > 1
+  if a:0 > 0
     let l:isCmd = a:1
   endif
   call SpaceNeovimFTBind(a:tfile, 'map', a:binding, a:name, a:value, l:isCmd)
@@ -159,7 +159,7 @@ endfunction
 function! SpaceNeovimFTNMap(tfile, binding, name, value, ...)
   " Convenience function for SpaceNeovimBind using nmap/nnoremap.
   let l:isCmd = 1
-  if a:0 > 1
+  if a:0 > 0
     let l:isCmd = a:1
   endif
   call SpaceNeovimFTBind(a:tfile, 'nmap', a:binding, a:name, a:value, l:isCmd)
