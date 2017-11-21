@@ -24,6 +24,6 @@ Key Binding | Description
 ----------- | -------------------------------------------------------------
 SPC f b     | Find open buffer
 SPC f f     | Find file
-SPC f l     | Find line in loaded buffers
 SPC f g     | Find line using ripgrep or the silver searcher (if available)
 SPC f G     | Find line using git grep (if the `+scm/git` layer is enabled)
+SPC f l     | Find line in loaded buffers
