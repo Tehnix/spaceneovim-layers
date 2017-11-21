@@ -27,6 +27,7 @@ Name                 | Description
 +nav/buffers         | Common buffer functionality
 +nav/files           | Common file operations
 +nav/fuzzy           | Fuzzy search for files, buffers and methods
++nav/fzf             | Fuzzy search using FZF
 +nav/quit            | Common quit functionality
 +nav/start-screen    | Add start screen when opening Neovim
 +nav/text            | Common text operations
