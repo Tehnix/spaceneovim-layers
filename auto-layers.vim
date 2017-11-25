@@ -6,7 +6,7 @@
 " Debug messages to the console.
 "
 function! s:debug(msg)
-  if g:dotspaceneovim_debug
+  if g:dotspaceneovim_layer_debug
     echom a:msg
   endif
 endfunction
