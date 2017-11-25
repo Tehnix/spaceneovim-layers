@@ -75,11 +75,4 @@ if !exists('g:spaceneovim_update_and_sync_already_defined')
       echo "Finished configuration sync!"
     endif
   endfunction
-
-  " 
-  function! s:spaceneovim_post_update(job_id, data, event) dict
-    let PostUpdateOutput = function('OutputJobToBuffer', self)
-    call PostUpdateOutput(a:job_id, a:data, a:event)
-    call s:sync_configuration(self.buf, self.out)
-  endfunction
 endif
