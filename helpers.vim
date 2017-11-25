@@ -10,23 +10,49 @@ command! -nargs=1 -bar SpCleanupFileTypeGroups call SpaceNeovimCleanupFileTypeGr
 command! -nargs=+ -bar SpLoadFunc call SpaceNeovimLoadFunc(<args>)
 
 " General Helper functions {{{
-function! NewScratchBuffer()
-  " Create an empty buffer in a split below
-  rightbelow new
-  setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
-  return bufnr('%')
-endfunction
+  " Avoid vint complaining about self
+  " vint: -ProhibitImplicitScopeVariable -ProhibitUsingUndeclaredVariable
 
-" Avoid vint complaining about self
-" vint: -ProhibitImplicitScopeVariable -ProhibitUsingUndeclaredVariable
-function! OutputJobToBuffer(job_id, data, event)
-  " Output an async job to a buffer without needing focus on the buffer
-  if a:event ==? 'stdout' || a:event ==? 'stderr'
-    let self.out += a:data
-    " Use the Neovim internal API to update the buffer
-    call nvim_buf_set_lines(self.buf, 0, -1, v:true, self.out)
+  " Create a non modifiable buffer in a split below.
+  function! NewScratchBuffer()
+    rightbelow new
+    setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+    return bufnr('%')
+  endfunction
+
+  " Make sure we don't redefine these functions upon resourcing the VIM config.
+  if !exists('g:spaceneovim_buffer_output_functions_defined')
+    let g:spaceneovim_buffer_output_functions_defined = 1
+
+    " Simply output a list to a buffer without focusing it, and then
+    " call redraw to make sure it takes effect.
+    function! OutputListToBuffer(buf_nr, out) 
+      call nvim_buf_set_lines(a:buf_nr, 0, -1, v:true, a:out)
+      redraw
+    endfunction
+
+    " Output an async job to a buffer without needing focus on the buffer.
+    function! OutputJobToBuffer(job_id, data, event) dict
+      if a:event ==? 'stdout' || a:event ==? 'stderr'
+        let self.out += a:data
+        " Use the Neovim internal API to update the buffer
+        call nvim_buf_set_lines(self.buf, 0, -1, v:true, self.out)
+      endif
+    endfunction
+    
+    " Same as `OutputJobToBuffer`, but takes a callback function to call when
+    " finished. Note, we have to make sure it doesn't get redefined, because the 
+    " callback might reload the VIM config (arguably the original usecase).
+    function! OutputJobExitToBuffer(exit_func, job_id, data, event) dict
+      if a:event ==? 'stdout' || a:event ==? 'stderr'
+        let self.out += a:data
+        " Use the Neovim internal API to update the buffer
+        call nvim_buf_set_lines(self.buf, 0, -1, v:true, self.out)
+      endif
+      call a:exit_func(self.buf, self.out)
+    endfunction
   endif
-endfunction
+
 " vint: +ProhibitImplicitScopeVariable +ProhibitUsingUndeclaredVariable
 " }}}
 

@@ -62,7 +62,7 @@ function! s:spaceneovim_preinstall()
   " }}}
 endfunction
 
-function! s:spaceneovim_postinit()
+function! g:Spaceneovim_postinit()
   call s:debug('>>> Run postinit')
   " Configure vim-arpeggio {{{
   if exists('g:loaded_arpeggio')
@@ -121,7 +121,7 @@ if !exists('g:spaceneovim_postinit_loaded')
   let g:spaceneovim_postinit_loaded = 1
   augroup spaceneovim_postinit
     autocmd!
-    autocmd VimEnter * call s:spaceneovim_postinit()
+    autocmd VimEnter * call g:Spaceneovim_postinit()
   augroup END
 endif
 " }}}

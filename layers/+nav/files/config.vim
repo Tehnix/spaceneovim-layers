@@ -7,7 +7,7 @@ SpNMap 'ft', 'nerdtree-toggle', 'NERDTreeToggle'
 " FIXME: For some reason this grouping isn't showing up?
 let g:lmap.f.e = get(g:lmap.f, 'e', { 'name': '+spaceneovim' })
 SpNMap 'fed', 'find-dotfile', 'e $MYVIMRC'
-SpNMap 'feu', 'update-spaceneovim-layers', 'UpdateSpaceNeovimLayers'
+SpNMap 'feu', 'update-spaceneovim-layers', 'SpaceNeovimUpdateLayers'
 SpNMap 'fep', 'update-plugins', 'PlugInstall!'
 SpNMap 'fec', 'clean-plugins', 'PlugClean!'
-SpNMap 'feR', 'sync-configuration', 'source $MYVIMRC'
+SpNMap 'feR', 'sync-configuration', 'SpaceNeovimSyncConfiguration'
