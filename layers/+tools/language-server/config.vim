@@ -20,10 +20,10 @@
   " Make the command line higher for echodoc.
   set cmdheight=2
   set shortmess=a
-  " Automatically start language clients.
+  " Do not automatically start language clients.
   let g:LanguageClient_autoStart = 0
- augroup autoStartLanguageServer
-    autocmd!
-    au BufWinEnter * SpaceNeovimHLSPEnableAutoStart
-  augroup END 
+  " augroup autoStartLanguageServer
+  "   autocmd!
+  "   au BufWinEnter * SpaceNeovimHLSPEnableAutoStart
+  " augroup END 
 " }}}

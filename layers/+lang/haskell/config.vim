@@ -137,7 +137,8 @@ endif
       au!
       " Automatically reload on save
       au BufWritePost *.hs GhciReload
-      au BufWritePost *.hs SpaceNeovimHLSPUpdateSymbolList
+      " au BufWritePost *.hs SpaceNeovimHLSPUpdateSymbolList
+      au BufEnter *.hs :LanguageClientStart
       " FIXME: Currently not very ergonomic, since multi lines will
       " prompt the "Enter to continue".
       " au CursorMoved *.hs SpaceNeovimHLSPDisplayInfo

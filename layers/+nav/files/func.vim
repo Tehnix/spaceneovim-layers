@@ -45,26 +45,27 @@ if !exists('g:spaceneovim_update_and_sync_already_defined')
   " then sourcing the VIM config and finally running postinit. If no arguments
   " are supplied, it'll echo the output, if a buffer number and output list
   " are given, it'll put the output into that buffer.
-  function! g:SyncConfiguration(buf_nr, out)
-    if !empty(a:out)
-      let l:out = a:out
+  function! g:SyncConfiguration(...)
+    if a:0 > 0
+      let l:buf_nr = a:1
+      let l:out = a:2
       let l:out += ["Syncing configuration, please hold on!..."]
-      call OutputListToBuffer(a:buf_nr, l:out)
+      call OutputListToBuffer(l:buf_nr, l:out)
       echo "Wait for the sync to finish!"
       
       let l:out += ["    Setting spaceneovim_postinit_loaded to 0", "    Sourcing $MYVIMRC"]
-      call OutputListToBuffer(a:buf_nr, l:out)
+      call OutputListToBuffer(l:buf_nr, l:out)
       " Start the sync.
       let g:spaceneovim_postinit_loaded = 0
       :source $MYVIMRC
 
       let l:out += ["    Calling post initialization"]
-      call OutputListToBuffer(a:buf_nr, l:out)
+      call OutputListToBuffer(l:buf_nr, l:out)
       " Start the post initialization.
       call g:Spaceneovim_postinit()
 
       let l:out += ["Finished configuration sync!"]
-      call OutputListToBuffer(a:buf_nr, l:out)
+      call OutputListToBuffer(l:buf_nr, l:out)
       echo "You are good to go!"
     else
       echo "Syncing configuration, please hold on!..."
