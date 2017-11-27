@@ -2,7 +2,9 @@
 SpAddPlugin 'airblade/vim-gitgutter'
 
 " Browse Git commits nicely
-SpAddPlugin 'junegunn/gv.vim'
+if !SpaceNeovimIsLayerEnabled('+nav/fzf')
+  SpAddPlugin 'junegunn/gv.vim'
+endif
 
 " Git commands
 SpAddPlugin 'tpope/vim-fugitive'
