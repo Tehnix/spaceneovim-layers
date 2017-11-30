@@ -1,5 +1,5 @@
 command! -nargs=0 -bar SpaceNeovimUpdateLayers call s:update_spaceneovim_layers()
-command! -nargs=0 -bar SpaceNeovimSyncConfiguration call s:sync_configuration()
+command! -nargs=0 -bar SpaceNeovimSyncConfiguration call g:SyncConfiguration()
 
 function! s:update_spaceneovim_layers()
   " The users home directory.
