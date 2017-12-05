@@ -78,6 +78,8 @@ set modeline
 
   " Enable hlserch on start
   nnoremap / :set hlsearch<cr>/
+  " Clear search highlight on 'SPC SPC'
+  nnoremap <leader><leader> :noh<CR>
 
   " Make super tab start from the top and go down.
   let g:SuperTabDefaultCompletionType = "<c-n>"
