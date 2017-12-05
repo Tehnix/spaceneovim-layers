@@ -6,6 +6,7 @@ SpNMap 'en', 'ale/next-error', 'ALENextWrap'
 SpNMap 'ep', 'ale/previous-error', 'ALEPreviousWrap'
 SpNMap 'ef', 'ale/first-error', 'ALEFirst'
 SpNMap 'ee', 'ale/last-error', 'ALELast'
+SpNMap 'ed', 'ale/details', 'ALEDetail'
 
 " Enable Airline.
 let g:airline#extensions#ale#enabled = 1

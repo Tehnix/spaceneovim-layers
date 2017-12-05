@@ -28,3 +28,5 @@ SPC e n     | Jump to next Ale error
 SPC e p     | Jump to previous Ale error
 SPC e f     | Jump to first Ale error in the file
 SPC e F     | Jump to last Ale error in the file
+SPC e d     | Open Ale detail window (can be closed with _q_ directly in the window)
+
