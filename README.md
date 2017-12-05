@@ -16,28 +16,31 @@ Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim)
 
 ## Current Layers
 
-Name                 | Description
--------------------- | -------------------------------------------
-+core/behavior       | Core functionality for SpaceNeovim
-+core/sensible       | Sensible default settings
-+completion/deoplete | Auto-completion with deoplete
-+completion/snippets | Snippet support
-+checkers/neomake    | Syntax checking with Neomake
-+checkers/syntastic  | Syntax checking with Syntastic
-+nav/buffers         | Common buffer functionality
-+nav/files           | Common file operations
-+nav/fuzzy           | Fuzzy search for files, buffers and methods
-+nav/fzf             | Fuzzy search using FZF
-+nav/quit            | Common quit functionality
-+nav/start-screen    | Add start screen when opening Neovim
-+nav/text            | Common text operations
-+nav/tmux            | Navigate between VIM and TMUX panes
-+nav/windows         | Common window functionality
-+scm/git             | Git and fugitive support
-+specs/testing       | Run tests directly from the editor
-+tools/terminal      | Defaults and keybindings for the terminal
-+ui/airline          | Replace the status bar with airline
-+ui/toggles          | Toggles for common components
+Name                   |Description
+-----------------------|-------------------------------------------
++core/behavior         |Core functionality for SpaceNeovim
++core/sensible         |Sensible default settings
++completion/deoplete   |Auto-completion with deoplete
++completion/snippets   |Snippet support
++checkers/neomake      |Syntax checking with Neomake
++checkers/syntastic    |Syntax checking with Syntastic
++nav/buffers           |Common buffer functionality
++nav/comments          |Manipulating comments
++nav/files             |Common file operations
++nav/fuzzy             |Fuzzy search for files, buffers and methods
++nav/fzf               |Fuzzy search using FZF
++nav/quit              |Common quit functionality
++nav/start-screen      |Add start screen when opening Neovim
++nav/text              |Common text operations
++nav/tmux              |Navigate between VIM and TMUX panes
++nav/windows           |Common window functionality
++scm/git               |Git and fugitive support
++specs/testing         |Run tests directly from the editor
++tools/language-server |Language server support
++tools/multicursor     |Support for multiple cursors
++tools/terminal        |Defaults and keybindings for the terminal
++ui/airline            |Replace the status bar with airline
++ui/toggles            |Toggles for common components
 
 Language layers
 
