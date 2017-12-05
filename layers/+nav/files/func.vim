@@ -1,5 +1,5 @@
 command! -nargs=0 -bar SpaceNeovimUpdateLayers call s:update_spaceneovim_layers()
-command! -nargs=0 -bar SpaceNeovimSyncConfiguration call g:SyncConfiguration()
+command! -nargs=0 -bar SpaceNeovimSyncConfiguration call g:SyncConfigurationVerbose()
 
 function! s:update_spaceneovim_layers()
   " The users home directory.
@@ -68,12 +68,20 @@ if !exists('g:spaceneovim_update_and_sync_already_defined')
       call OutputListToBuffer(l:buf_nr, l:out)
       echo "You are good to go!"
     else
-      echo "Syncing configuration, please hold on!..."
+      "echo "Syncing configuration, please hold on!..."
       " Start the sync.
       let g:spaceneovim_postinit_loaded = 0
       :source $MYVIMRC
       call g:Spaceneovim_postinit()
-      echo "Finished configuration sync!"
+      "echo "Finished configuration sync!"
     endif
+  endfunction
+  function! g:SyncConfigurationVerbose()
+      echo 'Syncing configuration, please hold on!...'
+      " Start the sync.
+      let g:spaceneovim_postinit_loaded = 0
+      :source $MYVIMRC
+      call g:Spaceneovim_postinit()
+      echo 'Finished configuration sync!'
   endfunction
 endif
