@@ -36,6 +36,7 @@ Name                   |Description
 +nav/windows           |Common window functionality
 +scm/git               |Git and fugitive support
 +specs/testing         |Run tests directly from the editor
++tools/format          |Format files
 +tools/language-server |Language server support
 +tools/multicursor     |Support for multiple cursors
 +tools/terminal        |Defaults and keybindings for the terminal

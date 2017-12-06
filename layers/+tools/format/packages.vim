@@ -1,0 +1,1 @@
+SpAddPlugin 'sbdchd/neoformat'
