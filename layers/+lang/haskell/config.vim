@@ -3,6 +3,7 @@
 " }}}
 
 let g:sp_haskell_backend = get(g:, 'spHaskellBackend', 'ghc-mod')
+let g:sp_haskell_show_type_on_hover = get(g:, 'spHaskellTypeOnHover', 0)
 
 " Intero backend specific bindings.
 let s:sp_haskell_intero_backend = { "name": "+haskell/intero"
@@ -21,6 +22,7 @@ let s:sp_haskell_intero_repl = { "name": "+haskell/repl"
   \ }
 let s:sp_haskell_intero_documentation = {
      \  "t": ["InteroType", "intero/type-at"]
+     \, "i": ["InteroInfo", "intero/info"]
      \, "g": ["InteroGenericType", "intero/generic-type"]
      \, "T": ["InteroTypeInsert", "intero/insert-type"]
   \ }
@@ -118,6 +120,7 @@ endif
       " Automatically reload on save
       au BufWritePost *.hs InteroReload
     augroup END
+
   elseif g:sp_haskell_backend == 'both'
     let g:intero_start_immediately = 1
     let g:ghci_start_immediately = 0
@@ -151,6 +154,16 @@ endif
       autocmd!
       au BufWritePost *.hs GhcModCheckAndLintAsync
       au BufWritePost *.hs GhciReload
+    augroup END
+  endif
+
+if g:sp_haskell_show_type_on_hover && (g:sp_haskell_backend == 'both' || g:sp_haskell_backend == 'intero' || g:sp_haskell_backend == 'ghc-mod' || g:sp_haskell_backend == 'ghcmod')
+    " Make the update time shorter, so the info will trigger faster.
+    set updatetime=1000
+    " Get type information when you hold the cursor still for some time.
+    augroup haskellTypeInfoOnHold
+      au!
+      au CursorHold *.hs SpaceNeovimHaskellTypeOnHold
     augroup END
   endif
 

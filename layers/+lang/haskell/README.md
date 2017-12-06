@@ -45,9 +45,9 @@ The available backends are:
 - `lsp` (uses HIE underneath, so assumes that installed)
 - `both`
 
-You can change it to `intero` etc with `let g:spHaskellBackend 'intero'` in your `UserInit`.
+You can change it to `intero` etc with `let g:spHaskellBackend 'intero'` in your `UserInit`. The backend called `both` will try to enable both `intero` and `ghc-mod` in a compatible way.
 
-The backend called `both` will try to enable both `intero` and `ghc-mod` in a compatible way.
+To enable type info on hover (i.e. holding the cursor for ~1 second), put `let g:spHaskellTypeOnHover = 1` in your `UserInit`.
 
 ### Binaries
 
