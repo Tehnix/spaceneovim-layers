@@ -40,6 +40,7 @@ Name                   |Description
 +tools/multicursor     |Support for multiple cursors
 +tools/terminal        |Defaults and keybindings for the terminal
 +ui/airline            |Replace the status bar with airline
++ui/dynamic-cursor     |Dynamically change the cursor depending on the mode
 +ui/toggles            |Toggles for common components
 
 Language layers
