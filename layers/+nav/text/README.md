@@ -25,3 +25,8 @@ SPC x J     | Move current line down
 SPC x K     | Move current line up
 SPC x U     | Uppercase current word
 SPC x u     | Downcase current word
+
+Key Binding | Description
+----------- | ----------------------
+Ctrl J      | Move current line down (works in all modes)
+Ctrl K      | Move current line up (works in all modes)
