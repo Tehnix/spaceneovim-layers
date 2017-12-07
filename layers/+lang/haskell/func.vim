@@ -4,6 +4,7 @@ command! -nargs=0 -bar SpaceNeovimHaskellGhciExpression call feedkeys(":GhciEval
 command! -nargs=0 -bar SpaceNeovimHaskellInteroTarget call feedkeys(":InteroSetTargets ")
 command! -nargs=0 -bar SpaceNeovimHaskellInteroRepl call s:open_intero_repl()
 command! -nargs=0 -bar SpaceNeovimHaskellGhcmodType call s:ghcmod_type()
+command! -nargs=0 -bar SpaceNeovimHaskellInteroType call s:intero_type()
 command! -nargs=0 -bar SpaceNeovimHaskellTypeOnHold call s:display_info_on_cursor_hold()
 
 
@@ -25,6 +26,12 @@ function! g:SpaceNeovimHaskellTypeHandler(lines)
   endif
 endfunction
 
+function! s:intero_type()
+  let l:ident = intero#util#get_haskell_identifier()
+  call intero#process#add_handler(function('g:SpaceNeovimHaskellTypeHandler'))
+  call intero#repl#send(':type ' . l:ident)
+endfunction
+
 " FIXME: Whenever this is merged https://github.com/neovim/neovim/pull/6619, we could
 " use that to display the type information instead.
 let s:word_under_cursor = ""
@@ -32,12 +39,11 @@ function! s:display_info_on_cursor_hold()
   let l:new_word_under_cursor = expand("<cword>")
   if s:word_under_cursor  !=# l:new_word_under_cursor
     if g:sp_haskell_backend == 'intero' || g:sp_haskell_backend == 'both'
-      let l:ident = intero#util#get_haskell_identifier()
-      call intero#process#add_handler(function('g:SpaceNeovimHaskellTypeHandler'))
-      call intero#repl#send(':type ' . l:ident)
+      if g:intero_started
+        call s:intero_type()
+      endif
     elseif g:sp_haskell_backend == 'ghcmod' || g:sp_haskell_backend == 'ghc-mod'
-      :GhcModType
-      :GhcModTypeClear
+      call s:ghcmod_type()
     endif
     " LSP Supports this via `call LanguageClient_textDocument_hover()`, but
     " that needs a way to cut off the output after the first line.

@@ -21,7 +21,7 @@
         \, "r": ["InteroReload", "intero/reload-repl"]
       \ }
     let s:sp_haskell_intero_documentation = {
-        \  "t": ["InteroType", "intero/type-at"]
+        \  "t": ["SpaceNeovimHaskellInteroType", "intero/type-at"]
         \, "i": ["InteroInfo", "intero/info"]
         \, "g": ["InteroGenericType", "intero/generic-type"]
         \, "T": ["InteroTypeInsert", "intero/insert-type"]
@@ -142,11 +142,12 @@
     elseif g:sp_haskell_backend == 'both'
       let g:intero_start_immediately = 1
       let g:ghci_start_immediately = 0
+      let g:necoghc_use_stack = 1
       augroup haskellLinter
         au!
-        " Automatically reload on save
-        au BufWritePost *.hs GhcModCheckAndLintAsync
-        au BufWritePost *.hs InteroReload
+        " Automatically reload on save.
+        au BufWritePost *.hs GhciReload
+        " au BufWritePost *.hs GhcModCheckAndLintAsync
       augroup END
 
     elseif g:sp_haskell_backend == 'lsp'
@@ -157,7 +158,7 @@
       let g:LanguageClient_serverCommands.haskell = ['hie', '--lsp']
       augroup haskellLinter
         au!
-        " Automatically reload on save
+        " Automatically reload on save.
         au BufWritePost *.hs GhciReload
         " Start the language server when entering a Haskell buffer.
         au BufEnter *.hs :LanguageClientStart
@@ -169,8 +170,9 @@
       let g:ghci_start_immediately = 1
       augroup haskellLinter
         autocmd!
-        " au BufWritePost *.hs GhcModCheckAndLintAsync
+        " Automatically reload on save.
         au BufWritePost *.hs GhciReload
+        " au BufWritePost *.hs GhcModCheckAndLintAsync
       augroup END
 
     endif
@@ -194,6 +196,14 @@
   function! GhcModQuickFix()
     " Do nothing!
   endfunction
+
+  let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+  let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+  let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+  let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+  let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+  let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+  let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 " }}}
 
 " Set layer specific configurations {{{
