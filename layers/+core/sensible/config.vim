@@ -89,7 +89,6 @@ set modeline
 
   " Make enter select item when completion menu is visible.
   inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-  set completeopt=longest,menuone
 
   " Set messages to be short.
   set shortmess=at
