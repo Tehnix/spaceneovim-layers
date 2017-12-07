@@ -7,6 +7,6 @@ SpNMap 'ft', 'nerdtree-toggle', 'NERDTreeToggle'
 let g:lmap.f.e = get(g:lmap.f, 'e', { 'name': '+spaceneovim' })
 SpNMap 'fed', 'find-dotfile', 'e $MYVIMRC'
 SpNMap 'feu', 'update-spaceneovim-layers', 'SpaceNeovimUpdateLayers'
-SpNMap 'fep', 'update-plugins', 'PlugInstall!'
+SpNMap 'fep', 'update-plugins', 'PlugUpdate!'
 SpNMap 'fec', 'clean-plugins', 'PlugClean!'
 SpNMap 'feR', 'sync-configuration', 'SpaceNeovimSyncConfiguration'
