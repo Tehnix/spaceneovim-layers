@@ -21,4 +21,4 @@ endfunction
 
 Key Binding | Description
 ----------- | --------------
-CTRL-k      | Expand or jump
+CTRL k      | Expand or jump

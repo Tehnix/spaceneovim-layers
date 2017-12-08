@@ -28,5 +28,5 @@ SPC x u     | Downcase current word
 
 Key Binding | Description
 ----------- | ----------------------
-Ctrl J      | Move current line down (works in all modes)
-Ctrl K      | Move current line up (works in all modes)
+Alt J       | Move current line down (works in all modes)
+Alt K       | Move current line up (works in all modes)
