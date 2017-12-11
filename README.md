@@ -22,6 +22,7 @@ Name                   |Description
 +core/sensible         |Sensible default settings
 +completion/deoplete   |Auto-completion with deoplete
 +completion/snippets   |Snippet support
++checkers/ale          |Syntax checking with Ale
 +checkers/neomake      |Syntax checking with Neomake
 +checkers/syntastic    |Syntax checking with Syntastic
 +nav/buffers           |Common buffer functionality
