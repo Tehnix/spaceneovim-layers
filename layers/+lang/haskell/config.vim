@@ -141,7 +141,7 @@
 
     elseif g:sp_haskell_backend == 'both'
       let g:intero_start_immediately = 1
-      let g:ghci_start_immediately = 0
+      let g:ghci_start_immediately = 1
       let g:necoghc_use_stack = 1
       augroup haskellLinter
         au!
