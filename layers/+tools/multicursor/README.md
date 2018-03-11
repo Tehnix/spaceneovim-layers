@@ -1,5 +1,5 @@
 # Multicursor Layer
-This layer provides support for multicursor editing via [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors).
+This layer provides support for multicursor editing via [terryma/vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors).
 
 #### Table of Contents
 - [Install](#install)

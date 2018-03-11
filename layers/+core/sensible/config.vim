@@ -92,4 +92,9 @@ set modeline
 
   " Set messages to be short.
   set shortmess=at
+
+  " Set soft wrap indent to be ` ·`.
+  set breakindent
+  set breakindentopt=shift:0
+  set showbreak=\ \·
 " }}}

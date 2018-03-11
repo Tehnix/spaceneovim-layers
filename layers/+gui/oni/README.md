@@ -5,12 +5,12 @@ This layer is an opinionated setup that works nicely with the [Oni](https://www.
 - [Install](#install)
 
 ## Install
-Add the `+ui/oni` layer in your configuration file,
+Add the `+gui/oni` layer in your configuration file,
 
 ```viml
 function! Layers()
   " ...
-  Layer '+ui/oni'
+  Layer '+gui/oni'
   " ...
 endfunction
 ```

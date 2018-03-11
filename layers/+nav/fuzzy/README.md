@@ -1,7 +1,7 @@
 # Fuzzy search Layer
 This layer provides fuzzy search functionality for files, buffers and methods, using
 
-- [`kien/ctrlp.vim`](https://github.com/kien/ctrlp.vim)
+- [`ctrlpvim/ctrlp.vim`](https://github.com/kien/ctrlp.vim)
 - [`tacahiroy/ctrlp-funky`](https://github.com/tacahiroy/ctrlp-funky)
 - [`Shougo/denite.nvim`](https://github.com/Shougo/denite.nvim)
 

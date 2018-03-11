@@ -1,5 +1,7 @@
 command! -nargs=0 -bar SpaceNeovimUpdateLayers call s:update_spaceneovim_layers()
 command! -nargs=0 -bar SpaceNeovimSyncConfiguration call g:SyncConfigurationVerbose()
+command! -nargs=0 -bar SyncNERDTree call s:sync_nerdtree()
+command! -nargs=0 -bar SetNERDTreeDoubleClick call s:set_nerdtree_settings()
 
 function! s:update_spaceneovim_layers()
   " The users home directory.
@@ -7,7 +9,7 @@ function! s:update_spaceneovim_layers()
   if has('nvim')
     echo "Updating SpaceNeovim layers, please hold on..."
     let a:config_dir = expand(resolve(a:home_dir . '/.config/nvim'))
-    
+
     " Update the SpaceNeovim Layers by performing a git pull operation
     let a:config_dir = $HOME . '/.config/nvim'
     let a:spacevim_layers_dir = expand(resolve(a:config_dir . '/spaceneovim-layers'))
@@ -52,7 +54,7 @@ if !exists('g:spaceneovim_update_and_sync_already_defined')
       let l:out += ["Syncing configuration, please hold on!..."]
       call OutputListToBuffer(l:buf_nr, l:out)
       echo "Wait for the sync to finish!"
-      
+
       let l:out += ["    Setting spaceneovim_postinit_loaded to 0", "    Sourcing $MYVIMRC"]
       call OutputListToBuffer(l:buf_nr, l:out)
       " Start the sync.
@@ -85,3 +87,36 @@ if !exists('g:spaceneovim_update_and_sync_already_defined')
       echo 'Finished configuration sync!'
   endfunction
 endif
+
+" Calls NERDTreeFind if NERDTree is active, current window contains a
+" modifiable file, and we're not in vimdiff.
+fun! s:sync_tree()
+  let s:curwnum = winnr()
+  " Make NERDTreeFind go to project root of the file.
+  execute "NERDTree " . projectroot#guess()
+  NERDTreeFind
+  exec s:curwnum . "wincmd w"
+endfun
+
+fun! s:sync_nerdtree()
+  if (winnr("$") > 1)
+    call s:sync_tree()
+  endif
+endfun
+
+" Hack to get NERDTree to open in tab.
+fun! s:set_nerdtree_settings()
+  fun! s:double_click_behaviour()
+    if match(getline('.'), '▸') == -1 && match(getline('.'), '▾') == -1
+      map <buffer> <2-LeftMouse> t
+      map <buffer> <enter> t
+    else
+      map <buffer> <2-LeftMouse> o
+      map <buffer> <enter> o
+    endif
+  endfun
+  augroup DoubleClickNERDTree
+    au!
+    au CursorMoved * call s:double_click_behaviour()
+  augroup END
+endfun

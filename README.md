@@ -22,6 +22,8 @@ Name                   |Description
 [+checkers/ale](layers/+checkers/ale)          |Syntax checking with Ale
 [+checkers/neomake](layers/+checkers/neomake)      |Syntax checking with Neomake
 [+checkers/syntastic](layers/+checkers/syntastic)    |Syntax checking with Syntastic
+[+gui/oni](layers/+gui/oni)            |An opinionated setup for using Oni
+[+gui/vimr](layers/+gui/vimr)            |An opinionated setup for using Vimr
 [+nav/buffers](layers/+nav/buffers)           |Common buffer functionality
 [+nav/comments](layers/+nav/comments)          |Manipulating comments
 [+nav/files](layers/+nav/files)             |Common file operations

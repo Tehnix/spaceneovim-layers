@@ -10,3 +10,38 @@ SpNMap 'feu', 'update-spaceneovim-layers', 'SpaceNeovimUpdateLayers'
 SpNMap 'fep', 'update-plugins', 'PlugUpdate!'
 SpNMap 'fec', 'clean-plugins', 'PlugClean!'
 SpNMap 'feR', 'sync-configuration', 'SpaceNeovimSyncConfiguration'
+
+" NERDTree Git
+let g:NERDTreeIndicatorMapCustom = {
+\ "Modified"  : "·",
+\ "Staged"    : "+",
+\ "Untracked" : "*",
+\ "Renamed"   : " ",
+\ "Unmerged"  : " ",
+\ "Deleted"   : "x",
+\ "Dirty"     : "·",
+\ "Clean"     : "√",
+\ "Ignored"   : " ",
+\ "Unknown"   : " "
+\ }
+
+let g:NERDTreeShowIgnoredStatus = 1  "enables ignored highlighting
+let g:NERDTreeGitStatusNodeColorization = 1  "enables colorization
+let g:NERDTreeGitStatusWithFlags = 1  "enables flags, (may be default), required for colorization
+
+highlight link NERDTreeDir Question  "custom color
+highlight link NERDTreeGitStatusIgnored Comment  "custom color
+highlight link NERDTreeGitStatusModified cssURL  "custom color
+
+" NERDTree
+set hidden
+let g:NERDTreeDirArrowExpandable = nr2char(8200)  "sets expandable character
+let g:NERDTreeDirArrowCollapsible = nr2char(8200)  "sets collapsible character
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '  "removes padding after devicon glyph
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1  "enables decorating folder nodes
+
+augroup NERDTreeConfig
+  au!
+  " If you show hidden characters, this hides them in NERDTree.
+  au FileType nerdtree setlocal nolist
+augroup END
