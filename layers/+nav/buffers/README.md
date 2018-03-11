@@ -1,15 +1,13 @@
 # Buffers Layer
+This layer provides common functionality for buffers, using
 
-This layer provides common functionality for buffers.
+- [`schickling/vim-bufonly`](https://github.com/schickling/vim-bufonly)
 
+#### Table of Contents
 - [Install](#install)
-
-  - [Layer](#layer)
-
 - [Key Bindings](#key-bindings)
 
 ## Install
-
 Add the `+nav/buffers` layer in your configuration file,
 
 ```viml
@@ -21,7 +19,6 @@ endfunction
 ```
 
 ## Key Bindings
-
 Key Binding | Description
 ----------- | ----------------------------------------------
 SPC b d     | Kill the current buffer

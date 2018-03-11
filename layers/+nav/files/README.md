@@ -1,15 +1,13 @@
 # Files Layer
+This layer provides common functionality for files, using
 
-This layer provides common functionality for files.
+- [`scrooloose/nerdtree`](https://github.com/scrooloose/nerdtree)
 
+#### Table of Contents
 - [Install](#install)
-
-  - [Layer](#layer)
-
 - [Key Bindings](#key-bindings)
 
 ## Install
-
 Add the `+nav/files` layer in your configuration file,
 
 ```viml
@@ -21,7 +19,6 @@ endfunction
 ```
 
 ## Key Bindings
-
 Key Binding | Description
 ----------- | -------------------------------
 SPC f r     | Reveal current file on NERDTree

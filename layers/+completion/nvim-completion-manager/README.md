@@ -1,11 +1,12 @@
 # NCM: nvim-completion-manager
+This layer provides an asynchronous keyword completion system in the current buffer, using
 
-This layer provides an asynchronous keyword completion system in the current buffer [nvim-completion-manager](https://github.com/roxma/nvim-completion-manager).
+- [`nvim-completion-manager`](https://github.com/roxma/nvim-completion-manager).
 
+#### Table of Contents
 - [Install](#install)
 
 ## Install
-
 Add the `+completion/nvim-completion-manager` layer in your configuration file,
 
 ```viml

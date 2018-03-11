@@ -1,12 +1,14 @@
 # Ale - Asynchronous Lint Engine
 
-This layer provides on the fly syntax checking and linting using [Ale](https://github.com/w0rp/ale).
+This layer provides on the fly syntax checking and linting, using
 
+- [`w0rp/ale`](https://github.com/w0rp/ale).
+
+#### Table of Contents
 - [Install](#install)
 - [Key Bindings](#key-bindings)
 
 ## Install
-
 Add the `+checkers/ale` layer in your configuration file,
 
 ```viml
@@ -18,7 +20,6 @@ endfunction
 ```
 
 ## Key Bindings
-
 Key Binding | Description
 ----------- | -----------------------------------
 SPC e r     | Run Ale lint
@@ -29,4 +30,3 @@ SPC e p     | Jump to previous Ale error
 SPC e f     | Jump to first Ale error in the file
 SPC e F     | Jump to last Ale error in the file
 SPC e d     | Open Ale detail window (can be closed with _q_ directly in the window)
-

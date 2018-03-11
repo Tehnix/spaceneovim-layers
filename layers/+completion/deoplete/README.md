@@ -1,11 +1,12 @@
 # Deoplete
+This layer provides an asynchronous keyword completion system in the current buffer, using
 
-This layer provides an asynchronous keyword completion system in the current buffer [deoplete](https://github.com/Shougo/deoplete.nvim).
+- [`Shougo/deoplete.nvim`](https://github.com/Shougo/deoplete.nvim).
 
+#### Table of Contents
 - [Install](#install)
 
 ## Install
-
 Add the `+completion/deoplete` layer in your configuration file,
 
 ```viml

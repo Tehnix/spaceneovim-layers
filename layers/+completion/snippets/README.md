@@ -1,12 +1,13 @@
 # Code snippets Layer
+This layer brings snippets support to SpaceNeovim, using
 
-This layer brings snippets support to spaceneovim using [Neosnippet](https://github.com/Shougo/neosnippet.vim).
+- [`Shougo/neosnippet.vim`](https://github.com/Shougo/neosnippet.vim).
 
+#### Table of Contents
 - [Install](#install)
 - [Key Bindings](#key-bindings)
 
 ## Install
-
 Add the `+core/snippets` layer in your configuration file,
 
 ```viml
@@ -18,7 +19,6 @@ endfunction
 ```
 
 ## Key Bindings
-
 Key Binding | Description
 ----------- | --------------
 CTRL k      | Expand or jump

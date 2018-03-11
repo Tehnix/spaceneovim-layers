@@ -1,12 +1,12 @@
 # Quickfix (and Location)
-
 This layer provides keybindings and customization for quickfix and location list.
 
+#### Table of Contents
 - [Install](#install)
 - [Key Bindings](#key-bindings)
+  - [Location list](#location-lise)
 
 ## Install
-
 Add the `+checkers/quickfix` layer in your configuration file,
 
 ```viml
@@ -18,7 +18,6 @@ endfunction
 ```
 
 ## Key Bindings
-
 Key Binding | Description
 ----------- | -------------------------------
 SPC e L     | Open the Quickfix error list
@@ -29,7 +28,6 @@ SPC e F     | Jump to first Quickfix error
 SPC e E     | Jump to last Quickfix error
 
 ### Location list
-
 Key Binding | Description
 ----------- | -------------------------------
 SPC e l l   | Open the location error list

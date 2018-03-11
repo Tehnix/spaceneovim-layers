@@ -1,12 +1,14 @@
 # Neomake Syntax Checking
 
-This layer provides on the fly syntax checking using [Neomake](https://github.com/neomake/neomake).
+This layer provides on the fly syntax checking, using
 
+- [`neomake/neomake`](https://github.com/neomake/neomake).
+
+#### Table of Contents
 - [Install](#install)
 - [Key Bindings](#key-bindings)
 
 ## Install
-
 Add the `+checkers/neomake` layer in your configuration file,
 
 ```viml
@@ -18,7 +20,6 @@ endfunction
 ```
 
 ## Key Bindings
-
 Key Binding | Description
 ----------- | --------------------------------------
 SPC e r     | Run Neomake

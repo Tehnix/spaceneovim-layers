@@ -1,15 +1,13 @@
 # Comments Layer
+This layer provides common functionality for manipulating comments, using
 
-This layer provides common functionality for manipulating comments.
+- [`scrooloose/nerdcommenter`](https://github.com/scrooloose/nerdcommenter)
 
+#### Table of Contents
 - [Install](#install)
-
-  - [Layer](#layer)
-
 - [Key Bindings](#key-bindings)
 
 ## Install
-
 Add the `+nav/comments` layer in your configuration file,
 
 ```viml
@@ -21,7 +19,6 @@ endfunction
 ```
 
 ## Key Bindings
-
 Key Binding | Description
 ----------- | -------------------------------
 SPC c l     | Comment/uncomment lines

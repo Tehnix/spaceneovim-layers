@@ -1,13 +1,13 @@
 # Syntastic Syntax Checking
+This layer provides on the fly syntax checking, using
 
-This layer provides on the fly syntax checking using [Syntastc](https://github.com/scrooloose/syntastc).
+- [`scrooloose/syntastc`](https://github.com/scrooloose/syntastc).
 
-* [Install](#install)
-* [Key Bindings](#key-bindings)
-
+#### Table of Contents
+- [Install](#install)
+- [Key Bindings](#key-bindings)
 
 ## Install
-
 Add the `+checkers/syntastc` layer in your configuration file,
 
 ```viml
@@ -20,9 +20,7 @@ endfunction
 
 By default it will populate the loclist. For performance reasons aggregate errors and checking on open is disabled (since it runs synchronously).
 
-
 ## Key Bindings
-
 | Key Binding | Description                                                    |
 |-------------|----------------------------------------------------------------|
 | SPC e r     | Run Syntastic                                                  |

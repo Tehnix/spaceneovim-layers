@@ -1,33 +1,30 @@
 # Haskell Layer
+This layer provides support for the Haskell language with the following packages:
 
-## Table of contents
+- [`neovimhaskell/haskell-vim`](https://github.com/neovimhaskell/haskell-vim)
+- [`vmchale/cabal-project-vim`](https://github.com/vmchale/cabal-project-vim)
+- [`vmchale/ghci-syntax`](https://github.com/vmchale/ghci-syntax)
+- [`Twinside/vim-hoogle`](https://github.com/Twinside/vim-hoogle)
+- [`mpickering/hlint-refactor-vim`](https://github.com/mpickering/hlint-refactor-vim)
+- [`eagletmt/neco-ghc`](https://github.com/eagletmt/neco-ghc)
+- [`Shougo/vimproc.vim'`](https://github.com/Shougo/vimproc.vim')
+- [`parsonsmatt/intero-neovim`](https://github.com/parsonsmatt/intero-neovim)
+- [`owickstrom/neovim-ghci`](https://github.com/owickstrom/neovim-ghci)
+- [`eagletmt/ghcmod-vim`](https://github.com/eagletmt/ghcmod-vim)
 
-- [Description](#description)
+#### Table of Contents
 - [Install](#install)
-
   - [Binaries](#binaries)
   - [Completion](#completion)
   - [Checkers](#checkers)
-
 - [Key Bindings](#key-bindings)
-
-## Description
-
-This layer provides support for the Haskell language with the following packages:
-
-- `neovimhaskell/haskell-vim`
-- `vmchale/cabal-project-vim`
-- `vmchale/ghci-syntax`
-- `Twinside/vim-hoogle`
-- `mpickering/hlint-refactor-vim`
-- `eagletmt/neco-ghc`
-- `Shougo/vimproc.vim'`
-- `parsonsmatt/intero-neovim`
-- `owickstrom/neovim-ghci`
-- `eagletmt/ghcmod-vim`
+  - [REPL](#repl)
+  - [Navigation](#navigation)
+  - [Refactor](#refactor)
+  - [Documentation](#documentation)
+  - [Backend](#backend)
 
 ## Install
-
 Add the `+lang/haskell` layer in your configuration file,
 
 ```viml
@@ -50,29 +47,24 @@ You can change it to `intero` etc with `let g:spHaskellBackend 'intero'` in your
 To enable type info on hover (i.e. holding the cursor for ~1 second), put `let g:spHaskellTypeOnHover = 1` in your `UserInit`.
 
 ### Binaries
-
 To utilize this layer you need `ghc-mod`, `hlint` and `apply-refact` on your path. This can be done with,
 
 ```bash
 $ stack install apply-refact ghc-mod hlint
 ```
 
-### indentation
-
+### Indentation
 You can configure the indentation by setting `g:sp_haskell_indentation` in your user-init block (i.e. before loading the plugin). By default it is set to `2`.
 
 ### Completion
-
 By default `g:necoghc_enable_detailed_browse` is enabled. It can be disabled by setting `g:sp_necoghc_enable_detailed_browse` to either 1 or 0.
 
 ### Checkers
-
 By default `g:neomake_haskell_enabled_makers` is set to use all makers. This can be overwritten by setting the desired makers with `g:sp_neomake_haskell_enabled_makers`.
 
 ## Key Bindings
 
 ### REPL
-
 With `ghc-mod` backend enabled,
 
 Key Binding | Description
@@ -95,7 +87,6 @@ SPC s H     | Hide repl
 SPC s r     | Reload the repl
 
 ### Navigation
-
 With `intero` or `lsp` backend enabled,
 
 Key Binding | Description
@@ -103,7 +94,6 @@ Key Binding | Description
 SPC g g     | Go to definition
 
 ### Refactor
-
 Key Binding | Description
 ----------- | ----------------------------------------
 SPC m r r   | Apply Hlint refector suggestion at point
@@ -124,7 +114,6 @@ Key Binding | Description
 SPC m r R   | Rename the item under the cursor
 
 ### Documentation
-
 Key Binding | Description
 ----------- | ---------------------------------------
 SPC m h h   | Start a Hoogle search query
@@ -149,7 +138,6 @@ SPC m h g   | Display the generic type of the identifier under the cursor
 SPC m h T   | Insert the type signature of the identifier under the cursor
 
 ### Backend
-
 With `ghc-mod` backend enabled,
 
 Key Binding | Description

@@ -1,11 +1,10 @@
 # Dynamic Cursor Layer
-
 This layer makes the cursor change dynamically depending on which mode you are in.
 
+#### Table of Contents
 - [Install](#install)
 
 ## Install
-
 Add the `+ui/dynamic-cursor` layer in your configuration file,
 
 ```viml

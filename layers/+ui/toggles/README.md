@@ -1,14 +1,13 @@
 # Toggles Layer
-
 This layer provides toggles for various things.
 
+#### Table of Contents
 - [Install](#install)
 - [Key Bindings](#key-bindings)
 
   - [Highlighting](#highlighting)
 
 ## Install
-
 Add the `+ui/airline` layer in your configuration file,
 
 ```viml
@@ -20,7 +19,6 @@ endfunction
 ```
 
 ## Key Bindings
-
 Key Binding | Description
 ----------- | -----------------------------
 SPC t n     | Toggle line numbers
@@ -31,7 +29,6 @@ SPC t S     | Toggle spell checking
 SPC t H     | Toggle showing hidden symbols
 
 ### Highlighting
-
 Key Binding | Description
 ----------- | ---------------------------------------------
 SPC t h c   | Toggle highlight for current line indentation

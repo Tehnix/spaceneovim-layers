@@ -1,15 +1,13 @@
 # Language Server Layer
-
 This layer adds support for the Neovim language server client.
 
-- `autozimu/LanguageClient-neovim`
+- [`autozimu/LanguageClient-neovim`](https:/github.com/autozimu/LanguageClient-neovim)
 
+#### Table of Contents
 - [Install](#install)
-
 - [Key Bindings](#key-bindings)
 
 ## Install
-
 Add the `+tools/language-server` layer in your configuration file,
 
 ```viml
@@ -34,7 +32,6 @@ endfunction
 __NB__: Make sure not to overwrite `g:LanguageClient_serverCommands` but instead just insert the new dict entries.
 
 ## Key Bindings
-
 Key Binding | Description
 ----------- | --------------------------------
 SPC l i     | Show type and documentation info
@@ -44,7 +41,6 @@ SPC l f     | Format the document
 SPC l F     | Format the current selection
 
 ### Lists
-
 Key Binding | Description
 ----------- | --------------------------------------
 SPC l l s   | List all symbols in the current buffer

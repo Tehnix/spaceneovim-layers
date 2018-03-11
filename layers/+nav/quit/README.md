@@ -1,17 +1,11 @@
 # Quit Layer
-
 This layer provides common functionality to quit things.
 
+#### Table of Contents
 - [Install](#install)
-
-  - [Layer](#layer)
-
 - [Key Bindings](#key-bindings)
 
 ## Install
-
-### Layer
-
 Add the `+nav/quit` layer in your configuration file,
 
 ```viml
@@ -23,7 +17,6 @@ endfunction
 ```
 
 ## Key Bindings
-
 Key Binding | Description
 ----------- | -----------------------------------------
 SPC q q     | Quit Neovim

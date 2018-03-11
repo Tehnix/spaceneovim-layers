@@ -1,12 +1,13 @@
 # Tmux Layer
+This layer provides extra functionality for running VIM inside tmux, using
 
-This layer provides extra functionality for running VIM inside tmux.
+- [`christoomey/vim-tmux-navigator`](https://github.com/christoomey/vim-tmux-navigator)
 
+#### Table of Contents
 - [Install](#install)
 - [Key Bindings](#key-bindings)
 
 ## Install
-
 Add the `+nav/tmux` layer in your configuration file,
 
 ```viml
@@ -18,7 +19,6 @@ endfunction
 ```
 
 ## Key Bindings
-
 Key Binding | Description
 ----------- | ---------------------------
 CTRL + h    | Switch to pane on the left

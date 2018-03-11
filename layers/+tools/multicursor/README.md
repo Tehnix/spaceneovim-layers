@@ -1,12 +1,11 @@
 # Multicursor Layer
-
 This layer provides support for multicursor editing via [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors).
 
+#### Table of Contents
 - [Install](#install)
 - [Key Bindings](#key-bindings)
 
 ## Install
-
 Add the `+tools/multicursor` layer in your configuration file,
 
 ```viml
@@ -18,7 +17,6 @@ endfunction
 ```
 
 ## Key Bindings
-
 Key Binding | Description
 ----------- | --------------------------
 Ctrl n      | Select next word

@@ -1,13 +1,14 @@
 # FZF Layer
+This layer provides fuzzy search functionality with FZF, using
 
-This layer provides fuzzy search functionality using FZF.
+- [`junegunn/fzf`](https://github.com/junegunn/fzf)
+- [`junegunn/fzf.vim`](https://github.com/junegunn/fzf.vim)
 
+#### Table of Contents
 - [Install](#install)
-
 - [Key Bindings](#key-bindings)
 
 ## Install
-
 Add the `+nav/fzf` layer in your configuration file,
 
 ```viml
@@ -19,7 +20,6 @@ endfunction
 ```
 
 ## Key Bindings
-
 Key Binding | Description
 ----------- | -------------------------------------------------------------
 SPC f b     | Find open buffer

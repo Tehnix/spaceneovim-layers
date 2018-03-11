@@ -2,13 +2,16 @@
 
 This layer provides support for the Ruby language with the following packages:
 
-- `fishbullet/deoplete-ruby`
+- [`jgdavey/vim-blockle`](https://github.com/jgdavey/vim-blockle)
+- [`jgdavey/vim-weefactor`](https://github.com/jgdavey/vim-weefactor)
+- [`fishbullet/deoplete-ruby`](https://github.com/fishbullet/deoplete-ruby)
+- [`keith/rspec.vim`](https://github.com/keith/rspec.vim)
 
+#### Table of Contents
 - [Install](#install)
 - [Key Bindings](#key-bindings)
 
 ## Install
-
 Add the `+lang/ruby` layer in your configuration file,
 
 ```viml
@@ -20,7 +23,6 @@ endfunction
 ```
 
 ## Key Bindings
-
 Key Binding | Description
 ----------- | -----------------------------------
 SPC m :     | Replace `:symbol =>` with `symbol:`
