@@ -4,57 +4,54 @@ Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim)
 
 - [Current Layers](#current-layers)
 - [Adding a New Layer](#adding-a-new-layer)
-
   - [API](#api)
   - [Add a Keybinding](#add-a-keybinding)
   - [Adding Packages](#adding-packages)
   - [Including Files](#including-files)
-
 - [Adding a New Language Layer](#adding-a-new-language-layer)
-
   - [Add a Language Keybinding](#add-a-language-keybinding)
 
 ## Current Layers
 
 Name                   |Description
 -----------------------|-------------------------------------------
-+core/behavior         |Core functionality for SpaceNeovim
-+core/sensible         |Sensible default settings
-+completion/deoplete   |Auto-completion with deoplete
-+completion/snippets   |Snippet support
-+checkers/neomake      |Syntax checking with Neomake
-+checkers/syntastic    |Syntax checking with Syntastic
-+nav/buffers           |Common buffer functionality
-+nav/comments          |Manipulating comments
-+nav/files             |Common file operations
-+nav/fuzzy             |Fuzzy search for files, buffers and methods
-+nav/fzf               |Fuzzy search using FZF
-+nav/quit              |Common quit functionality
-+nav/start-screen      |Add start screen when opening Neovim
-+nav/text              |Common text operations
-+nav/tmux              |Navigate between VIM and TMUX panes
-+nav/windows           |Common window functionality
-+scm/git               |Git and fugitive support
-+specs/testing         |Run tests directly from the editor
-+tools/format          |Format files
-+tools/language-server |Language server support
-+tools/multicursor     |Support for multiple cursors
-+tools/terminal        |Defaults and keybindings for the terminal
-+ui/airline            |Replace the status bar with airline
-+ui/dynamic-cursor     |Dynamically change the cursor depending on the mode
-+ui/toggles            |Toggles for common components
+[+core/behavior](layers/+core/behavior)         |Core functionality for SpaceNeovim
+[+core/sensible](layers/+core/sensible)         |Sensible default settings
+[+completion/deoplete](layers/+completion/deoplete)   |Auto-completion with deoplete
+[+completion/snippets](layers/+completion/snippets)   |Snippet support
+[+checkers/neomake](layers/+checkers/neomake)      |Syntax checking with Neomake
+[+checkers/syntastic](layers/+checkers/syntastic)    |Syntax checking with Syntastic
+[+nav/buffers](layers/+nav/buffers)           |Common buffer functionality
+[+nav/comments](layers/+nav/comments)          |Manipulating comments
+[+nav/files](layers/+nav/files)             |Common file operations
+[+nav/fuzzy](layers/+nav/fuzzy)             |Fuzzy search for files, buffers and methods
+[+nav/fzf](layers/+nav/fzf)               |Fuzzy search using FZF
+[+nav/quit](layers/+nav/quit)              |Common quit functionality
+[+nav/start-screen](layers/+nav/start-screen)      |Add start screen when opening Neovim
+[+nav/text](layers/+nav/text)              |Common text operations
+[+nav/tmux](layers/+nav/tmux)              |Navigate between VIM and TMUX panes
+[+nav/windows](layers/+nav/windows)           |Common window functionality
+[+scm/git](layers/+scm/git)               |Git and fugitive support
+[+specs/testing](layers/+specs/testing)         |Run tests directly from the editor
+[+tools/format](layers/+tools/format)          |Format files
+[+tools/language-server](layers/+tools/language-server) |Language server support
+[+tools/multicursor](layers/+tools/multicursor)     |Support for multiple cursors
+[+tools/terminal](layers/+tools/terminal)        |Defaults and keybindings for the terminal
+[+ui/airline](layers/+ui/airline)            |Replace the status bar with airline
+[+ui/dynamic-cursor](layers/+ui/dynamic-cursor)     |Dynamically change the cursor depending on the mode
+[+ui/toggles](layers/+ui/toggles)            |Toggles for common components
 
 Language layers
 
 Name             | Description
 ---------------- | -------------------------------------------
-+lang/-example   | A template for creating new language layers
-+lang/elm        | Support for Elm
-+lang/haskell    | Support for Haskell
-+lang/javascript | Support for JavaScript
-+lang/python     | Support for python
-+lang/ruby       | Support for ruby
-+lang/vim        | Support for vim
+[+lang/-example](layers/+lang/-example)   | A template for creating new language layers
+[+lang/elm](layers/+lang/elm)        | Support for Elm
+[+lang/haskell](layers/+lang/haskell)    | Support for Haskell
+[+lang/javascript](layers/+lang/javascript) | Support for JavaScript
+[+lang/python](layers/+lang/python)     | Support for python
+[+lang/ruby](layers/+lang/ruby)       | Support for ruby
+[+lang/vim](layers/+lang/vim)        | Support for vim
 
 ## Adding a New Layer
 
@@ -65,7 +62,7 @@ A layer consists of, as minimum:
 - a `packages.vim`, adding the packages that needs to be installed
 - optionally, if a `func.vim` is present, it is loaded first (define commands and helper functions in this to keep things clean)
 
-These files are grouped under a `+category/layer-name` directory hierachy. As an example, the layer `buffers` is located under the group `+nav` (short for navigation).
+These files are grouped under a `+category/layer-name` directory hierarchy. As an example, the layer `buffers` is located under the group `+nav` (short for navigation).
 
 A layer is only ever run if it is enabled, so there is no need to check for it. However, if you want to check if another layer is enabled, before doing anything, it can be done with,
 
@@ -122,7 +119,7 @@ SpBind 'map', 'eC', 'neomake-check-file', 'Neomake', 1
 SpMap 'eC', 'neomake-check-file', 'Neomake'
 
 SpBind 'nmap', 'eC', 'neomake-check-file', 'Neomake', 0
-" Is equivalent to (default value is `1`, so we explicitly say `0` to not automaticaly add `<CR>` behind),
+" Is equivalent to (default value is `1`, so we explicitly say `0` to not automatically add `<CR>` behind),
 SpNMap 'eC', 'neomake-check-file', 'Neomake', 0
 ```
 
