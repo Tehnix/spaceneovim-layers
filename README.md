@@ -19,6 +19,7 @@ Name                   |Description
 [+core/sensible](layers/+core/sensible)         |Sensible default settings
 [+completion/deoplete](layers/+completion/deoplete)   |Auto-completion with deoplete
 [+completion/snippets](layers/+completion/snippets)   |Snippet support
+[+checkers/ale](layers/+checkers/ale)          |Syntax checking with Ale
 [+checkers/neomake](layers/+checkers/neomake)      |Syntax checking with Neomake
 [+checkers/syntastic](layers/+checkers/syntastic)    |Syntax checking with Syntastic
 [+nav/buffers](layers/+nav/buffers)           |Common buffer functionality
