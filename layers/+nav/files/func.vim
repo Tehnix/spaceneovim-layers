@@ -1,6 +1,7 @@
 command! -nargs=0 -bar SpaceNeovimUpdateLayers call s:update_spaceneovim_layers()
 command! -nargs=0 -bar SpaceNeovimSyncConfiguration call g:SyncConfigurationVerbose()
-command! -nargs=0 -bar SyncNERDTree call s:sync_nerdtree()
+command! -nargs=0 -bar FindNERDTreeFile call s:sync_nerdtree()
+command! -nargs=0 -bar SyncNERDTree call s:sync_nerdtree_cwd()
 command! -nargs=0 -bar SetNERDTreeDoubleClick call s:set_nerdtree_settings()
 
 function! s:update_spaceneovim_layers()
@@ -92,15 +93,27 @@ endif
 " modifiable file, and we're not in vimdiff.
 fun! s:sync_tree()
   let s:curwnum = winnr()
-  " Make NERDTreeFind go to project root of the file.
-  execute "NERDTree " . projectroot#guess()
+  " Locate the current file.
   NERDTreeFind
+  exec s:curwnum . "wincmd w"
+endfun
+
+fun! s:sync_cwd()
+  let s:curwnum = winnr()
+  " Make NERDTree go to project root of the file.
+  execute "NERDTree " . projectroot#guess()
   exec s:curwnum . "wincmd w"
 endfun
 
 fun! s:sync_nerdtree()
   if (winnr("$") > 1)
     call s:sync_tree()
+  endif
+endfun
+
+fun! s:sync_nerdtree_cwd()
+  if (winnr("$") > 1)
+    call s:sync_cwd()
   endif
 endfun
 

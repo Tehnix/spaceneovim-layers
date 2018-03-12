@@ -119,7 +119,8 @@ if exists('g:gui_oni')
       " Open NERDTree on startup, and on a new tab.
       au VimEnter * if g:spOniOpenNERDTree | NERDTree | execute "normal \<C-w>\<C-p>" | SyncNERDTree | endif
       au TabNew * if g:spOniOpenNERDTree && g:spOniUseTabs | NERDTree | execute "normal \<C-w>\<C-p>" | SyncNERDTree | endif
-
+    augroup END
+    augroup OniNERDTreeSync
       " If NERDTree is the only window left, open a new buffer in a split on
       " the left side.
       au BufEnter * if g:spOniOpenBufferWhenNERDTreeIsLast && (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | vertical leftabove new | endif
