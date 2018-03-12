@@ -1,8 +1,11 @@
 if exists('g:gui_oni')
   let g:spOniUseTabs = get(g:, 'spOniUseTabs', 1)
+  let g:spOniUseTabsInCtrlP = get(g:, 'spOniUseTabsInCtrlP', 1)
   let g:spOniOpenNERDTree = get(g:, 'spOniOpenNERDTree', 1)
-  let g:spOniSyncNERDTreeAutomatically = get(g:, 'spOniSyncNERDTreeAutomatically', 1)
+  let g:spOniSyncNERDTreeAutomatically = get(g:, 'spOniSyncNERDTreeAutomatically', 0)
+  let g:spOniFindFileNERDTreeAutomatically = get(g:, 'spOniFindFileNERDTreeAutomatically', 1)
   let g:spOniOpenBufferWhenNERDTreeIsLast = get(g:, 'spOniOpenBufferWhenNERDTreeIsLast', 0)
+  let g:spOniCloseNERDTreeIfIsLast = get(g:, 'spVimrCloseNERDTreeIfIsLast', 0)
 
   " Make an Oni theme
   " https://github.com/onivim/oni/blob/master/extensions/theme-onedark/colors/onedark.json.
@@ -11,12 +14,17 @@ if exists('g:gui_oni')
   " https://github.com/onivim/oni/wiki/Configuration#oni-commands.
 
   if SpaceNeovimIsLayerEnabled('+nav/fuzzy')
-    " Switch CtrlP mappings to open in tabs instead.
-    let g:ctrlp_prompt_mappings = get(g:, 'ctrlp_prompt_mappings', {})
-    let g:ctrlp_prompt_mappings['AcceptSelection("e")'] = ['<c-t>']
-    let g:ctrlp_prompt_mappings['AcceptSelection("t")'] = ['<cr>', '<2-LeftMouse>']
+    if g:spOniUseTabs && g:spOniUseTabsInCtrlP
+      " Switch CtrlP mappings to open in tabs instead.
+      let g:ctrlp_prompt_mappings = get(g:, 'ctrlp_prompt_mappings', {})
+      let g:ctrlp_prompt_mappings['AcceptSelection("e")'] = ['<c-t>']
+      let g:ctrlp_prompt_mappings['AcceptSelection("t")'] = ['<cr>', '<2-LeftMouse>']
+    endif
     " Try to locate the project root, when searching for files.
     let g:ctrlp_working_path_mode = 'rw'
+    " Map CMD+p to CtrlP.
+    nnoremap <d-p> :CtrlP<CR>
+    inoremap <d-p> :CtrlP<CR>
   endif
 
   " Save file with CMD+s.
@@ -125,8 +133,13 @@ if exists('g:gui_oni')
       " the left side.
       au BufEnter * if g:spOniOpenBufferWhenNERDTreeIsLast && (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | vertical leftabove new | endif
 
+      " Close NERDTree if it's the last open window in the tab page, but not the last tab open.
+      au BufEnter * if g:spOniCloseNERDTreeIfIsLast && (tabpagenr('$') > 1 && winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
       " On buffer enter, set the current working directory to the file path.
       au BufEnter * if g:spOniSyncNERDTreeAutomatically | SyncNERDTree | endif
+      " Automatically highlight the current file.
+      au BufEnter * if g:spOniFindFileNERDTreeAutomatically && !exists("b:NERDTree") | SyncNERDTree | FindNERDTreeFile | call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | execute "normal \<C-w>\<C-p>" | endif
 
       " Make NERDTree open tabs when mouse clicking.
       "au WinEnter * if g:spOniUseTabs && &ft == 'nerdtree' && exists("b:NERDTree") && b:NERDTree.isTabTree() | SetNERDTreeDoubleClick | endif

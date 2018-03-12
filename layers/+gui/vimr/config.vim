@@ -1,12 +1,14 @@
 if has("gui_vimr")
   let g:spVimrUseTabs = get(g:, 'spVimrUseTabs', 1)
+  let g:spVimrUseTabsInCtrlP = get(g:, 'spVimrUseTabsInCtrlP', 0)
   let g:spVimrOpenNERDTree = get(g:, 'spVimrOpenNERDTree', 1)
   let g:spVimrSyncNERDTreeAutomatically = get(g:, 'spVimrSyncNERDTreeAutomatically', 0)
   let g:spVimrFindFileNERDTreeAutomatically = get(g:, 'spVimrFindFileNERDTreeAutomatically', 1)
   let g:spVimrOpenBufferWhenNERDTreeIsLast = get(g:, 'spVimrOpenBufferWhenNERDTreeIsLast', 0)
+  let g:spVimrCloseNERDTreeIfIsLast = get(g:, 'spVimrCloseNERDTreeIfIsLast', 0)
 
   if SpaceNeovimIsLayerEnabled('+nav/fuzzy')
-    if g:spVimrUseTabs
+    if g:spVimrUseTabs && g:spVimrUseTabsInCtrlP
       " Switch CtrlP mappings to open in tabs instead.
       let g:ctrlp_prompt_mappings = get(g:, 'ctrlp_prompt_mappings', {})
       let g:ctrlp_prompt_mappings['AcceptSelection("e")'] = ['<c-t>']
@@ -124,10 +126,13 @@ if has("gui_vimr")
       " the left side.
       au BufEnter * if g:spVimrOpenBufferWhenNERDTreeIsLast && (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | vertical leftabove new | endif
 
+      " Close NERDTree if it's the last open window in the tab page, but not the last tab open.
+      au BufEnter * if g:spVimrCloseNERDTreeIfIsLast && (tabpagenr('$') > 1 && winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
       " On buffer enter, set the current working directory to the file path.
       au BufEnter * if g:spVimrSyncNERDTreeAutomatically && !exists("b:NERDTree") | SyncNERDTree | endif
       " Automatically highlight the current file.
-      au BufEnter * if g:spVimrFindFileNERDTreeAutomatically && !exists("b:NERDTree") | SyncNERDTree | FindNERDTreeFile | call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | wincmd w | endif
+      au BufEnter * if g:spVimrFindFileNERDTreeAutomatically && !exists("b:NERDTree") | SyncNERDTree | FindNERDTreeFile | call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | execute "normal \<C-w>\<C-p>" | endif
 
       " Make NERDTree open tabs when mouse clicking.
       "au WinEnter * if g:spVimrUseTabs && &ft == 'nerdtree' && exists("b:NERDTree") && b:NERDTree.isTabTree() | SetNERDTreeDoubleClick | endif
