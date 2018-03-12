@@ -137,9 +137,10 @@ if exists('g:gui_oni')
       au BufEnter * if g:spOniCloseNERDTreeIfIsLast && (tabpagenr('$') > 1 && winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
       " On buffer enter, set the current working directory to the file path.
-      au BufEnter * if g:spOniSyncNERDTreeAutomatically | SyncNERDTree | endif
-      " Automatically highlight the current file.
-      au BufEnter * if g:spOniFindFileNERDTreeAutomatically && !exists("b:NERDTree") | SyncNERDTree | FindNERDTreeFile | call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | execute "normal \<C-w>\<C-p>" | endif
+      au BufEnter * if g:spOniSyncNERDTreeAutomatically && !exists("b:NERDTree") | SyncNERDTree | endif
+
+      " Automatically highlight the current file, and refresh the file list.
+      au BufEnter * if g:spOniFindFileNERDTreeAutomatically && !exists("b:NERDTree") | FindNERDTreeFile | call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | execute "normal \<C-w>\<C-p>" | endif
 
       " Make NERDTree open tabs when mouse clicking.
       "au WinEnter * if g:spOniUseTabs && &ft == 'nerdtree' && exists("b:NERDTree") && b:NERDTree.isTabTree() | SetNERDTreeDoubleClick | endif

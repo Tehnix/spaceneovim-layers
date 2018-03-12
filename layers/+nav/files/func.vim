@@ -101,7 +101,9 @@ endfun
 fun! s:sync_cwd()
   let s:curwnum = winnr()
   " Make NERDTree go to project root of the file.
-  execute "NERDTree " . projectroot#guess()
+  " execute "NERDTree " . projectroot#guess()
+  execute "lcd " . projectroot#guess()
+  NERDTreeCWD
   exec s:curwnum . "wincmd w"
 endfun
 
