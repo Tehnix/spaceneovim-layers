@@ -17,8 +17,12 @@
   let g:LanguageClient_serverCommands = get(g:, 'LanguageClient_serverCommands', {})
   " Required for operations modifying multiple buffers like rename.
   set hidden
-  " Make the command line higher for echodoc.
-  set cmdheight=2
+  " Adjust the command line for echodoc.
+  if SpaceNeovimIsLayerEnabled('+ui/airline')
+    set noshowmode
+  else
+    set cmdheight=2
+  endif
   set shortmess=a
   " Do not automatically start language clients.
   let g:LanguageClient_autoStart = 0
