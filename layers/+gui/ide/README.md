@@ -125,5 +125,6 @@ Key Binding | Description
 ⌘ z       | Undo
 ⌘ ⇧ z     | Redo
 ⌘ n       | Open new tab/buffer
+⌘ f       | Start searching
 ⌘ [1-9]   | Switch to tab/buffer at location _n_ (1 to 9)
 ⌘ ⇧ [1-9] | Move tab to location _n_ (1 to 9)
