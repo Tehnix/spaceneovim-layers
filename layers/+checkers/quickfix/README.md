@@ -30,9 +30,9 @@ SPC e E     | Jump to last Quickfix error
 ### Location list
 Key Binding | Description
 ----------- | -------------------------------
-SPC e l l   | Open the location error list
-SPC e l c   | Close the location error list
-SPC e l n   | Jump to next location error
-SPC e l æ   | Jump to previous location error
-SPC e l f   | Jump to first location error
-SPC e l e   | Jump to last location error
+SPC e m l   | Open the location error list
+SPC e m c   | Close the location error list
+SPC e m n   | Jump to next location error
+SPC e m æ   | Jump to previous location error
+SPC e m f   | Jump to first location error
+SPC e m e   | Jump to last location error
