@@ -1,12 +1,11 @@
 " Root level binding.
+let g:lmap = get(g:, 'lmap', {})
 let g:spNavigationOneKey = get(g:, 'spNavigationOneKey', 0)
 if (g:spNavigationOneKey)
-  nmap <silent> <leader>d <Plug>(easymotion-overwin-f)
+  let g:lmap.d = ['call feedkeys("\<Plug>(easymotion-overwin-f)")', 'easymotion']
 else
-  nmap <silent> <leader>d <Plug>(easymotion-overwin-f2)
+  let g:lmap.d = ['call feedkeys("\<Plug>(easymotion-overwin-f2)")', 'easymotion']
 endif
-let g:lmap = get(g:, 'lmap', {})
-let g:lmap.d = ['<Plug>(easymotion-overwin-f2)', 'easymotion']
 
 
 let g:lmap['N'] = get(g:lmap, 'N', { 'name': '+navigation' })
