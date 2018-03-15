@@ -13,7 +13,6 @@ if has("gui_vimr") || exists('g:gui_oni')
     let s:cmdMap = 'm'
   endif
 
-
   if SpaceNeovimIsLayerEnabled('+nav/fuzzy')
     if g:spIdeUseTabs && g:spIdeUseTabsInCtrlP
       " Switch CtrlP mappings to open in tabs instead.
@@ -28,6 +27,9 @@ if has("gui_vimr") || exists('g:gui_oni')
     exe 'inoremap <' . s:cmdMap . '-p> <c-o>:CtrlP<CR>'
   endif
 
+  " Map CMD+Shift+p to open a Vim command palette.
+  exe 'nnoremap <' . s:cmdMap . '-s-p> :CtrlPCmdPalette<CR>'
+  exe 'inoremap <' . s:cmdMap . '-s-p> <C-o>:CtrlPCmdPalette<CR>'
 
   " Save file with CMD+s.
   exe 'nnoremap <' . s:cmdMap . '-s> :w<CR>'
@@ -93,26 +95,26 @@ if has("gui_vimr") || exists('g:gui_oni')
     exe 'inoremap <' . s:cmdMap . '-9> <Esc>:tabn 9<CR>'
     exe 'inoremap <' . s:cmdMap . '-9> <Esc>:tabn 0<CR>'
     " Move tab around with Cmd + Shift + [1-9].
-    exe 'nnoremap <' . s:cmdMap . '-s-1> :tabmove 0<CR>'
-    exe 'nnoremap <' . s:cmdMap . '-s-2> :tabmove 1<CR>'
-    exe 'nnoremap <' . s:cmdMap . '-s-3> :tabmove 2<CR>'
-    exe 'nnoremap <' . s:cmdMap . '-s-4> :tabmove 3<CR>'
-    exe 'nnoremap <' . s:cmdMap . '-s-5> :tabmove 4<CR>'
-    exe 'nnoremap <' . s:cmdMap . '-s-6> :tabmove 5<CR>'
-    exe 'nnoremap <' . s:cmdMap . '-s-7> :tabmove 6<CR>'
-    exe 'nnoremap <' . s:cmdMap . '-s-8> :tabmove 7<CR>'
-    exe 'nnoremap <' . s:cmdMap . '-s-9> :tabmove 8<CR>'
-    exe 'nnoremap <' . s:cmdMap . '-s-9> :tabmove 9<CR>'
-    exe 'inoremap <' . s:cmdMap . '-s-1> <C-o>:tabmove 0<CR>'
-    exe 'inoremap <' . s:cmdMap . '-s-2> <C-o>:tabmove 1<CR>'
-    exe 'inoremap <' . s:cmdMap . '-s-3> <C-o>:tabmove 2<CR>'
-    exe 'inoremap <' . s:cmdMap . '-s-4> <C-o>:tabmove 3<CR>'
-    exe 'inoremap <' . s:cmdMap . '-s-5> <C-o>:tabmove 4<CR>'
-    exe 'inoremap <' . s:cmdMap . '-s-6> <C-o>:tabmove 5<CR>'
-    exe 'inoremap <' . s:cmdMap . '-s-7> <C-o>:tabmove 6<CR>'
-    exe 'inoremap <' . s:cmdMap . '-s-8> <C-o>:tabmove 7<CR>'
-    exe 'inoremap <' . s:cmdMap . '-s-9> <C-o>:tabmove 8<CR>'
-    exe 'inoremap <' . s:cmdMap . '-s-9> <C-o>:tabmove 9<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-C-1> :SpaceNeovimMoveTabPage 0<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-C-2> :SpaceNeovimMoveTabPage 1<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-C-3> :SpaceNeovimMoveTabPage 2<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-C-4> :SpaceNeovimMoveTabPage 3<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-C-5> :SpaceNeovimMoveTabPage 4<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-C-6> :SpaceNeovimMoveTabPage 5<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-C-7> :SpaceNeovimMoveTabPage 6<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-C-8> :SpaceNeovimMoveTabPage 7<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-C-9> :SpaceNeovimMoveTabPage 8<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-C-9> :SpaceNeovimMoveTabPage 9<CR>'
+    exe 'inoremap <' . s:cmdMap . '-C-1> <C-o>:SpaceNeovimMoveTabPage 0<CR>'
+    exe 'inoremap <' . s:cmdMap . '-C-2> <C-o>:SpaceNeovimMoveTabPage 1<CR>'
+    exe 'inoremap <' . s:cmdMap . '-C-3> <C-o>:SpaceNeovimMoveTabPage 2<CR>'
+    exe 'inoremap <' . s:cmdMap . '-C-4> <C-o>:SpaceNeovimMoveTabPage 3<CR>'
+    exe 'inoremap <' . s:cmdMap . '-C-5> <C-o>:SpaceNeovimMoveTabPage 4<CR>'
+    exe 'inoremap <' . s:cmdMap . '-C-6> <C-o>:SpaceNeovimMoveTabPage 5<CR>'
+    exe 'inoremap <' . s:cmdMap . '-C-7> <C-o>:SpaceNeovimMoveTabPage 6<CR>'
+    exe 'inoremap <' . s:cmdMap . '-C-8> <C-o>:SpaceNeovimMoveTabPage 7<CR>'
+    exe 'inoremap <' . s:cmdMap . '-C-9> <C-o>:SpaceNeovimMoveTabPage 8<CR>'
+    exe 'inoremap <' . s:cmdMap . '-C-9> <C-o>:SpaceNeovimMoveTabPage 9<CR>'
   else
     " Map common macOS shortcuts (m is CMD in Oni).
     " New buffer/file with Cmd + n.

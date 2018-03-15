@@ -118,7 +118,8 @@ An overview of functionality with configuration can be seen here:
 ## Key Bindings
 Key Binding | Description
 ----------- | -------------------------------
-⌘ p       | Open `CtrlP`
+⌘ p       | Open fuzzy finder (`CtrlP`)
+⌘ ⇧ p     | Open Vim command palette `CtrlPCmdPalette`
 ⌘ s       | Save file (with `:w`)
 ⌘ w       | Close the current tab/buffer
 ⌘ q       | Quit the buffer/window/file (with `:q`)
@@ -127,4 +128,4 @@ Key Binding | Description
 ⌘ n       | Open new tab/buffer
 ⌘ f       | Start searching
 ⌘ [1-9]   | Switch to tab/buffer at location _n_ (1 to 9)
-⌘ ⇧ [1-9] | Move tab to location _n_ (1 to 9)
+⌘ ^ [1-9] | Move tab to location _n_ (1 to 9)
