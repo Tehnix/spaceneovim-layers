@@ -25,27 +25,27 @@ if has("gui_vimr") || exists('g:gui_oni')
     let g:ctrlp_working_path_mode = 'rw'
     " Map CMD+p to CtrlP.
     exe 'nnoremap <' . s:cmdMap . '-p> :CtrlP<CR>'
-    exe 'inoremap <' . s:cmdMap . '-p> :CtrlP<CR>'
+    exe 'inoremap <' . s:cmdMap . '-p> <c-o>:CtrlP<CR>'
   endif
 
 
   " Save file with CMD+s.
   exe 'nnoremap <' . s:cmdMap . '-s> :w<CR>'
-  exe 'inoremap <' . s:cmdMap . '-s> :w<CR>'
+  exe 'inoremap <' . s:cmdMap . '-s> <c-o>:w<CR>'
   " Make CMD+q quit instead of start recording.
   exe 'nnoremap <' . s:cmdMap . '-q> :q<CR>'
-  exe 'inoremap <' . s:cmdMap . '-q> :q<CR>'
+  exe 'inoremap <' . s:cmdMap . '-q> <C-o>:q<CR>'
   " Map CMD+[j/k] to scroll n lines and keep cursor at same
   " screen position.
   exe 'nnoremap <' . s:cmdMap . '-k> 5<C-y>5gk'
   exe 'nnoremap <' . s:cmdMap . '-j> 5<C-e>5gj'
-  exe 'inoremap <' . s:cmdMap . '-k> 5<C-y>5gk'
-  exe 'inoremap <' . s:cmdMap . '-j> 5<C-e>5gj'
+  exe 'inoremap <' . s:cmdMap . '-k> <C-o>5<C-y><C-o>5gk'
+  exe 'inoremap <' . s:cmdMap . '-j> <C-o>5<C-e><C-o>5gj'
   " Map CMD+z and CMD+Shift+z to undo/redo.
   exe 'nnoremap <' . s:cmdMap . '-z> u'
-  exe 'inoremap <' . s:cmdMap . '-z> u'
   exe 'nnoremap <' . s:cmdMap . '-S-z> <C-r>'
-  exe 'inoremap <' . s:cmdMap . '-S-z> <C-r>'
+  exe 'inoremap <' . s:cmdMap . '-z> <C-o>u'
+  exe 'inoremap <' . s:cmdMap . '-S-z> <C-o><C-r>'
   if SpaceNeovimIsLayerEnabled('+tools/multicursor')
     " Map CMD+d to multicursor start+next (i.e. the behaviour of <c-n>).
     "let g:multi_cursor_next_key    = '<d-d>'
@@ -60,14 +60,14 @@ if has("gui_vimr") || exists('g:gui_oni')
     " New buffer/file with Cmd + n.
     if SpaceNeovimIsLayerEnabled('+nav/start-screen')
       exe 'nnoremap <' . s:cmdMap . '-n> :tabnew<CR>:Startify<CR>'
-      exe 'inoremap <' . s:cmdMap . '-n> :tabnew<CR>:Startify<CR>'
+      exe 'inoremap <' . s:cmdMap . '-n> <C-o>:tabnew<CR>:Startify<CR>'
     else
       exe 'nnoremap <' . s:cmdMap . '-n> :tabnew<CR>'
-      exe 'inoremap <' . s:cmdMap . '-n> :tabnew<CR>'
+      exe 'inoremap <' . s:cmdMap . '-n> <C-o>:tabnew<CR>'
     endif
     " Close current buffer/file with Cmd + w.
     exe 'nnoremap <' . s:cmdMap . '-w> :tabclose<CR>'
-    exe 'inoremap <' . s:cmdMap . '-w> :tabclose<CR>'
+    exe 'inoremap <' . s:cmdMap . '-w> <C-o>:tabclose<CR>'
     " Switch buffer/tab/file with Cmd + [1-9].
     exe 'nnoremap <' . s:cmdMap . '-1> :tabn 1<CR>'
     exe 'nnoremap <' . s:cmdMap . '-2> :tabn 2<CR>'
@@ -79,24 +79,24 @@ if has("gui_vimr") || exists('g:gui_oni')
     exe 'nnoremap <' . s:cmdMap . '-8> :tabn 8<CR>'
     exe 'nnoremap <' . s:cmdMap . '-9> :tabn 9<CR>'
     exe 'nnoremap <' . s:cmdMap . '-9> :tabn 0<CR>'
-    exe 'inoremap <' . s:cmdMap . '-1> :tabn 1<CR>'
-    exe 'inoremap <' . s:cmdMap . '-2> :tabn 2<CR>'
-    exe 'inoremap <' . s:cmdMap . '-3> :tabn 3<CR>'
-    exe 'inoremap <' . s:cmdMap . '-4> :tabn 4<CR>'
-    exe 'inoremap <' . s:cmdMap . '-5> :tabn 5<CR>'
-    exe 'inoremap <' . s:cmdMap . '-6> :tabn 6<CR>'
-    exe 'inoremap <' . s:cmdMap . '-7> :tabn 7<CR>'
-    exe 'inoremap <' . s:cmdMap . '-8> :tabn 8<CR>'
-    exe 'inoremap <' . s:cmdMap . '-9> :tabn 9<CR>'
-    exe 'inoremap <' . s:cmdMap . '-9> :tabn 0<CR>'
+    exe 'inoremap <' . s:cmdMap . '-1> <Esc>:tabn 1<CR>'
+    exe 'inoremap <' . s:cmdMap . '-2> <Esc>:tabn 2<CR>'
+    exe 'inoremap <' . s:cmdMap . '-3> <Esc>:tabn 3<CR>'
+    exe 'inoremap <' . s:cmdMap . '-4> <Esc>:tabn 4<CR>'
+    exe 'inoremap <' . s:cmdMap . '-5> <Esc>:tabn 5<CR>'
+    exe 'inoremap <' . s:cmdMap . '-6> <Esc>:tabn 6<CR>'
+    exe 'inoremap <' . s:cmdMap . '-7> <Esc>:tabn 7<CR>'
+    exe 'inoremap <' . s:cmdMap . '-8> <Esc>:tabn 8<CR>'
+    exe 'inoremap <' . s:cmdMap . '-9> <Esc>:tabn 9<CR>'
+    exe 'inoremap <' . s:cmdMap . '-9> <Esc>:tabn 0<CR>'
   else
     " Map common macOS shortcuts (m is CMD in Oni).
     " New buffer/file with Cmd + n.
     exe 'nnoremap <' . s:cmdMap . '-n> :enew<CR>'
-    exe 'inoremap <' . s:cmdMap . '-n> :enew<CR>'
+    exe 'inoremap <' . s:cmdMap . '-n> <C-o>:enew<CR>'
     " Close current buffer/file with Cmd + w.
     exe 'nnoremap <' . s:cmdMap . '-w> :bw<CR>'
-    exe 'inoremap <' . s:cmdMap . '-w> :bw<CR>'
+    exe 'inoremap <' . s:cmdMap . '-w> <C-o>:bw<CR>'
     " Switch buffer/tab/file with Cmd + [1-9].
     exe 'nnoremap <' . s:cmdMap . '-1> :SwitchBuffer 1<CR>'
     exe 'nnoremap <' . s:cmdMap . '-2> :SwitchBuffer 2<CR>'
@@ -107,15 +107,15 @@ if has("gui_vimr") || exists('g:gui_oni')
     exe 'nnoremap <' . s:cmdMap . '-7> :SwitchBuffer 7<CR>'
     exe 'nnoremap <' . s:cmdMap . '-8> :SwitchBuffer 8<CR>'
     exe 'nnoremap <' . s:cmdMap . '-9> :SwitchBuffer 9<CR>'
-    exe 'inoremap <' . s:cmdMap . '-1> :SwitchBuffer 1<CR>'
-    exe 'inoremap <' . s:cmdMap . '-2> :SwitchBuffer 2<CR>'
-    exe 'inoremap <' . s:cmdMap . '-3> :SwitchBuffer 3<CR>'
-    exe 'inoremap <' . s:cmdMap . '-4> :SwitchBuffer 4<CR>'
-    exe 'inoremap <' . s:cmdMap . '-5> :SwitchBuffer 5<CR>'
-    exe 'inoremap <' . s:cmdMap . '-6> :SwitchBuffer 6<CR>'
-    exe 'inoremap <' . s:cmdMap . '-7> :SwitchBuffer 7<CR>'
-    exe 'inoremap <' . s:cmdMap . '-8> :SwitchBuffer 8<CR>'
-    exe 'inoremap <' . s:cmdMap . '-9> :SwitchBuffer 9<CR>'
+    exe 'inoremap <' . s:cmdMap . '-1> <Esc>:SwitchBuffer 1<CR>'
+    exe 'inoremap <' . s:cmdMap . '-2> <Esc>:SwitchBuffer 2<CR>'
+    exe 'inoremap <' . s:cmdMap . '-3> <Esc>:SwitchBuffer 3<CR>'
+    exe 'inoremap <' . s:cmdMap . '-4> <Esc>:SwitchBuffer 4<CR>'
+    exe 'inoremap <' . s:cmdMap . '-5> <Esc>:SwitchBuffer 5<CR>'
+    exe 'inoremap <' . s:cmdMap . '-6> <Esc>:SwitchBuffer 6<CR>'
+    exe 'inoremap <' . s:cmdMap . '-7> <Esc>:SwitchBuffer 7<CR>'
+    exe 'inoremap <' . s:cmdMap . '-8> <Esc>:SwitchBuffer 8<CR>'
+    exe 'inoremap <' . s:cmdMap . '-9> <Esc>:SwitchBuffer 9<CR>'
   endif
 
   if exists('g:gui_oni')
