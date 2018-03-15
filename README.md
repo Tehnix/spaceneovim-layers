@@ -28,6 +28,7 @@ Name                   |Description
 [+nav/files](layers/+nav/files)             |Common file operations
 [+nav/fuzzy](layers/+nav/fuzzy)             |Fuzzy search for files, buffers and methods
 [+nav/fzf](layers/+nav/fzf)               |Fuzzy search using FZF
+[+nav/navigation](layers/+nav/navigation)               |Easy file navigation
 [+nav/quit](layers/+nav/quit)              |Common quit functionality
 [+nav/start-screen](layers/+nav/start-screen)      |Add start screen when opening Neovim
 [+nav/text](layers/+nav/text)              |Common text operations

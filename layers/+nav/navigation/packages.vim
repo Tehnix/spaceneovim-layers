@@ -1,0 +1,1 @@
+SpAddPlugin 'easymotion/vim-easymotion'
