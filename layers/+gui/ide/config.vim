@@ -46,6 +46,9 @@ if has("gui_vimr") || exists('g:gui_oni')
   exe 'nnoremap <' . s:cmdMap . '-S-z> <C-r>'
   exe 'inoremap <' . s:cmdMap . '-z> <C-o>u'
   exe 'inoremap <' . s:cmdMap . '-S-z> <C-o><C-r>'
+  " Map CMD+f to search (that is, the `/` vim search).
+  exe 'nnoremap <' . s:cmdMap . '-f> <kDivide>'
+  exe 'inoremap <' . s:cmdMap . '-f> <kDivide>'
   if SpaceNeovimIsLayerEnabled('+tools/multicursor')
     " Map CMD+d to multicursor start+next (i.e. the behaviour of <c-n>).
     "let g:multi_cursor_next_key    = '<d-d>'
@@ -89,6 +92,27 @@ if has("gui_vimr") || exists('g:gui_oni')
     exe 'inoremap <' . s:cmdMap . '-8> <Esc>:tabn 8<CR>'
     exe 'inoremap <' . s:cmdMap . '-9> <Esc>:tabn 9<CR>'
     exe 'inoremap <' . s:cmdMap . '-9> <Esc>:tabn 0<CR>'
+    " Move tab around with Cmd + Shift + [1-9].
+    exe 'nnoremap <' . s:cmdMap . '-s-1> :tabmove 0<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-s-2> :tabmove 1<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-s-3> :tabmove 2<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-s-4> :tabmove 3<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-s-5> :tabmove 4<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-s-6> :tabmove 5<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-s-7> :tabmove 6<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-s-8> :tabmove 7<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-s-9> :tabmove 8<CR>'
+    exe 'nnoremap <' . s:cmdMap . '-s-9> :tabmove 9<CR>'
+    exe 'inoremap <' . s:cmdMap . '-s-1> <C-o>:tabmove 0<CR>'
+    exe 'inoremap <' . s:cmdMap . '-s-2> <C-o>:tabmove 1<CR>'
+    exe 'inoremap <' . s:cmdMap . '-s-3> <C-o>:tabmove 2<CR>'
+    exe 'inoremap <' . s:cmdMap . '-s-4> <C-o>:tabmove 3<CR>'
+    exe 'inoremap <' . s:cmdMap . '-s-5> <C-o>:tabmove 4<CR>'
+    exe 'inoremap <' . s:cmdMap . '-s-6> <C-o>:tabmove 5<CR>'
+    exe 'inoremap <' . s:cmdMap . '-s-7> <C-o>:tabmove 6<CR>'
+    exe 'inoremap <' . s:cmdMap . '-s-8> <C-o>:tabmove 7<CR>'
+    exe 'inoremap <' . s:cmdMap . '-s-9> <C-o>:tabmove 8<CR>'
+    exe 'inoremap <' . s:cmdMap . '-s-9> <C-o>:tabmove 9<CR>'
   else
     " Map common macOS shortcuts (m is CMD in Oni).
     " New buffer/file with Cmd + n.

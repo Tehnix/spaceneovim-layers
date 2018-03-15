@@ -118,11 +118,12 @@ An overview of functionality with configuration can be seen here:
 ## Key Bindings
 Key Binding | Description
 ----------- | -------------------------------
-Cmd p       | Open `CtrlP`
-Cmd s       | Save file (with `:w`)
-Cmd w       | Close the current tab/buffer
-Cmd q       | Quit the buffer/window/file (with `:q`)
-Cmd z       | Undo
-Cmd Shift z | Redo
-Cmd n       | Open new tab/buffer
-Cmd [1-9]   | Switch to tab/buffer at location _n_ (1 to 9)
+⌘ p       | Open `CtrlP`
+⌘ s       | Save file (with `:w`)
+⌘ w       | Close the current tab/buffer
+⌘ q       | Quit the buffer/window/file (with `:q`)
+⌘ z       | Undo
+⌘ ⇧ z     | Redo
+⌘ n       | Open new tab/buffer
+⌘ [1-9]   | Switch to tab/buffer at location _n_ (1 to 9)
+⌘ ⇧ [1-9] | Move tab to location _n_ (1 to 9)
