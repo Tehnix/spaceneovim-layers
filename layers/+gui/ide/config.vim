@@ -48,7 +48,7 @@ if has("gui_vimr") || exists('g:gui_oni')
   exe 'inoremap <' . s:cmdMap . '-S-z> <C-o><C-r>'
   " Map CMD+f to search (that is, the `/` vim search).
   exe 'nnoremap <' . s:cmdMap . '-f> <kDivide>'
-  exe 'inoremap <' . s:cmdMap . '-f> <kDivide>'
+  exe 'inoremap <' . s:cmdMap . '-f> <Esc><kDivide>'
   if SpaceNeovimIsLayerEnabled('+tools/multicursor')
     " Map CMD+d to multicursor start+next (i.e. the behaviour of <c-n>).
     "let g:multi_cursor_next_key    = '<d-d>'
