@@ -2,6 +2,7 @@
 This layer provides support for the javascript language, using
 
 - [`elzr/vim-json`](https://github.com/elzr/vim-json)
+- [`mxw/vim-jsx`](https://github.com/mxw/vim-jsx)
 
 
 #### Table of Contents
