@@ -11,6 +11,16 @@
 " Set the default indentation for the language
 SpSpaceIndent 'javascript', 2
 
+let g:vim_json_syntax_conceal = 0
+
+augroup JavaScriptFileTypes
+  au!
+  au BufNewFile,BufRead *.eslintrc set syntax=json
+  au BufNewFile,BufRead *.prettierrc set syntax=yaml
+  au BufNewFile,BufRead *.flowconfig set syntax=dosini
+  au BufNewFile,BufRead *.mdlrc set syntax=dosini
+augroup END
+
 if SpaceNeovimIsLayerEnabled('+completion/deoplete')
   " Configure deoplete
 endif
