@@ -1,4 +1,4 @@
-# Navigation Layer
+# Jump Layer
 This layer provides common functionality for navigating smoothly around Neovim, using
 
 - [`easymotion/vim-easymotion`](https://github.com/easymotion/vim-easymotion)
@@ -21,7 +21,7 @@ endfunction
 ## Key Bindings
 Key Binding | Description
 ----------- | -------------------------------
-SPC j j     | Go to location with <char>
-SPC j J     | Go to location with <char> <char>
+SPC j j     | Go to location with _char_
+SPC j J     | Go to location with _char_ _char_
 SPC j w     | Go to location of any word
 SPC j l     | Go to line
