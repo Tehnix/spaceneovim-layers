@@ -1,9 +1,12 @@
 # JavasSript Layer
-This layer provides support for the javascript language.
+This layer provides support for the javascript language, using
+
+- [`elzr/vim-json`](https://github.com/elzr/vim-json)
 
 
 #### Table of Contents
 - [Install](#install)
+  - [Configuration](#configuration)
   - [Binaries](#binaries)
   - [Indentation](#indentation)
   - [Checkers](#checkers)
@@ -18,6 +21,9 @@ function! Layers()
   " ...
 endfunction
 ```
+
+### Configuration
+To enable concealing of double quotes (`"`) in your JSON files, set `let g:vim_json_syntax_conceal = 2` in `UserConfig`.
 
 ### Binaries
 To utilize this layer you need `eslint` on your path. This can be done with,

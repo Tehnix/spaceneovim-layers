@@ -3,6 +3,7 @@ SpNMap 'fr', 'nerdtree-reveal', 'NERDTreeFind'
 SpNMap 'fs', 'save-buffer', ':w'
 SpNMap 'fS', 'save-buffer', ':w'
 SpNMap 'ft', 'nerdtree-toggle', 'NERDTreeToggle'
+SpNMap 'fn', 'nerdtree-sync', 'SyncNERDTree'
 
 let g:lmap.f.e = get(g:lmap.f, 'e', { 'name': '+spaceneovim' })
 SpNMap 'fed', 'find-dotfile', 'e $MYVIMRC'
