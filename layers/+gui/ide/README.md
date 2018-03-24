@@ -111,6 +111,28 @@ An overview of functionality with configuration can be seen here:
         Make <i>CtrlP</i> open files in a new tab, on return and mouse-click.
       </td>
     </tr>
+    <!-- spIdeOniEnableVimCommandPalette -->
+    <tr>
+      <td><code>g:spIdeOniEnableVimCommandPalette</code></td>
+      <td><code>0</code></td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        Force enable keybinding of `CMD Shift p` for launching the vim command palette, when using Oni.
+      </td>
+    </tr>
+    <!-- spIdeOniEnableCtrlP -->
+    <tr>
+      <td><code>g:spIdeOniEnableCtrlP</code></td>
+      <td><code>0</code></td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        Force enable keybinding of `CMD p` for launching the CtrlP, when using Oni.
+      </td>
+    </tr>
   </tbody>
 </table>
 
