@@ -30,10 +30,9 @@ if has("gui_vimr") || exists('g:gui_oni')
     if exists('g:gui_oni') && g:spIdeOniEnableCtrlP
       exe 'nnoremap <' . s:cmdMap . '-p> :CtrlP<CR>'
       exe 'inoremap <' . s:cmdMap . '-p> <c-o>:CtrlP<CR>'
-    else if !exists('g:gui_oni')
-        exe 'nnoremap <' . s:cmdMap . '-p> :CtrlP<CR>'
-        exe 'inoremap <' . s:cmdMap . '-p> <c-o>:CtrlP<CR>'
-      endif
+    elseif !exists('g:gui_oni')
+      exe 'nnoremap <' . s:cmdMap . '-p> :CtrlP<CR>'
+      exe 'inoremap <' . s:cmdMap . '-p> <c-o>:CtrlP<CR>'
     endif
   endif
 
@@ -42,10 +41,9 @@ if has("gui_vimr") || exists('g:gui_oni')
   if exists('g:gui_oni') && g:spIdeOniEnableVimCommandPalette
     exe 'nnoremap <' . s:cmdMap . '-s-p> :CtrlPCmdPalette<CR>'
     exe 'inoremap <' . s:cmdMap . '-s-p> <C-o>:CtrlPCmdPalette<CR>'
-  else if !exists('g:gui_oni')
-      exe 'nnoremap <' . s:cmdMap . '-s-p> :CtrlPCmdPalette<CR>'
-      exe 'inoremap <' . s:cmdMap . '-s-p> <C-o>:CtrlPCmdPalette<CR>'
-    endif
+  elseif !exists('g:gui_oni')
+    exe 'nnoremap <' . s:cmdMap . '-s-p> :CtrlPCmdPalette<CR>'
+    exe 'inoremap <' . s:cmdMap . '-s-p> <C-o>:CtrlPCmdPalette<CR>'
   endif
 
   " Save file with CMD+s.
@@ -162,9 +160,6 @@ if has("gui_vimr") || exists('g:gui_oni')
   endif
 
   if exists('g:gui_oni')
-    " Toggle the sidebar.
-    nnoremap ft :call OniCommand('sidebar.toggle')<CR>
-
     " Make the clipboard behave normally in Oni.
     set clipboard-=unnamed
     set clipboard-=unnamedplus
