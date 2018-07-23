@@ -145,9 +145,6 @@ if has("gui_vimr") || exists('g:gui_oni')
   endif
 
   if exists('g:gui_oni')
-    " Toggle the sidebar.
-    nnoremap ft :call OniCommand('sidebar.toggle')<CR>
-
     " Make the clipboard behave normally in Oni.
     set clipboard-=unnamed
     set clipboard-=unnamedplus
