@@ -28,7 +28,6 @@ set modeline
   set undofile
   set undolevels=1000               " Maximum number of changes that can be undone
   set undoreload=10000              " Maximum number lines to save for undo on a buffer reload
-  set undodir=$HOME/.vim/tmp/undo   " Set persistent undo directory
 " }}}
 
 " Search {{{
@@ -45,8 +44,7 @@ set modeline
   "  "100 :  will save up to 100 lines for each register
   "  :20  :  up to 20 lines of command-line history will be remembered
   "  %    :  saves and restores the buffer list
-  "  n... :  where to save the viminfo files
-  set viminfo='40,\"100,:20,%,n~/.config/nvim/viminfo
+  set viminfo='40,\"100,:20,%
 
   function! ResCur()
     if line("'\"") <= line("$")
