@@ -5,7 +5,9 @@ This layer provides common functionality for files, using
 
 #### Table of Contents
 - [Install](#install)
+- [Configuration](#configuration)
 - [Key Bindings](#key-bindings)
+  - [Oni](#oni)
 
 ## Install
 Add the `+nav/files` layer in your configuration file,
@@ -17,6 +19,9 @@ function! Layers()
   " ...
 endfunction
 ```
+
+## Configuration
+If you are using Oni, it has it's own file tree browser, which you can toggle from Vim. Enabling `let g:spOniSwapFileTree = 1` switches the bindings for Oni sidebar and NERDTree.
 
 ## Key Bindings
 Key Binding | Description
@@ -30,3 +35,8 @@ SPC f e d   | Open $MYVIMRC
 SPC f e p   | Update plugins
 SPC f e R   | Reload config file
 SPC f e u   | Update SpaceNeovim layers
+
+### Oni
+Key Binding | Description
+----------- | -------------------------------
+SPC f T     | Toggle Oni sidebar

@@ -1,9 +1,23 @@
+let g:spOniSwapFileTree = get(g:, 'spOniSwapFileTree', 0)
+
 let g:lmap.f = get(g:lmap, 'f', { 'name': '+files' })
 SpNMap 'fr', 'nerdtree-reveal', 'NERDTreeFind'
 SpNMap 'fs', 'save-buffer', ':w'
 SpNMap 'fS', 'save-buffer', ':w'
-SpNMap 'ft', 'nerdtree-toggle', 'NERDTreeToggle'
 SpNMap 'fn', 'nerdtree-sync', 'SyncNERDTree'
+
+if exists('g:gui_oni')
+  " Swap nerdtree and Oni sidbar keybindings, if enabled.
+  if g:spOniSwapFileTree
+    SpNMap 'fT', 'nerdtree-toggle', 'NERDTreeToggle'
+    SpNMap 'ft', 'oni-sidebar-toggle', 'call OniCommand(\"sidebar.toggle\")'
+  else
+    SpNMap 'ft', 'nerdtree-toggle', 'NERDTreeToggle'
+    SpNMap 'fT', 'oni-sidebar-toggle', 'call OniCommand(\"sidebar.toggle\")'
+  endif
+else
+  SpNMap 'ft', 'nerdtree-toggle', 'NERDTreeToggle'
+endif
 
 let g:lmap.f.e = get(g:lmap.f, 'e', { 'name': '+spaceneovim' })
 SpNMap 'fed', 'find-dotfile', 'e $MYVIMRC'

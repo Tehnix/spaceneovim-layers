@@ -5,6 +5,7 @@ This layer provides common functionality for navigating smoothly around Neovim, 
 
 #### Table of Contents
 - [Install](#install)
+- [Configuration](#configuration)
 - [Key Bindings](#key-bindings)
 
 ## Install
@@ -17,6 +18,9 @@ function! Layers()
   " ...
 endfunction
 ```
+
+## Configuration
+If you prefer to use the 2 character easymotion by default, you can switch the 1 char and 2 char bindings around with `let g:spJumpSwitchGotoChar = 1`.
 
 ## Key Bindings
 Key Binding | Description

@@ -7,6 +7,9 @@ if has("gui_vimr") || exists('g:gui_oni')
   let g:spIdeOpenBufferWhenNERDTreeIsLast = get(g:, 'spIdeOpenBufferWhenNERDTreeIsLast', 0)
   let g:spIdeCloseNERDTreeIfIsLast = get(g:, 'spIdeCloseNERDTreeIfIsLast', 0)
 
+  let g:spIdeOniEnableVimCommandPalette = get(g:, 'spIdeOniEnableVimCommandPalette', 0)
+  let g:spIdeOniEnableCtrlP = get(g:, 'spIdeOniEnableCtrlP', 0)
+
   " Set the command key mapping, depending on the convention of the editor ('d' for VimR).
   let s:cmdMap = 'd'
   if exists('g:gui_oni')
@@ -22,14 +25,26 @@ if has("gui_vimr") || exists('g:gui_oni')
     endif
     " Try to locate the project root, when searching for files.
     let g:ctrlp_working_path_mode = 'rw'
-    " Map CMD+p to CtrlP.
-    exe 'nnoremap <' . s:cmdMap . '-p> :CtrlP<CR>'
-    exe 'inoremap <' . s:cmdMap . '-p> <c-o>:CtrlP<CR>'
+    " Map CMD+p to CtrlP. If you are using Oni, it has
+    " it's own file finder, so you need to force it with `g:spIdeOniEnableCtrlP`.
+    if exists('g:gui_oni') && g:spIdeOniEnableCtrlP
+      exe 'nnoremap <' . s:cmdMap . '-p> :CtrlP<CR>'
+      exe 'inoremap <' . s:cmdMap . '-p> <c-o>:CtrlP<CR>'
+    elseif !exists('g:gui_oni')
+      exe 'nnoremap <' . s:cmdMap . '-p> :CtrlP<CR>'
+      exe 'inoremap <' . s:cmdMap . '-p> <c-o>:CtrlP<CR>'
+    endif
   endif
 
-  " Map CMD+Shift+p to open a Vim command palette.
-  exe 'nnoremap <' . s:cmdMap . '-s-p> :CtrlPCmdPalette<CR>'
-  exe 'inoremap <' . s:cmdMap . '-s-p> <C-o>:CtrlPCmdPalette<CR>'
+  " Map CMD+Shift+p to open a Vim command palette. If you are using Oni, it has
+  " it's own command palette, so you need to force it with `g:spIdeOniEnableVimCommandPalette`.
+  if exists('g:gui_oni') && g:spIdeOniEnableVimCommandPalette
+    exe 'nnoremap <' . s:cmdMap . '-s-p> :CtrlPCmdPalette<CR>'
+    exe 'inoremap <' . s:cmdMap . '-s-p> <C-o>:CtrlPCmdPalette<CR>'
+  elseif !exists('g:gui_oni')
+    exe 'nnoremap <' . s:cmdMap . '-s-p> :CtrlPCmdPalette<CR>'
+    exe 'inoremap <' . s:cmdMap . '-s-p> <C-o>:CtrlPCmdPalette<CR>'
+  endif
 
   " Save file with CMD+s.
   exe 'nnoremap <' . s:cmdMap . '-s> :w<CR>'
