@@ -32,7 +32,8 @@ SPC f S     | Save current buffer
 SPC f t     | Toggle NERDTree
 SPC f n     | Synchronize NERDTree with project root
 SPC f e d   | Open $MYVIMRC
-SPC f e p   | Update plugins
+SPC f e s   | Open SpaceNeovim Layers folder
+SPC f e U   | Update plugins
 SPC f e R   | Reload config file
 SPC f e u   | Update SpaceNeovim layers
 

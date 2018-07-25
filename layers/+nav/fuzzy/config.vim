@@ -10,7 +10,7 @@ let g:ctrlp_map = get(g:, 'sp_ctrlp_map', '')
 nnoremap <c-p> :CtrlP<CR>
 
 " Ignore certain files/folders in CtrlP.
-let g:ctrlp_custom_ignore = get(g:, 'sp_ctrlp_custom_ignore', '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn|stack-work))$')
+let g:ctrlp_custom_ignore = get(g:, 'sp_ctrlp_custom_ignore', '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn|stack-work|serverless|webpack|dist))$')
 
 " Always open files in new buffers
 let g:ctrlp_switch_buffer = get(g:, 'sp_ctrlp_switch_buffer', 0)

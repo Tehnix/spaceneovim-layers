@@ -21,9 +21,10 @@ endif
 
 let g:lmap.f.e = get(g:lmap.f, 'e', { 'name': '+spaceneovim' })
 SpNMap 'fed', 'find-dotfile', 'e $MYVIMRC'
+SpNMap 'fes', 'find-spaceneovim-layers', 'e $HOME/.config/nvim/spaceneovim-layers'
 SpNMap 'feu', 'update-spaceneovim-layers', 'SpaceNeovimUpdateLayers'
-SpNMap 'fep', 'update-plugins', 'PlugUpdate!'
-SpNMap 'fec', 'clean-plugins', 'PlugClean!'
+SpNMap 'feU', 'update-plugins', 'PlugUpdate!'
+SpNMap 'feC', 'clean-plugins', 'PlugClean!'
 SpNMap 'feR', 'sync-configuration', 'SpaceNeovimSyncConfiguration'
 
 " NERDTree Git
