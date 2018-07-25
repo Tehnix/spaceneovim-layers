@@ -174,39 +174,41 @@ if has("gui_vimr") || exists('g:gui_oni')
   if SpaceNeovimIsLayerEnabled('+nav/files')
     " Set NERDTree root to CWD.
     let g:NERDTreeChDirMode = 2
-    augroup VimrNERDTree
+    augroup IDEAuGroups
       au!
+      au BufEnter,BufWinEnter,BufRead * if g:spIdeFindFileNERDTreeAutomatically && !exists("b:NERDTree") && !exists("b:startify") | FindNERDTreeFile | call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | execute "normal \<C-w>\<C-p>" | endif
+      au User Startified if exists("b:startify") | call NERDTreeFocus() | q | endif
       " Open NERDTree on startup, and on a new tab.
-      au VimEnter * if g:spIdeOpenNERDTree | NERDTree | execute "normal \<C-w>\<C-p>" | SyncNERDTree | endif
+      " au VimEnter * if g:spIdeOpenNERDTree | NERDTree | execute "normal \<C-w>\<C-p>" | SyncNERDTree | endif
       au TabNew * if g:spIdeOpenNERDTree && g:spIdeUseTabs | NERDTree | SyncNERDTree | execute "normal \<C-w>\<C-p>" | SyncNERDTree | endif
     augroup END
-    if !get(g:, 'VimrNERDTreeSyncLoaded', 0)
-      augroup VimrNERDTreeSync
-        " All the below autocommands gathered into one.
-        au BufEnter *
-          \  if g:spIdeOpenBufferWhenNERDTreeIsLast && (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | vertical leftabove Startify | endif
-          \| if g:spIdeCloseNERDTreeIfIsLast && (tabpagenr('$') > 1 && winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-          \| if g:spIdeSyncNERDTreeAutomatically && !exists("b:NERDTree") && !exists("b:startify") | SyncNERDTree | endif
-          \| if g:spIdeFindFileNERDTreeAutomatically && !exists("b:NERDTree") && !exists("b:startify") | FindNERDTreeFile | call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | execute "normal \<C-w>\<C-p>" | endif
+    " if !get(g:, 'VimrNERDTreeSyncLoaded', 0)
+    "   augroup NERDTreeSync
+    "     " All the below autocommands gathered into one.
+    "     " au BufEnter *
+    "     "   \  if g:spIdeOpenBufferWhenNERDTreeIsLast && (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | vertical leftabove Startify | endif
+    "     "   \| if g:spIdeCloseNERDTreeIfIsLast && (tabpagenr('$') > 1 && winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    "     "   \| if g:spIdeSyncNERDTreeAutomatically && !exists("b:NERDTree") && !exists("b:startify") | SyncNERDTree | endif
+    "     "   \| if g:spIdeFindFileNERDTreeAutomatically && !exists("b:NERDTree") && !exists("b:startify") | FindNERDTreeFile | call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | execute "normal \<C-w>\<C-p>" | endif
 
-        " If NERDTree is the only window left, open a new buffer in a split on
-        " the left side.
-        "au BufEnter * if g:spIdeOpenBufferWhenNERDTreeIsLast && (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | vertical leftabove Startify | endif
+    "     " If NERDTree is the only window left, open a new buffer in a split on
+    "     " the left side.
+    "     au BufEnter * if g:spIdeOpenBufferWhenNERDTreeIsLast && (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | vertical leftabove Startify | endif
 
-        " Close NERDTree if it's the last open window in the tab page, but not the last tab open.
-        "au BufEnter * if g:spIdeCloseNERDTreeIfIsLast && (tabpagenr('$') > 1 && winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    "     " Close NERDTree if it's the last open window in the tab page, but not the last tab open.
+    "     au BufEnter * if g:spIdeCloseNERDTreeIfIsLast && (tabpagenr('$') > 1 && winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-        " On buffer enter, set the current working directory to the file path.
-        "au BufEnter * if g:spIdeSyncNERDTreeAutomatically && !exists("b:NERDTree") | SyncNERDTree | endif
+    "     " On buffer enter, set the current working directory to the file path.
+    "     au BufEnter,BufRead * if g:spIdeSyncNERDTreeAutomatically && !exists("b:NERDTree") | SyncNERDTree | echom "Just synced" | endif
 
-        " Automatically highlight the current file, and refresh the file list.
-        "au BufEnter * if g:spIdeFindFileNERDTreeAutomatically && !exists("b:NERDTree") | FindNERDTreeFile | call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | execute "normal \<C-w>\<C-p>" | endif
+    "     " Automatically highlight the current file, and refresh the file list.
+    "     au BufEnter * if g:spIdeFindFileNERDTreeAutomatically && !exists("b:NERDTree") | FindNERDTreeFile | call NERDTreeFocus() | call g:NERDTree.ForCurrentTab().getRoot().refresh() | call g:NERDTree.ForCurrentTab().render() | execute "normal \<C-w>\<C-p>" | endif
 
-        " Make NERDTree open tabs when mouse clicking.
-        "au WinEnter * if g:spIdeUseTabs && &ft == 'nerdtree' && exists("b:NERDTree") && b:NERDTree.isTabTree() | SetNERDTreeDoubleClick | endif
-      augroup END
-      endif
-      let g:VimrNERDTreeSyncLoaded = 1
+    "     " Make NERDTree open tabs when mouse clicking.
+    "     au WinEnter * if g:spIdeUseTabs && &ft == 'nerdtree' && exists("b:NERDTree") && b:NERDTree.isTabTree() | SetNERDTreeDoubleClick | endif
+    "   augroup END
+    "   endif
+    "   let g:VimrNERDTreeSyncLoaded = 1
   endif
 
 endif
