@@ -177,8 +177,9 @@ if has("gui_vimr") || exists('g:gui_oni')
     augroup VimrNERDTree
       au!
       " Open NERDTree on startup, and on a new tab.
-      au VimEnter * if g:spIdeOpenNERDTree | NERDTree | execute "normal \<C-w>\<C-p>" | SyncNERDTree | endif
-      au TabNew * if g:spIdeOpenNERDTree && g:spIdeUseTabs | NERDTree | SyncNERDTree | execute "normal \<C-w>\<C-p>" | SyncNERDTree | endif
+      au VimEnter * if g:spIdeOpenNERDTree && !exists("b:NERDTree") && !exists("b:startify") | NERDTree | execute "normal \<C-w>\<C-p>" | SyncNERDTree | endif
+      au TabNew * if g:spIdeOpenNERDTree && g:spIdeUseTabs && !exists("b:NERDTree") && !exists("b:startify") | NERDTree | SyncNERDTree | execute "normal \<C-w>\<C-p>" | SyncNERDTree | endif
+      au User Startified if exists("b:startify") | call NERDTreeFocus() | q | endif
     augroup END
     if !get(g:, 'VimrNERDTreeSyncLoaded', 0)
       augroup VimrNERDTreeSync
