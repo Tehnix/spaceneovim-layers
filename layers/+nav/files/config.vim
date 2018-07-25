@@ -9,8 +9,8 @@ SpNMap 'fn', 'nerdtree-sync', 'SyncNERDTree'
 if exists('g:gui_oni')
   " Swap nerdtree and Oni sidbar keybindings, if enabled.
   if g:spOniSwapFileTree
-    SpNMap 'ft', 'nerdtree-toggle', 'NERDTreeToggle'
-    SpNMap 'fT', 'oni-sidebar-toggle', 'call OniCommand(\"sidebar.toggle\")'
+    SpNMap 'fT', 'nerdtree-toggle', 'NERDTreeToggle'
+    SpNMap 'ft', 'oni-sidebar-toggle', 'call OniCommand(\"sidebar.toggle\")'
   else
     SpNMap 'ft', 'nerdtree-toggle', 'NERDTreeToggle'
     SpNMap 'fT', 'oni-sidebar-toggle', 'call OniCommand(\"sidebar.toggle\")'
