@@ -1,0 +1,1 @@
+SpAddPlugin 'KabbAmine/zeavim.vim'
