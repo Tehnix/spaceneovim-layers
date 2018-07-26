@@ -6,6 +6,7 @@
 command! -nargs=+ -bar SpBind call SpaceNeovimBufBind(<args>)
 command! -nargs=+ -bar SpMap call SpaceNeovimBufMap(<args>)
 command! -nargs=+ -bar SpNMap call SpaceNeovimBufNMap(<args>)
+command! -nargs=+ -bar SpVMap call SpaceNeovimBufVMap(<args>)
 command! -nargs=+ -bar SpFileTypeBind call SpaceNeovimFTBind(<args>)
 command! -nargs=+ -bar SpFileTypeMap call SpaceNeovimFTMap(<args>)
 command! -nargs=+ -bar SpFileTypeNMap call SpaceNeovimFTNMap(<args>)
@@ -114,6 +115,15 @@ function! SpaceNeovimBufNMap(binding, name, value, ...)
     let l:isCmd = a:1
   endif
   call SpaceNeovimBufBind('nmap', a:binding, a:name, a:value, l:isCmd)
+endfunction
+
+function! SpaceNeovimBufVMap(binding, name, value, ...)
+  " Convenience function for SpaceNeovimBind using vmap/vnoremap.
+  let l:isCmd = 1
+  if a:0 > 0
+    let l:isCmd = a:1
+  endif
+  call SpaceNeovimBufBind('vmap', a:binding, a:name, a:value, l:isCmd)
 endfunction
 " }}}
 
