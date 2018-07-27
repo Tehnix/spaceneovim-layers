@@ -22,6 +22,7 @@ Name                                                    | Description
 [+checkers/ale](layers/+checkers/ale)                   | Syntax checking with Ale
 [+checkers/neomake](layers/+checkers/neomake)           | Syntax checking with Neomake
 [+checkers/syntastic](layers/+checkers/syntastic)       | Syntax checking with Syntastic
+[+docs/dash](layers/+docs/dash)                         | Browse offline documentation with Dash
 [+docs/zeal](layers/+docs/zeal)                         | Browse offline documentation with Zeal
 [+gui/ide](layers/+gui/ide)                             | An opinionated setup with VimR/Oni
 [+nav/buffers](layers/+nav/buffers)                     | Common buffer functionality
