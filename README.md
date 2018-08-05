@@ -18,6 +18,7 @@ Name                                                    | Description
 [+core/behavior](layers/+core/behavior)                 | Core functionality for SpaceNeovim
 [+core/sensible](layers/+core/sensible)                 | Sensible default settings
 [+completion/deoplete](layers/+completion/deoplete)     | Auto-completion with deoplete
+[+completion/ncm2](layers/+completion/ncm2)             | Auto-completion with NCM2
 [+completion/snippets](layers/+completion/snippets)     | Snippet support
 [+checkers/ale](layers/+checkers/ale)                   | Syntax checking with Ale
 [+checkers/neomake](layers/+checkers/neomake)           | Syntax checking with Neomake
