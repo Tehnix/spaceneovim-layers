@@ -1,0 +1,1 @@
+SpAddPlugin 'rizzatti/dash.vim'

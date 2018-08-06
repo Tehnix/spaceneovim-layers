@@ -13,49 +13,52 @@ Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim)
 
 ## Current Layers
 
-Name                   |Description
------------------------|-------------------------------------------
-[+core/behavior](layers/+core/behavior)         |Core functionality for SpaceNeovim
-[+core/sensible](layers/+core/sensible)         |Sensible default settings
-[+completion/deoplete](layers/+completion/deoplete)   |Auto-completion with deoplete
-[+completion/snippets](layers/+completion/snippets)   |Snippet support
-[+checkers/ale](layers/+checkers/ale)          |Syntax checking with Ale
-[+checkers/neomake](layers/+checkers/neomake)      |Syntax checking with Neomake
-[+checkers/syntastic](layers/+checkers/syntastic)    |Syntax checking with Syntastic
-[+gui/ide](layers/+gui/ide)            |An opinionated setup with VimR/Oni
-[+nav/buffers](layers/+nav/buffers)           |Common buffer functionality
-[+nav/comments](layers/+nav/comments)          |Manipulating comments
-[+nav/files](layers/+nav/files)             |Common file operations
-[+nav/fuzzy](layers/+nav/fuzzy)             |Fuzzy search for files, buffers and methods
-[+nav/fzf](layers/+nav/fzf)               |Fuzzy search using FZF
-[+nav/jump](layers/+nav/jump)               |Easy navigation inside files
-[+nav/navigation](layers/+nav/navigation)               |Easy navigation on screen
-[+nav/quit](layers/+nav/quit)              |Common quit functionality
-[+nav/start-screen](layers/+nav/start-screen)      |Add start screen when opening Neovim
-[+nav/text](layers/+nav/text)              |Common text operations
-[+nav/tmux](layers/+nav/tmux)              |Navigate between VIM and TMUX panes
-[+nav/windows](layers/+nav/windows)           |Common window functionality
-[+scm/git](layers/+scm/git)               |Git and fugitive support
-[+specs/testing](layers/+specs/testing)         |Run tests directly from the editor
-[+tools/format](layers/+tools/format)          |Format files
-[+tools/language-server](layers/+tools/language-server) |Language server support
-[+tools/multicursor](layers/+tools/multicursor)     |Support for multiple cursors
-[+tools/terminal](layers/+tools/terminal)        |Defaults and keybindings for the terminal
-[+ui/airline](layers/+ui/airline)            |Replace the status bar with airline
-[+ui/dynamic-cursor](layers/+ui/dynamic-cursor)     |Dynamically change the cursor depending on the mode
-[+ui/toggles](layers/+ui/toggles)            |Toggles for common components
+Name                                                    | Description
+------------------------------------------------------- | ---------------------------------------------------
+[+core/behavior](layers/+core/behavior)                 | Core functionality for SpaceNeovim
+[+core/sensible](layers/+core/sensible)                 | Sensible default settings
+[+completion/deoplete](layers/+completion/deoplete)     | Auto-completion with deoplete
+[+completion/ncm2](layers/+completion/ncm2)             | Auto-completion with NCM2
+[+completion/snippets](layers/+completion/snippets)     | Snippet support
+[+checkers/ale](layers/+checkers/ale)                   | Syntax checking with Ale
+[+checkers/neomake](layers/+checkers/neomake)           | Syntax checking with Neomake
+[+checkers/syntastic](layers/+checkers/syntastic)       | Syntax checking with Syntastic
+[+docs/dash](layers/+docs/dash)                         | Browse offline documentation with Dash
+[+docs/zeal](layers/+docs/zeal)                         | Browse offline documentation with Zeal
+[+gui/ide](layers/+gui/ide)                             | An opinionated setup with VimR/Oni
+[+nav/buffers](layers/+nav/buffers)                     | Common buffer functionality
+[+nav/comments](layers/+nav/comments)                   | Manipulating comments
+[+nav/files](layers/+nav/files)                         | Common file operations
+[+nav/fuzzy](layers/+nav/fuzzy)                         | Fuzzy search for files, buffers and methods
+[+nav/fzf](layers/+nav/fzf)                             | Fuzzy search using FZF
+[+nav/jump](layers/+nav/jump)                           | Easy navigation inside files
+[+nav/navigation](layers/+nav/navigation)               | Easy navigation on screen
+[+nav/quit](layers/+nav/quit)                           | Common quit functionality
+[+nav/start-screen](layers/+nav/start-screen)           | Add start screen when opening Neovim
+[+nav/text](layers/+nav/text)                           | Common text operations
+[+nav/tmux](layers/+nav/tmux)                           | Navigate between VIM and TMUX panes
+[+nav/windows](layers/+nav/windows)                     | Common window functionality
+[+scm/git](layers/+scm/git)                             | Git and fugitive support
+[+specs/testing](layers/+specs/testing)                 | Run tests directly from the editor
+[+tools/format](layers/+tools/format)                   | Format files
+[+tools/language-server](layers/+tools/language-server) | Language server support
+[+tools/multicursor](layers/+tools/multicursor)         | Support for multiple cursors
+[+tools/terminal](layers/+tools/terminal)               | Defaults and keybindings for the terminal
+[+ui/airline](layers/+ui/airline)                       | Replace the status bar with airline
+[+ui/dynamic-cursor](layers/+ui/dynamic-cursor)         | Dynamically change the cursor depending on the mode
+[+ui/toggles](layers/+ui/toggles)                       | Toggles for common components
 
 Language layers
 
-Name             | Description
----------------- | -------------------------------------------
-[+lang/-example](layers/+lang/-example)   | A template for creating new language layers
-[+lang/elm](layers/+lang/elm)        | Support for Elm
-[+lang/haskell](layers/+lang/haskell)    | Support for Haskell
+Name                                        | Description
+------------------------------------------- | -------------------------------------------
+[+lang/-example](layers/+lang/-example)     | A template for creating new language layers
+[+lang/elm](layers/+lang/elm)               | Support for Elm
+[+lang/haskell](layers/+lang/haskell)       | Support for Haskell
 [+lang/javascript](layers/+lang/javascript) | Support for JavaScript
-[+lang/python](layers/+lang/python)     | Support for python
-[+lang/ruby](layers/+lang/ruby)       | Support for ruby
-[+lang/vim](layers/+lang/vim)        | Support for vim
+[+lang/python](layers/+lang/python)         | Support for python
+[+lang/ruby](layers/+lang/ruby)             | Support for ruby
+[+lang/vim](layers/+lang/vim)               | Support for vim
 
 ## Adding a New Layer
 
@@ -87,6 +90,7 @@ Command        | Arguments                                                      
 SpBind         | `<map>`, `<binding>`, `<name>`, `<value>`, `<isCmd>`               | Map a key to a specific mapping type, with a description and command to execute. The `<isCmd>` argument adds `<CR>` on the end if `1` and nothing if `0`.                                                                            | `SpBind 'tmap', 'wj', 'window-down', 'wincmd j', 1`
 SpMap          | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `map`/`noremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                                                             | `SpMap 'wk', 'window-up', 'wincmd k'`
 SpNMap         | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `nmap`/`nnoremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                                                           | `SpNMap 'wk', 'window-up', 'wincmd k'`
+SpVMap         | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `vmap`/`vnoremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                                                           | `SpVMap 'wk', 'window-up', 'wincmd k'`
 SpFileTypeBind | `<filetype>`, `<map>`, `<binding>`, `<name>`, `<value>`, `<isCmd>` | **NOTE: This is currently broken!** Map a key, only shown under a specific filetype, to a specific mapping type, with a description and command to execute. The `<isCmd>` argument adds `<CR>` on the end if `1` and nothing if `0`. | `SpBind 'tmap', 'wj', 'window-down', 'wincmd j', 1`
 SpFileTypeMap  | `<filetype>`, `<binding>`, `<name>`, `<value>`, `[isCmd]`          | **NOTE: This is currently broken!** Map a key with `map`/`noremap`, only shown under a specific filetype, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                   | `SpFileTypeMap 'haskell', 'mgt', 'show-type-at', 'GhcModType'`
 SpFileTypeNMap | `<filetype>`, `<binding>`, `<name>`, `<value>`, `[isCmd]`          | **NOTE: This is currently broken!** Map a key with `nmap`/`nnoremap`, only shown under a specific filetype, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                 | `SpFileTypeNMap 'haskell', 'mgt', 'show-type-at', 'GhcModType'`
