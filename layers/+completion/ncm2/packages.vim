@@ -24,7 +24,8 @@ SpAddPlugin 'ncm2/ncm2-cssomni'
 " JavaScript.
 SpAddPlugin 'ncm2/ncm2-tern'
 " TypeScript.
-SpAddPlugin 'mhartington/nvim-typescript'
+" FIXME: Throws error on VimLeavePre for TSStop.
+"SpAddPlugin 'mhartington/nvim-typescript'
 " Python.
 SpAddPlugin 'ncm2/ncm2-jedi'
 " Rust.

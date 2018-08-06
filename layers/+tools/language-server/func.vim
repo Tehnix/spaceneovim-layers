@@ -16,7 +16,7 @@ function! s:display_info_on_cursor_hold()
   let l:wordUnderCursor = expand("<cword>")
   if s:lsp_info_word_under_cursor  !=# l:wordUnderCursor
     redir => s:messages
-    call LanguageClient_textDocument_hover()
+    call LanguageClient#textDocument_hover()
     redir END
     let hoverInfo = split(s:messages)
     if len(hoverInfo) > 0
@@ -27,6 +27,5 @@ function! s:display_info_on_cursor_hold()
 endfunction
 
 function! s:update_symbol_list()
-  call LanguageClient_textDocument_documentSymbol()
+  call LanguageClient#textDocument_documentSymbol()
 endfunction
-

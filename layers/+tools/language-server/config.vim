@@ -24,10 +24,10 @@
     set cmdheight=2
   endif
   set shortmess=a
-  " Do not automatically start language clients.
+  " Automatically start language clients.
   let g:LanguageClient_autoStart = 0
-  " augroup autoStartLanguageServer
-  "   autocmd!
-  "   au BufWinEnter * SpaceNeovimHLSPEnableAutoStart
-  " augroup END 
+  augroup autoStartLanguageServer
+    autocmd!
+    au BufWinEnter * SpaceNeovimHLSPEnableAutoStart
+  augroup END
 " }}}

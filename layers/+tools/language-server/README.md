@@ -24,8 +24,8 @@ You can manually add more servers with e.g.,
 
 ```viml
 function! UserConfig()
-  let g:LanguageClient_serverCommands.rust = ['rustup', 'run', 'nightly', 'rls']
-  let g:LanguageClient_serverCommands.javascript = ['/opt/javascript-typescript-langserver/lib/language-server-stdio.js']
+  let g:LanguageClient_serverCommands.rust = ['~/.cargo/bin/rustup', 'run', 'stable', 'rls']
+  let g:LanguageClient_serverCommands.javascript = ['/usr/local/bin/javascript-typescript-stdio']
 endfunction
 ```
 

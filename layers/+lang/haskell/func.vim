@@ -44,9 +44,11 @@ function! s:display_info_on_cursor_hold()
       endif
     elseif g:sp_haskell_backend == 'ghcmod' || g:sp_haskell_backend == 'ghc-mod'
       call s:ghcmod_type()
+    elseif g:sp_haskell_backend == 'lsp'
+      " LSP Supports this via `call LanguageClient#textDocument_hover()`, but
+      " that needs a way to cut off the output after the first line.
+      call LanguageClient#textDocument_hover()
     endif
-    " LSP Supports this via `call LanguageClient_textDocument_hover()`, but
-    " that needs a way to cut off the output after the first line.
     let s:word_under_cursor = l:new_word_under_cursor
   endif
 endfunction

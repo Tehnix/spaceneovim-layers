@@ -3,7 +3,7 @@
 " }}}
 
 " Backend keymappings {{{
-  let g:sp_haskell_backend = get(g:, 'spHaskellBackend', 'ghc-mod')
+  let g:sp_haskell_backend = get(g:, 'spHaskellBackend', 'intero')
 
   " Intero backend specific bindings {{{
     let s:sp_haskell_intero_backend = { "name": "+haskell/intero"
@@ -54,8 +54,8 @@
       \ }
   " }}}
   " LSP backend (HIE) {{{
-    let s:sp_haskell_lsp_jump_to_definition = {'g': ["call LanguageClient_textDocument_definition()", "lsp/jump-to-definition"]}
-    let s:sp_haskell_lsp_refactor = {'R': ["call LanguageClient_textDocument_rename()", "lsp/rename"]}
+    let s:sp_haskell_lsp_jump_to_definition = {'g': ["call LanguageClient#textDocument_definition()", "lsp/jump-to-definition"]}
+    let s:sp_haskell_lsp_refactor = {'R': ["call LanguageClient#textDocument_rename()", "lsp/rename"]}
   " }}}
   " both backend specific bindings {{{
     let s:sp_haskell_both_repl = { "name": "+haskell/repl"
@@ -151,17 +151,18 @@
       augroup END
 
     elseif g:sp_haskell_backend == 'lsp'
+      echo "Haskell LSP Backend"
       let g:intero_start_immediately = 0
       let g:ghci_start_immediately = 1
       " Add HIE as the Haskell language server.
       let g:LanguageClient_serverCommands = get(g:, 'LanguageClient_serverCommands', {})
-      let g:LanguageClient_serverCommands.haskell = ['hie', '--lsp']
+      let g:LanguageClient_serverCommands.haskell = ['hie-wrapper', '--lsp']
       augroup haskellLinter
         au!
         " Automatically reload on save.
         au BufWritePost *.hs GhciReload
         " Start the language server when entering a Haskell buffer.
-        au BufEnter *.hs :LanguageClientStart
+        au BufEnter *.hs LanguageClientStart
       augroup END
 
     else " 'ghc-mod'
@@ -179,7 +180,7 @@
 
     " Display type information on hover (off by default).
     let g:sp_haskell_show_type_on_hover = get(g:, 'spHaskellTypeOnHover', 0)
-    if g:sp_haskell_show_type_on_hover && (g:sp_haskell_backend == 'both' || g:sp_haskell_backend == 'intero' || g:sp_haskell_backend == 'ghc-mod' || g:sp_haskell_backend == 'ghcmod')
+    if g:sp_haskell_show_type_on_hover && (g:sp_haskell_backend == 'both' || g:sp_haskell_backend == 'intero' || g:sp_haskell_backend == 'ghc-mod' || g:sp_haskell_backend == 'ghcmod' || g:sp_haskell_backend == 'lsp')
       " Make the update time shorter, so the info will trigger faster.
       set updatetime=1000
       " Get type information when you hold the cursor still for some time.
