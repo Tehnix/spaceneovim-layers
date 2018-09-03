@@ -112,7 +112,7 @@ To add a keybinding, first make sure that the vim-leader-guide grouping exists w
 " Top level grouping (i.e. SPC e)
 let g:lmap.e = get(g:lmap, 'e', { 'name': '+errors' })
 " Deeper level Grouping under SPC e m
-let g:lmap.e.h = get(g:lmap.t, 'm', { 'name': '+more' })
+let g:lmap.e.m = get(g:lmap.e, 'm', { 'name': '+more' })
 ```
 
 **NOTE:** It is important to use `get()` to avoid overwriting the mapping if it exists in another layer already.
