@@ -151,7 +151,6 @@
       augroup END
 
     elseif g:sp_haskell_backend == 'lsp'
-      echo "Haskell LSP Backend"
       let g:intero_start_immediately = 0
       let g:ghci_start_immediately = 1
       " Add HIE as the Haskell language server.
