@@ -41,3 +41,16 @@ SPC w 6     | Go to window 6
 SPC w 7     | Go to window 7
 SPC w 8     | Go to window 8
 SPC w 9     | Go to window 9
+
+Key Binding | Description
+----------- | --------------
+SPC 0       | Go to window 0
+SPC 1       | Go to window 1
+SPC 2       | Go to window 2
+SPC 3       | Go to window 3
+SPC 4       | Go to window 4
+SPC 5       | Go to window 5
+SPC 6       | Go to window 6
+SPC 7       | Go to window 7
+SPC 8       | Go to window 8
+SPC 9       | Go to window 9
