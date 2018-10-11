@@ -1,5 +1,5 @@
-" Set the default LSP backend to vim-lsp.
-let g:spLSPBackend = get(g:, 'spLSPBackend', 'vim-lsp')
+" Set the default LSP backend to nvim-lsp.
+let g:spLSPBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
 
 " Set the key mappings for the various commands {{{
   let g:lmap.l = get(g:lmap, 'l', { 'name': '+lsp' })

@@ -30,8 +30,8 @@ The layer assumes you setup the language servers yourself, or rely on language l
 
 The LSP layer provides the choice of two different backends:
 
-- **vim-lsp** (default) which is [`vim-lsp`](https://github.com/prabirshrestha/vim-lsp)
-- **nvim-lsp** which is [`LanguageClient-neovim`](https:/github.com/autozimu/LanguageClient-neovim)
+- **vim-lsp** --> [`vim-lsp`](https://github.com/prabirshrestha/vim-lsp)
+- **nvim-lsp** (default for backwards compat.) --> [`LanguageClient-neovim`](https:/github.com/autozimu/LanguageClient-neovim)
 
 You can configure the LSP you want by setting,
 
