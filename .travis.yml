@@ -1,6 +1,6 @@
 sudo: required
 dist: trusty
 before_install:
-  - pip install --user pathlib enum34 vim-vint
+  - pip install --user pathlib enum34 typing vim-vint
 script:
   - vint auto-layers.vim keybinding-helpers.vim helpers.vim
