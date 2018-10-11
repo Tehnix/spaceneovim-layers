@@ -17,6 +17,7 @@ let g:spLSPBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
   let s:cmdExplainError = ''
   let s:cmdNextError = ''
   let s:cmdPrevError = ''
+  let s:cmdDiagnostics = ''
 
   if (g:spLSPBackend ==? 'nvim-lsp')
     let s:cmdHover = 'call LanguageClient#textDocument_hover()'
@@ -44,6 +45,7 @@ let g:spLSPBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
     " +errros group.
     let s:cmdNextError = 'LspNextError'
     let s:cmdPrevError = 'LspPreviousError'
+    let s:cmdDiagnostics = 'LspDocumentDiagnostics'
   endif
 
   exec "SpNMap 'li', 'show-info', '" . s:cmdHover . "'"
@@ -53,6 +55,9 @@ let g:spLSPBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
   exec "SpNMap 'lR', 'rename', '" . s:cmdRename . "'"
   if (s:cmdContextMenu != '')
     exec "SpNMap 'lC', 'context-menu', '" s:cmdContextMenu . "'"
+  endif
+  if (s:cmdDiagnostics != '')
+    exec "SpNMap 'ld', 'diagnostics', '" . s:cmdDiagnostics . "'"
   endif
 
   let g:lmap.l.l = get(g:lmap.l, 'l', { 'name': '+list' })
@@ -102,6 +107,9 @@ let g:spLSPBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
     " Configure vim-lsp.
     let g:lsp_signs_enabled = 1
     let g:lsp_diagnostics_echo_cursor = 1
+    let g:lsp_signs_error = {'text': '>>'}
+    let g:lsp_signs_warning = {'text': '--'}
+    let g:lsp_signs_hint = {'text': '!!'}
   endif
 " }}}
 
@@ -124,15 +132,13 @@ let g:spLSPBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
     if executable('hie-wrapper')
       au User lsp_setup call lsp#register_server({
       \   'name': 'HIE'
-      \ , 'cmd': { server_info->[&shell, &shellcmdflag, 'hie-wrapper --lsp']}
-      \ , 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), 'stack.yaml/..'))}
+      \ , 'cmd': { server_info->[&shell, &shellcmdflag, 'stack exec -- hie-wrapper --lsp']}
       \ , 'whitelist': ['haskell']
       \})
     elseif executable('hie')
       au User lsp_setup call lsp#register_server({
       \   'name': 'HIE'
-      \ , 'cmd': { server_info->[&shell, &shellcmdflag, 'hie --lsp']}
-      \ , 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), 'stack.yaml/..'))}
+      \ , 'cmd': { server_info->[&shell, &shellcmdflag, 'stack exec -- hie --lsp']}
       \ , 'whitelist': ['haskell']
       \})
     endif
