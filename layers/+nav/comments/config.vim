@@ -3,13 +3,20 @@
 " }}
 
 let g:lmap.c = get(g:lmap, 'c', { 'name': '+compile/comments' })
-SpMap 'cl', 'comment-or-uncomment-lines', 'SpaceNeovimToggleComment'
+
+let g:lmap.c.l = 'comment-or-uncomment-lines'
+nmap <leader>cl gcc
+vmap <leader>cl gc
+
 SpMap 'cL', 'comment-or-uncomment-lines-inverted', 'SpaceNeovimInvertToggleComment'
-" FIXME: Yanks and comment only work on 1 line.
-SpMap 'cy', 'copy-and-comment-lines', 'SpaceNeovimYankComment'
-SpMap 'cY', 'copy-and-comment-lines-inverse', 'SpaceNeovimInvertYankComment'
-SpMap 'cp', 'comment-or-uncomment-paragraphs', 'SpaceNeovimParagraphComment'
-SpMap 'cP', 'comment-or-uncomment-paragraphs-invert', 'SpaceNeovimInvertParagraphComment'
+
+let g:lmap.c.y = 'copy-and-comment-lines'
+nmap <leader>cy yygcc
+vmap <leader>cy ygvgc
+
+let g:lmap.c.p = 'comment-or-uncomment-paragraphs'
+nmap <leader>cp gcap
+vmap <leader>cp {vv}gc
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
