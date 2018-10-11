@@ -90,15 +90,15 @@ let g:spLSPBackend = get(g:, 'spLSPBackend', 'vim-lsp')
   let g:lsp_auto_enable = 0
   " Make sure nvim-lsp does not autostart.
   let g:LanguageClient_autoStart = 0
-  if (g:spLSPBackend ==? 'nvim-lsp')
 
+  if (g:spLSPBackend ==? 'nvim-lsp')
     let g:LanguageClient_autoStart = 1
-    " augroup autoStartLanguageServer
-    "   autocmd!
-    "   au BufWinEnter * SpaceNeovimHLSPEnableAutoStart
-    " augroup END
+    augroup autoStartLanguageServer
+      autocmd!
+      au BufWinEnter * SpaceNeovimHLSPEnableAutoStart
+    augroup END
   else
-    let g:lsp_auto_enable = 0
+    let g:lsp_auto_enable = 1
     " Configure vim-lsp.
     let g:lsp_signs_enabled = 1
     let g:lsp_diagnostics_echo_cursor = 1
