@@ -11,5 +11,5 @@ if (g:spLSPBackend ==? 'nvim-lsp')
 else
   " vim-lsp.
   SpAddPlugin 'prabirshrestha/async.vim'
-  SpAddPlugin 'tehnix/vim-lsp', { 'branch': 'patch-1' }
+  SpAddPlugin 'prabirshrestha/vim-lsp'
 endif
