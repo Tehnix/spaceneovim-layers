@@ -1,5 +1,5 @@
 " Set the default LSP backend to vim-lsp.
-let g:spLspBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
+let g:spLspBackend = get(g:, 'spLspBackend', 'nvim-lsp')
 
 " nvim-lsp.
 if (g:spLspBackend ==? 'nvim-lsp')

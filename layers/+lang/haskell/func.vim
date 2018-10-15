@@ -34,7 +34,7 @@ endfunction
 
 " FIXME: Whenever this is merged https://github.com/neovim/neovim/pull/6619, we could
 " use that to display the type information instead.
-let g:spLspBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
+let g:spLspBackend = get(g:, 'spLspBackend', 'nvim-lsp')
 let s:word_under_cursor = ""
 function! s:display_info_on_cursor_hold()
   let l:new_word_under_cursor = expand("<cword>")

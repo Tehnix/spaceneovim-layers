@@ -107,7 +107,7 @@ let g:spLspAutoStart = get(g:, 'spLspAutoStart', 1)
     let g:lsp_auto_enable = g:spLspAutoStart
     " Configure vim-lsp.
     let g:lsp_signs_enabled = 1
-    let g:lsp_diagnostics_echo_cursor = 1
+    let g:lsp_diagnostics_echo_cursor = 0
     let g:lsp_signs_error = {'text': '>>'}
     let g:lsp_signs_warning = {'text': '--'}
     let g:lsp_signs_hint = {'text': '!!'}
@@ -117,18 +117,60 @@ let g:spLspAutoStart = get(g:, 'spLspAutoStart', 1)
 " LSP Server configuration {{{
   " Enable the TypeScript LSP for both TypeScript and JavaScript.
   if (g:spLspBackend ==? 'nvim-lsp')
-    let g:LanguageClient_serverCommands.javascript = ['typescript-language-server']
-    let g:LanguageClient_serverCommands.typescript = ['typescript-language-server']
-    let g:LanguageClient_serverCommands.typescriptreact = ['typescript-language-server']
+    if executable('typescript-language-server')
+      let g:LanguageClient_serverCommands.javascript = ['typescript-language-server']
+      let g:LanguageClient_serverCommands.typescript = ['typescript-language-server']
+      let g:LanguageClient_serverCommands.typescriptreact = ['typescript-language-server']
+    endif
+    if executable('hie-wrapper')
+      let g:LanguageClient_serverCommands.haskell = ['stack exec -- hie-wrapper --lsp']
+    elseif executable('hie')
+      let g:LanguageClient_serverCommands.haskell = ['stack exec -- hie --lsp']
+    endif
+    if executable('ocaml-language-server')
+      let g:LanguageClient_serverCommands.ocaml = ['ocaml-language-server --stdio']
+      let g:LanguageClient_serverCommands.reason = ['ocaml-language-server --stdio']
+    endif
+    if executable('rls')
+      let g:LanguageClient_serverCommands.rust = ['rustup run nightly rls']
+    endif
+    if executable('solargraph')
+      let g:LanguageClient_serverCommands.ruby = ['solargraph stdio']
+    endif
+    if executable('pyls')
+     let g:LanguageClient_serverCommands.python = ['pyls']
+    endif
+    if executable('docker-langserver')
+      let g:LanguageClient_serverCommands.docker = ['docker-langserver --stdio']
+    endif
+    if executable('clangd')
+      let g:LanguageClient_serverCommands.c = ['clangd']
+      let g:LanguageClient_serverCommands.cpp = ['clangd']
+      let g:LanguageClient_serverCommands.objc = ['clangd']
+      let g:LanguageClient_serverCommands.objcpp = ['clangd']
+    elseif executable('cquery')
+      let g:LanguageClient_serverCommands.c = ['cquery']
+      let g:LanguageClient_serverCommands.cpp = ['cquery']
+      let g:LanguageClient_serverCommands.objc = ['cquery']
+      let g:LanguageClient_serverCommands.objcpp = ['cquery']
+    elseif executable('ccls')
+      let g:LanguageClient_serverCommands.c = ['ccls']
+      let g:LanguageClient_serverCommands.cpp = ['ccls']
+      let g:LanguageClient_serverCommands.objc = ['ccls']
+      let g:LanguageClient_serverCommands.objcpp = ['ccls']
+      let g:LanguageClient_serverCommands.cc = ['ccls']
+    endif
   else
+    " TypeScript -- https://github.com/prabirshrestha/vim-lsp/wiki/Servers-TypeScript.
     if executable('typescript-language-server')
       au User lsp_setup call lsp#register_server({
       \   'name': 'typescript-language-server'
       \ , 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']}
       \ , 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))}
-      \ , 'whitelist': ['typescript', 'javascript', 'javascript.jsx', 'typescript.tsx']
+      \ , 'whitelist': ['typescript', 'javascript', 'javascript.jsx', 'typescript.tsx', 'typescriptreact', 'javascriptreact']
       \})
     endif
+
     " Enable the Haskell hie-wrapper (falling back on hie) for stack projects.
     if executable('hie-wrapper')
       au User lsp_setup call lsp#register_server({
@@ -143,5 +185,97 @@ let g:spLspAutoStart = get(g:, 'spLspAutoStart', 1)
       \ , 'whitelist': ['haskell']
       \})
     endif
+
+    " OCaml/Reason -- https://github.com/prabirshrestha/vim-lsp/wiki/Servers-OCaml---Reason.
+    if executable('ocaml-language-server')
+      " Alternatively, if ocaml-language-server was installed via OPAM, then:
+      " 'cmd': {server_info->[&shell, &shellcmdflag, 'opam config exec -- ocaml-language-server --stdio']}
+      au User lsp_setup call lsp#register_server({
+            \ 'name': 'ocaml-language-server',
+            \ 'cmd': {server_info->[&shell, &shellcmdflag, 'ocaml-language-server --stdio']},
+            \ 'whitelist': ['reason', 'ocaml'],
+            \ })
+    endif
+
+    " Rust -- https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Rust.
+    if executable('rls')
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'rls',
+            \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+            \ 'whitelist': ['rust'],
+            \ })
+    endif
+
+    " Ruby -- https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Ruby.
+    if executable('solargraph')
+    " gem install solargraph
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'solargraph',
+            \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
+            \ 'initialization_options': {"diagnostics": "true"},
+            \ 'whitelist': ['ruby'],
+            \ })
+    endif
+
+    " Python -- https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Python.
+    if executable('pyls')
+        " Additionally, pydocstyle can be enabled by adding:
+        " 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'pyls',
+            \ 'cmd': {server_info->['pyls']},
+            \ 'whitelist': ['python'],
+            \ })
+    endif
+
+    " Go -- https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Go.
+    if executable('go-langserver')
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'go-langserver',
+            \ 'cmd': {server_info->['go-langserver', '-mode', 'stdio']},
+            \ 'whitelist': ['go'],
+            \ })
+    endif
+
+    " Docker -- https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Docker.
+    if executable('docker-langserver')
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'docker-langserver',
+            \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+            \ 'whitelist': ['dockerfile'],
+            \ })
+    endif
+
+    " CQuery -- https://github.com/prabirshrestha/vim-lsp/wiki/Servers-cquery.
+    if executable('cquery')
+      au User lsp_setup call lsp#register_server({
+          \ 'name': 'cquery',
+          \ 'cmd': {server_info->['cquery']},
+          \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+          \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/cache' },
+          \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+          \ })
+    endif
+
+    " clangd -- https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Clangd.
+    if executable('clangd')
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'clangd',
+            \ 'cmd': {server_info->['clangd']},
+            \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+            \ })
+    endif
+
+    " CCLS -- https://github.com/prabirshrestha/vim-lsp/wiki/Servers-ccls.
+    if executable('ccls')
+      au User lsp_setup call lsp#register_server({
+          \ 'name': 'ccls',
+          \ 'cmd': {server_info->['ccls']},
+          \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+          \ 'initialization_options': { 'cacheDirectory': '.ccls-cache' },
+          \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+          \ })
+    endif
+
   endif
 " }}}
