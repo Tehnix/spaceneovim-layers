@@ -38,7 +38,8 @@ You can configure the LSP you want by setting,
 ```viml
 function! UserInit()
   ...
-  let g:spLSPBackend = 'nvim-lsp' " Or 'vim-lsp'
+  let g:spLspBackend = 'nvim-lsp' " Or 'vim-lsp'
+  let g:spLspAutoStart = 0 " Defaults to 1, which is auto start.
 endfunction
 ```
 

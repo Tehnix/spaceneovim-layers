@@ -1,8 +1,8 @@
 " Set the default LSP backend to vim-lsp.
-let g:spLSPBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
+let g:spLspBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
 
 " nvim-lsp.
-if (g:spLSPBackend ==? 'nvim-lsp')
+if (g:spLspBackend ==? 'nvim-lsp')
   SpAddPlugin 'autozimu/LanguageClient-neovim', {
         \ 'branch': 'next',
         \ 'do': 'bash install.sh',

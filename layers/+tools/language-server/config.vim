@@ -1,5 +1,6 @@
 " Set the default LSP backend to nvim-lsp.
-let g:spLSPBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
+let g:spLspBackend = get(g:, 'spLspBackend', 'nvim-lsp')
+let g:spLspAutoStart = get(g:, 'spLspAutoStart', 1)
 
 " Set the key mappings for the various commands {{{
   let g:lmap.l = get(g:lmap, 'l', { 'name': '+lsp' })
@@ -19,7 +20,7 @@ let g:spLSPBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
   let s:cmdPrevError = ''
   let s:cmdDiagnostics = ''
 
-  if (g:spLSPBackend ==? 'nvim-lsp')
+  if (g:spLspBackend ==? 'nvim-lsp')
     let s:cmdHover = 'call LanguageClient#textDocument_hover()'
     let s:cmdGoToDef = 'call LanguageClient#textDocument_definition()'
     let s:cmdFormat = 'call LanguageClient#textDocument_formatting()'
@@ -96,14 +97,14 @@ let g:spLSPBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
   " Make sure nvim-lsp does not autostart.
   let g:LanguageClient_autoStart = 0
 
-  if (g:spLSPBackend ==? 'nvim-lsp')
-    let g:LanguageClient_autoStart = 1
+  if (g:spLspBackend ==? 'nvim-lsp')
+    let g:LanguageClient_autoStart = g:spLspAutoStart
     augroup autoStartLanguageServer
       autocmd!
       au BufWinEnter * SpaceNeovimHLSPEnableAutoStart
     augroup END
   else
-    let g:lsp_auto_enable = 1
+    let g:lsp_auto_enable = g:spLspAutoStart
     " Configure vim-lsp.
     let g:lsp_signs_enabled = 1
     let g:lsp_diagnostics_echo_cursor = 1
@@ -115,7 +116,7 @@ let g:spLSPBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
 
 " LSP Server configuration {{{
   " Enable the TypeScript LSP for both TypeScript and JavaScript.
-  if (g:spLSPBackend ==? 'nvim-lsp')
+  if (g:spLspBackend ==? 'nvim-lsp')
     let g:LanguageClient_serverCommands.javascript = ['typescript-language-server']
     let g:LanguageClient_serverCommands.typescript = ['typescript-language-server']
     let g:LanguageClient_serverCommands.typescriptreact = ['typescript-language-server']

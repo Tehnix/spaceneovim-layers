@@ -34,7 +34,7 @@ endfunction
 
 " FIXME: Whenever this is merged https://github.com/neovim/neovim/pull/6619, we could
 " use that to display the type information instead.
-let g:spLSPBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
+let g:spLspBackend = get(g:, 'spLSPBackend', 'nvim-lsp')
 let s:word_under_cursor = ""
 function! s:display_info_on_cursor_hold()
   let l:new_word_under_cursor = expand("<cword>")
@@ -48,7 +48,7 @@ function! s:display_info_on_cursor_hold()
     elseif g:sp_haskell_backend == 'lsp'
       " LSP Supports this via `call LanguageClient#textDocument_hover()`, but
       " that needs a way to cut off the output after the first line.
-      if (g:spLSPBackend ==? 'nvim-lsp')
+      if (g:spLspBackend ==? 'nvim-lsp')
         call LanguageClient#textDocument_hover()
       else
         :LspHover
