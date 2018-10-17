@@ -1,4 +1,4 @@
-let g:lmap.q = get(g:lmap, 'q', { 'name': '+quit' })
+let g:lmap.q = get(g:lmap, 'q', { 'name': 'quit' })
 SpNMap 'qq', 'quit', 'q'
 SpNMap 'qQ', 'quit', 'q'
 SpNMap 'qs', 'quit', 'wq'

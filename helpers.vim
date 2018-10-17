@@ -50,6 +50,6 @@ endfunction
 
 function! SpaceNeovimCleanupFileTypeGroups(ft)
   " Clean up the menus for the file type on buffer leave
-  execute 'au BufLeave * if &ft ==# "' . a:ft . '" | let g:lmap.m = { "name": "+major-mode-cmd" } | endif '
+  execute 'au BufLeave * if &ft ==# "' . a:ft . '" | let g:lmap.m = { "name": "major-mode-cmd" } | endif '
 endfunction
 " }}}

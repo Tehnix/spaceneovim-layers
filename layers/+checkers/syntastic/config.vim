@@ -1,4 +1,4 @@
-let g:lmap.e = get(g:lmap, 'e', { 'name': '+errors' })
+let g:lmap.e = get(g:lmap, 'e', { 'name': 'errors' })
 SpNMap 'er', 'syntastic/check-file', 'SyntasticCheck'
 SpNMap 'el', 'syntastic/error-list', 'lopen'
 SpNMap 'ec', 'syntastic/close-error-list', 'lclose'

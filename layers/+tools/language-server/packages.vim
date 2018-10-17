@@ -8,6 +8,8 @@ if (g:spLspBackend ==? 'nvim-lsp')
         \ 'do': 'bash install.sh',
         \}
   SpAddPlugin 'Shougo/echodoc.vim'
+elseif (g:spLspBackend ==? 'ale-lsp')
+  " Packages are pulled in +checkers/ale.
 else
   " vim-lsp.
   SpAddPlugin 'prabirshrestha/async.vim'

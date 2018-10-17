@@ -1,4 +1,4 @@
-let g:lmap.d = get(g:lmap, 'd', { 'name': '+docs' })
+let g:lmap.d = get(g:lmap, 'd', { 'name': 'docs' })
 SpNMap 'dd', 'dash', 'Dash'
 SpNMap 'dD', 'dash-global', 'Dash!'
 

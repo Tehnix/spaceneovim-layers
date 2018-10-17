@@ -1,4 +1,4 @@
-let g:lmap.f = get(g:lmap, 'f', { 'name': '+files' })
+let g:lmap.f = get(g:lmap, 'f', { 'name': 'files' })
 SpNMap 'fb', 'find-buffer', 'CtrlPBuffer'
 SpNMap 'ff', 'find-file', 'CtrlP'
 SpNMap 'fm', 'find-method', 'CtrlPFunky'

@@ -4,12 +4,11 @@
 " }}}
 
 " Set the key mappings for the various commands {{{
-  au FileType ruby let g:lmap.m = { "name": "+major-mode-cmd",
-    \"b": ["echo 'Not implemented yet!'", "blockie"],
-    \":": ["NotRocket", "not-rocket"],
-    \"l": ["<Plug>ExtractRspecLet", "extract-let"],
-    \"s": ["<Plug>ConvertStructToClass", "convert-struct"]
-    \}
+  SpFileTypeNMap 'ruby', 'mb', 'blockie', 'noh'
+  SpFileTypeNMap 'ruby', 'm:', 'not-rocket', 'NotRocket'
+  SpFileTypeNMap 'ruby', 'ml', 'extract-let', '<Plug>ExtractRspecLet'
+  SpFileTypeNMap 'ruby', 'ms', 'convert-struct', '<Plug>ConvertStructToClass'
+  au FileType ruby let g:lmap.m = { "name": "major-mode-cmd" }
 " }}}
 
 " Layer specific configurations {{{

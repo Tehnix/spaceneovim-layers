@@ -3,17 +3,18 @@ let g:elm_setup_keybindings = 0
 " }}}
 
 " Set the key mappings for the various commands {{{
-  au FileType elm let g:lmap.m = { "name": "+major-mode-cmd",
-    \"m": ["SpaceNeovimElmMake", "elm-make"],
-    \"M": ["ElmMakeMain", "elm-make-main"],
-    \"t": ["SpaceNeovimElmTest", "elm-test"],
-    \"r": ["ElmRepl", "elm-repl"],
-    \"f": ["ElmFormat", "elm-format"],
-    \"e": ["ElmErrorDetail", "error-detail"],
-    \"d": { "name": "+elm/documentation"
-         \, "s": ["ElmShowDocs", "show-docs"]
-         \, "b": ["ElmBrowseDocs", "browse-docs"]
-      \ },
+  SpFileTypeNMap 'elm', 'mm', 'elm-make', 'SpaceNeovimElmMake'
+  SpFileTypeNMap 'elm', 'mM', 'elm-make-main', 'ElmMakeMain'
+  SpFileTypeNMap 'elm', 'mt', 'elm-test', 'SpaceNeovimElmTest'
+  SpFileTypeNMap 'elm', 'mr', 'elm-repl', 'ElmRepl'
+  SpFileTypeNMap 'elm', 'mf', 'elm-format', 'ElmFormat'
+  SpFileTypeNMap 'elm', 'me', 'error-detail', 'ElmErrorDetail'
+  " elm/documentation.
+  SpFileTypeNMap 'elm', 'mm', 'show-docs', 'ElmShowDocs'
+  SpFileTypeNMap 'elm', 'mm', 'browse-docs', 'ElmBrowseDocs'
+
+  au FileType elm let g:lmap.m = { "name": "major-mode-cmd",
+    \"d": { "name": "elm/documentation" },
     \}
 " }}}
 

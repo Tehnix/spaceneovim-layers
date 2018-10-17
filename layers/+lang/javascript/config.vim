@@ -2,9 +2,8 @@
 " }}}
 
 " Set the key mappings for the various commands {{{
-  au FileType javascript let g:lmap.m = { "name": "+major-mode-cmd",
-    \"-": ["echo 'No commands exist yet!'", "no-commands-exist!"]
-    \}
+  SpFileTypeNMap 'javascript', 'm-', 'no-commands-exist!', 'noh'
+  au FileType javascript let g:lmap.m = { "name": "major-mode-cmd" }
 " }}}
 
 " Layer specific configurations {{{

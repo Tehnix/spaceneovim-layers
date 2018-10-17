@@ -3,15 +3,18 @@ let g:hlintRefactor#disableDefaultKeybindings = 1
 " }}}
 
 " Set the key mappings for the various commands {{{
-  au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd",
-    \"c": ["GhcModCheckAndLintAsync", "ghcmod/check"],
-    \"r": { "name": "+haskell/refactor"
-         \, "b": ["call ApplyAllSuggestion()", "hlint/refactor-buffer"]
-      \ },
-    \"h": { "name": "+haskell/documentation"
-         \, "h": ["SpaceNeovimHaskellHoogle", "search-hoogle"]
-         \, "t": ["GhcModType", "ghcmod/type-at"]
-      \ },
+  SpFileTypeNMap 'example-language', 'mm', 'elm-make', 'SpaceNeovimElmMake'
+  SpFileTypeNMap 'example-language', 'mM', 'elm-make-main', 'ElmMakeMain'
+  SpFileTypeNMap 'example-language', 'mt', 'elm-test', 'SpaceNeovimElmTest'
+  SpFileTypeNMap 'example-language', 'mr', 'elm-repl', 'ElmRepl'
+  SpFileTypeNMap 'example-language', 'mf', 'elm-format', 'ElmFormat'
+  SpFileTypeNMap 'example-language', 'me', 'error-detail', 'ElmErrorDetail'
+  " elm/documentation.
+  SpFileTypeNMap 'example-language', 'mm', 'show-docs', 'ElmShowDocs'
+  SpFileTypeNMap 'example-language', 'mm', 'browse-docs', 'ElmBrowseDocs'
+
+  au FileType example-language let g:lmap.m = { "name": "major-mode-cmd",
+    \"d": { "name": "example-language/documentation" },
     \}
 " }}}
 

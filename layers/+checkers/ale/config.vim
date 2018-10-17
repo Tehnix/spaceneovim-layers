@@ -1,4 +1,4 @@
-let g:lmap.e = get(g:lmap, 'e', { 'name': '+errors' })
+let g:lmap.e = get(g:lmap, 'e', { 'name': 'errors' })
 SpNMap 'er', 'ale/check-file', 'ALELint'
 SpNMap 'el', 'ale/error-list', 'lopen'
 SpNMap 'ec', 'ale/close-error-list', 'lclose'
@@ -13,6 +13,7 @@ let g:airline#extensions#ale#enabled = 1
 
 " Always keep the sign gutter open.
 let g:ale_sign_column_always = 1
+let g:ale_list_window_size = 5
 
 " Automatically open loclist/quickfix upon errors.
 "let g:ale_open_list = 1

@@ -2,7 +2,7 @@
   let g:NERDCreateDefaultMappings = 1
 " }}
 
-let g:lmap.c = get(g:lmap, 'c', { 'name': '+compile/comments' })
+let g:lmap.c = get(g:lmap, 'c', { 'name': 'compile/comments' })
 
 let g:lmap.c.l = 'comment-or-uncomment-lines'
 nmap <leader>cl gcc

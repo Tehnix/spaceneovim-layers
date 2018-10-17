@@ -1,4 +1,4 @@
-let g:lmap.g = get(g:lmap, 'g', { 'name': '+git' })
+let g:lmap.g = get(g:lmap, 'g', { 'name': 'git' })
 SpNMap  'gc', 'commit', 'Gcommit'
 SpNMap  'gp', 'push-current-branch', 'PushToCurrentBranch'
 SpNMap  'gs', 'status', 'Gstatus'

@@ -9,6 +9,7 @@ SpAddPlugin 'eagletmt/neco-ghc', { 'for': 'haskell' }
 SpAddPlugin 'Shougo/vimproc.vim', { 'for': 'haskell', 'do' : 'make' }
 SpAddPlugin 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 SpAddPlugin 'owickstrom/neovim-ghci', { 'for': 'haskell' }
+SpAddPlugin 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim', 'for': 'haskell' }
 " Use the ghc-modi branch from liskin/ghcmod-vim until it is merged.
 if g:sp_haskell_backend == 'ghc-mod'
   SpAddPlugin 'liskin/ghcmod-vim', { 'branch': 'ghc-modi', 'for': 'haskell' }

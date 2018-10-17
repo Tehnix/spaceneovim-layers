@@ -37,6 +37,7 @@ The LSP layer provides the choice of two different backends:
 
 - **vim-lsp** --> [`vim-lsp`](https://github.com/prabirshrestha/vim-lsp)
 - **nvim-lsp** (default for backwards compat.) --> [`LanguageClient-neovim`](https:/github.com/autozimu/LanguageClient-neovim)
+- **ale-lsp** Use the LSP functionality from ALE. Requires that `+checkers/ale` is enabled.
 
 You can configure the LSP you want by setting,
 

@@ -2,7 +2,7 @@
 let g:spJumpSwitchGotoChar = get(g:, 'spJumpSwitchGotoChar', 0)
 
 " Root level binding.
-let g:lmap.j = get(g:lmap, 'j', { 'name': '+jump' })
+let g:lmap.j = get(g:lmap, 'j', { 'name': 'jump' })
 if g:spJumpSwitchGotoChar
   SpNMap 'jJ', 'goto-char', 'call feedkeys(\"\<Plug>(easymotion-overwin-f)\")'
   SpNMap 'jj', 'goto-char-2', 'call feedkeys(\"\<Plug>(easymotion-overwin-f2)\")'

@@ -1,4 +1,4 @@
-let g:lmap.w = get(g:lmap, 'w', { 'name': '+windows' })
+let g:lmap.w = get(g:lmap, 'w', { 'name': 'windows' })
 SpNMap 'ws', 'split-window-below', 'rightbelow split'
 SpNMap 'wv', 'split-window-right', 'rightbelow vsplit'
 SpNMap 'wo', 'make-current-window-only-one', 'wincmd o'

@@ -5,119 +5,94 @@
 " Backend keymappings {{{
   let g:sp_haskell_backend = get(g:, 'spHaskellBackend', 'intero')
 
-  " Intero backend specific bindings {{{
-    let s:sp_haskell_intero_backend = { "name": "+haskell/intero"
-        \, "d": ["InteroReload", "intero/devel-reload"]
-        \, "k": ["InteroKill", "intero/destroy"]
-        \, "r": ["InteroStart", "intero/start"]
-        \, "t": ["SpaceNeovimHaskellInteroTarget", "intero/targets"]
-      \ }
-    let s:sp_haskell_intero_jump_to_definition = {'g': ["InteroGoToDef", "intero/jump-to-definition"]}
-    let s:sp_haskell_intero_repl = { "name": "+haskell/repl"
-        \, "b": ["SpaceNeovimHaskellInteroRepl", "intero/repl-load"]
-        \, "S": ["InteroOpen", "intero/pop-to-repl"]
-        \, "s": ["InteroOpen", "intero/display-repl"]
-        \, "h": ["InteroHide", "intero/hide-repl"]
-        \, "r": ["InteroReload", "intero/reload-repl"]
-      \ }
-    let s:sp_haskell_intero_documentation = {
-        \  "t": ["SpaceNeovimHaskellInteroType", "intero/type-at"]
-        \, "i": ["InteroInfo", "intero/info"]
-        \, "g": ["InteroGenericType", "intero/generic-type"]
-        \, "T": ["InteroTypeInsert", "intero/insert-type"]
-      \ }
-    let s:sp_haskell_intero_refactor = {}
-  " }}}
-  " ghc-mod backend specific bindings {{{
-    let s:sp_haskell_ghcmod_backend = { "name": "+haskell/ghcmod"
-        \, "c": ["GhcModCheckAndLintAsync", "ghcmod/check"]
-      \ }
-    let s:sp_haskell_ghcmod_jump_to_definition = {'g': ["echo 'Not Implemented yet!'", "jump-to-definition"]}
-    let s:sp_haskell_ghcmod_repl = { "name": "+haskell/repl"
-        \, "b": ["GhciLoadCurrentFile", "ghci/repl-load"]
-        \, "S": ["GhciOpen", "ghci/pop-to-repl"]
-        \, "s": ["GhciOpen", "ghci/display-repl"]
-        \, "h": ["GhciHide", "ghci/hide-repl"]
-        \, "r": ["GhciReload", "ghci/reload-repl"]
-        \, "e": ["SpaceNeovimHaskellGhciExpression", "ghci/eval-expression"]
-      \ }
-    let s:sp_haskell_ghcmod_documentation = {
-        \  "t": ["SpaceNeovimHaskellGhcmodType", "ghcmod/type-at"]
-        \, "i": ["GhcModInfo", "ghcmod/info"]
-        \, "T": ["GhcModTypeInsert", "ghcmod/insert-type"]
-        \, "c": ["GhcModTypeClear", "ghcmod/clear-type"]
-      \ }
-    let s:sp_haskell_ghcmod_refactor = {
-        \  "f": ["GhcModSplitFunCase", "ghcmod/split-fun"]
-        \, "g": ["GhcModSigCodegen", "ghcmod/sig-gen-code"]
-        \, "e": ["GhcModExpand", "ghcmod/expand"]
-      \ }
-  " }}}
-  " LSP backend (HIE) {{{
-    let s:sp_haskell_lsp_jump_to_definition = {'g': ["call LanguageClient#textDocument_definition()", "lsp/jump-to-definition"]}
-    let s:sp_haskell_lsp_refactor = {'R': ["call LanguageClient#textDocument_rename()", "lsp/rename"]}
-  " }}}
-  " both backend specific bindings {{{
-    let s:sp_haskell_both_repl = { "name": "+haskell/repl"
-      \, "B": ["GhciLoadCurrentFile", "ghci/repl-load"]
-      \, "S": ["GhciOpen", "ghci/display-repl"]
-      \, "H": ["GhciHide", "ghci/hide-repl"]
-      \, "R": ["GhciReload", "ghci/reload-repl"]
-      \, "e": ["SpaceNeovimHaskellGhciExpression", "ghci/eval-expression"]
-    \ }
-    let s:sp_haskell_both_documentation = {'G' : { "name": "+ghcmod",
-        \  "t": ["SpaceNeovimHaskellGhcmodType", "ghcmod/type-at"]
-        \, "i": ["GhcModInfo", "ghcmod/info"]
-        \, "T": ["GhcModTypeInsert", "ghcmod/insert-type"]
-        \, "c": ["GhcModTypeClear", "ghcmod/clear-type"]
-      \ }}
-  " }}}
-
   " Stitch together the correct keymappings based on the backends.
+  SpFileTypeNMap 'haskell', 'mi', 'ghcid', 'Ghcid'
+
   if g:sp_haskell_backend == 'intero'
-    let s:sp_haskell_backend = s:sp_haskell_intero_backend
-    let s:sp_haskell_jump_to_definition = s:sp_haskell_intero_jump_to_definition
-    let s:sp_haskell_repl = s:sp_haskell_intero_repl
-    let s:sp_haskell_documentation = s:sp_haskell_intero_documentation
-    let s:sp_haskell_refactor = s:sp_haskell_intero_refactor
+    let s:haskell_backend_name = { "name": "haskell/intero" }
+    " haskell/intero (backend).
+    SpFileTypeNMap 'haskell', 'mid', 'intero/devel-reload', 'InteroReload'
+    SpFileTypeNMap 'haskell', 'mik', 'intero/destroy', 'InteroKill'
+    SpFileTypeNMap 'haskell', 'mir', 'intero/start', 'InteroStart'
+    SpFileTypeNMap 'haskell', 'mit', 'intero/targets', 'SpaceNeovimHaskellInteroTarget'
+    " haskell/navigation".
+    SpFileTypeNMap 'haskell', 'mgg', 'intero/jump-to-definition', 'InteroGoToDef'
+    " haskell/repl.
+    SpFileTypeNMap 'haskell', 'msb', 'intero/repl-load', 'SpaceNeovimHaskellInteroRepl'
+    SpFileTypeNMap 'haskell', 'msS', 'intero/pop-to-repl', 'InteroOpen'
+    SpFileTypeNMap 'haskell', 'mss', 'intero/display-repl', 'InteroOpen'
+    SpFileTypeNMap 'haskell', 'msh', 'intero/hide-repl', 'InteroHide'
+    SpFileTypeNMap 'haskell', 'msr', 'intero/reload-repl', 'InteroReload'
+    " haskell/documentation.
+    SpFileTypeNMap 'haskell', 'mht', 'intero/type-at', 'SpaceNeovimHaskellInteroType'
+    SpFileTypeNMap 'haskell', 'mhi', 'intero/info', 'InteroInfo'
+    SpFileTypeNMap 'haskell', 'mhg', 'intero/generic-type', 'InteroGenericType'
+    SpFileTypeNMap 'haskell', 'mhT', 'intero/insert-type', 'InteroTypeInsert'
   elseif g:sp_haskell_backend == 'both'
-    let s:sp_haskell_backend = extend(s:sp_haskell_ghcmod_backend, s:sp_haskell_intero_backend)
-    let s:sp_haskell_jump_to_definition = extend(s:sp_haskell_ghcmod_jump_to_definition, s:sp_haskell_intero_jump_to_definition)
-    let s:sp_haskell_repl = extend(s:sp_haskell_intero_repl, s:sp_haskell_both_repl)
-    let s:sp_haskell_documentation = extend(s:sp_haskell_both_documentation, s:sp_haskell_intero_documentation)
-    let s:sp_haskell_refactor = extend(s:sp_haskell_intero_refactor, s:sp_haskell_ghcmod_refactor)
-  elseif g:sp_haskell_backend == 'lsp'
-    let s:sp_haskell_backend = s:sp_haskell_ghcmod_backend
-    let s:sp_haskell_jump_to_definition = s:sp_haskell_lsp_jump_to_definition
-    let s:sp_haskell_repl = s:sp_haskell_ghcmod_repl
-    let s:sp_haskell_documentation = s:sp_haskell_ghcmod_documentation
-    let s:sp_haskell_refactor = extend(s:sp_haskell_ghcmod_refactor, s:sp_haskell_lsp_refactor)
-  else
-    let s:sp_haskell_backend = s:sp_haskell_ghcmod_backend
-    let s:sp_haskell_jump_to_definition = s:sp_haskell_ghcmod_jump_to_definition
-    let s:sp_haskell_repl = s:sp_haskell_ghcmod_repl
-    let s:sp_haskell_documentation = s:sp_haskell_ghcmod_documentation
-    let s:sp_haskell_refactor = s:sp_haskell_ghcmod_refactor
+    let s:haskell_backend_name = { "name": "haskell/ghc-mod-intero" }
+    " haskell/ghc-mod-intero (backend).
+    SpFileTypeNMap 'haskell', 'mid', 'intero/devel-reload', 'InteroReload'
+    SpFileTypeNMap 'haskell', 'mik', 'intero/destroy', 'InteroKill'
+    SpFileTypeNMap 'haskell', 'mir', 'intero/start', 'InteroStart'
+    SpFileTypeNMap 'haskell', 'mit', 'intero/targets', 'SpaceNeovimHaskellInteroTarget'
+    SpFileTypeNMap 'haskell', 'mic', 'ghcmod/check', 'GhcModCheckAndLintAsync'
+    " haskell/navigation".
+    SpFileTypeNMap 'haskell', 'mgg', 'intero/jump-to-definition', 'InteroGoToDef'
+    " haskell/repl.
+    SpFileTypeNMap 'haskell', 'msb', 'ghci/repl-load', 'GhciLoadCurrentFile'
+    SpFileTypeNMap 'haskell', 'msS', 'ghci/pop-to-repl', 'GhciOpen'
+    SpFileTypeNMap 'haskell', 'mss', 'ghci/display-repl', 'GhciOpen'
+    SpFileTypeNMap 'haskell', 'msh', 'ghci/hide-repl', 'GhciHide'
+    SpFileTypeNMap 'haskell', 'msr', 'ghci/reload-repl', 'GhciReload'
+    SpFileTypeNMap 'haskell', 'mse', 'ghci/eval-expression', 'SpaceNeovimHaskellGhciExpression'
+    " haskell/documentation.
+    SpFileTypeNMap 'haskell', 'mht', 'intero/type-at', 'SpaceNeovimHaskellInteroType'
+    SpFileTypeNMap 'haskell', 'mhi', 'intero/info', 'InteroInfo'
+    SpFileTypeNMap 'haskell', 'mhg', 'intero/generic-type', 'InteroGenericType'
+    SpFileTypeNMap 'haskell', 'mhT', 'intero/insert-type', 'InteroTypeInsert'
+    " haskell/refactor.
+    SpFileTypeNMap 'haskell', 'mrf', 'ghcmod/split-fun', 'GhcModSplitFunCase'
+    SpFileTypeNMap 'haskell', 'mrg', 'ghcmod/sig-gen-code', 'GhcModSigCodegen'
+    SpFileTypeNMap 'haskell', 'mre', 'ghcmod/expand', 'GhcModExpand'
+  else " ghc-mod
+    let s:haskell_backend_name = { "name": "haskell/ghcmod" }
+    SpFileTypeNMap 'haskell', 'mic', 'ghcmod/check', 'GhcModCheckAndLintAsync'
+    " haskell/repl.
+    SpFileTypeNMap 'haskell', 'msb', 'ghci/repl-load', 'GhciLoadCurrentFile'
+    SpFileTypeNMap 'haskell', 'msS', 'ghci/pop-to-repl', 'GhciOpen'
+    SpFileTypeNMap 'haskell', 'mss', 'ghci/display-repl', 'GhciOpen'
+    SpFileTypeNMap 'haskell', 'msh', 'ghci/hide-repl', 'GhciHide'
+    SpFileTypeNMap 'haskell', 'msr', 'ghci/reload-repl', 'GhciReload'
+    SpFileTypeNMap 'haskell', 'mse', 'ghci/eval-expression', 'SpaceNeovimHaskellGhciExpression'
+    " haskell/documentation.
+    SpFileTypeNMap 'haskell', 'mht', 'ghcmod/type-at', 'SpaceNeovimHaskellGhcmodType'
+    SpFileTypeNMap 'haskell', 'mhi', 'ghcmod/info', 'GhcModInfo'
+    SpFileTypeNMap 'haskell', 'mhT', 'ghcmod/insert-type', 'GhcModTypeInsert'
+    SpFileTypeNMap 'haskell', 'mhc', 'ghcmod/clear-type', 'GhcModTypeClear'
+    " haskell/refactor.
+    SpFileTypeNMap 'haskell', 'mrf', 'ghcmod/split-fun', 'GhcModSplitFunCase'
+    SpFileTypeNMap 'haskell', 'mrg', 'ghcmod/sig-gen-code', 'GhcModSigCodegen'
+    SpFileTypeNMap 'haskell', 'mre', 'ghcmod/expand', 'GhcModExpand'
   endif
 " }}}
 
 " Set the key mappings for the various commands {{{
-  au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd",
-    \"i": s:sp_haskell_backend,
-    \"r": extend({ "name": "+haskell/refactor"
-         \, "b": ["call ApplyAllSuggestion()", "hlint/refactor-buffer"]
-         \, "r": ["all ApplyOneSuggestion()", "hlint/refactor-at-point"]
-      \ }, s:sp_haskell_refactor),
-    \"h": extend({ "name": "+haskell/documentation"
-         \, "h": ["SpaceNeovimHaskellHoogle", "search-hoogle"]
-         \, "H": ["SpaceNeovimHaskellHoogleInfo", "search-hoogle-info"]
-         \, "C": ["HoogleClose", "close-hoogle"]
-      \ }, s:sp_haskell_documentation),
-    \"g": extend({ "name": "+haskell/navigation"
-         \, "G": ["echo 'Not Implemented yet!'", "jump-to-definition-other-window"]
-         \, "i": ["echo 'Not Implemented yet!'", "haskell-navigate-imports"]
-      \ }, s:sp_haskell_jump_to_definition),
-    \"s": s:sp_haskell_repl
+  au FileType haskell let g:lmap.m = { "name": "major-mode-cmd",
+    \"i": s:haskell_backend_name,
+    \"r": { "name": "haskell/refactor"
+        \, "b": ["call ApplyAllSuggestion()", "hlint/refactor-buffer"]
+        \, "r": ["all ApplyOneSuggestion()", "hlint/refactor-at-point"]
+      \ },
+    \"h": { "name": "haskell/documentation"
+        \, "h": ["SpaceNeovimHaskellHoogle", "search-hoogle"]
+        \, "H": ["SpaceNeovimHaskellHoogleInfo", "search-hoogle-info"]
+        \, "C": ["HoogleClose", "close-hoogle"]
+      \ },
+    \"g": { "name": "haskell/navigation"
+        \, "G": ["echo 'Not Implemented yet!'", "jump-to-definition-other-window"]
+        \, "i": ["echo 'Not Implemented yet!'", "haskell-navigate-imports"]
+      \ },
+    \"s": { "name": "haskell/repl" }
     \}
 " }}}
 
@@ -160,8 +135,6 @@
         au!
         " Automatically reload on save.
         au BufWritePost *.hs GhciReload
-        " Start the language server when entering a Haskell buffer.
-        au BufEnter *.hs LanguageClientStart
       augroup END
 
     else " 'ghc-mod'

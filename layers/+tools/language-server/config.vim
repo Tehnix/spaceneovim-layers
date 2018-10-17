@@ -3,7 +3,7 @@ let g:spLspBackend = get(g:, 'spLspBackend', 'nvim-lsp')
 let g:spLspAutoStart = get(g:, 'spLspAutoStart', 1)
 
 " Set the key mappings for the various commands {{{
-  let g:lmap.l = get(g:lmap, 'l', { 'name': '+lsp' })
+  let g:lmap.l = get(g:lmap, 'l', { 'name': 'lsp' })
   let s:cmdHover = ''
   let s:cmdGoToDef = ''
   let s:cmdFormat = ''
@@ -33,6 +33,20 @@ let g:spLspAutoStart = get(g:, 'spLspAutoStart', 1)
     let s:cmdListProjectSymbols = 'call LanguageClient#workspace_symbol()'
     " +errros group.
     let s:cmdExplainError = 'call LanguageClient#explainErrorAtPoint()'
+  elseif (g:spLspBackend ==? 'ale-lsp')
+    let s:cmdHover = 'ALEHover'
+    let s:cmdGoToDef = 'ALEGoToDefinition'
+    let s:cmdFormat = ''
+    let s:cmdRename = ''
+    let s:cmdFormatSelection = ''
+    " +list groups.
+    let s:cmdListSymbols = ''
+    let s:cmdListReferences = 'ALEFindReferences'
+    let s:cmdListProjectSymbols = ''
+    " +errros group.
+    let s:cmdNextError = 'ALENextWrap'
+    let s:cmdPrevError = 'ALEPreviousWrap'
+    let s:cmdDiagnostics = 'lopen'
   else
     let s:cmdHover = 'LspHover'
     let s:cmdGoToDef = 'LspDefinition'
@@ -51,9 +65,15 @@ let g:spLspAutoStart = get(g:, 'spLspAutoStart', 1)
 
   exec "SpNMap 'li', 'show-info', '" . s:cmdHover . "'"
   exec "SpNMap 'lg', 'go-to-definition', '" . s:cmdGoToDef . "'"
-  exec "SpNMap 'lf', 'format', '" . s:cmdFormat . "'"
-  exec "SpNMap 'lF', 'format-selection', '" . s:cmdFormatSelection . "'"
-  exec "SpNMap 'lR', 'rename', '" . s:cmdRename . "'"
+  if (s:cmdFormat != '')
+    exec "SpNMap 'lf', 'format', '" . s:cmdFormat . "'"
+  endif
+  if (s:cmdFormatSelection != '')
+    exec "SpNMap 'lF', 'format-selection', '" . s:cmdFormatSelection . "'"
+  endif
+  if (s:cmdRename != '')
+    exec "SpNMap 'lR', 'rename', '" . s:cmdRename . "'"
+  endif
   if (s:cmdContextMenu != '')
     exec "SpNMap 'lC', 'context-menu', '" s:cmdContextMenu . "'"
   endif
@@ -61,12 +81,16 @@ let g:spLspAutoStart = get(g:, 'spLspAutoStart', 1)
     exec "SpNMap 'ld', 'diagnostics', '" . s:cmdDiagnostics . "'"
   endif
 
-  let g:lmap.l.l = get(g:lmap.l, 'l', { 'name': '+list' })
-  exec "SpNMap 'lls', 'list-symbols', '" . s:cmdListSymbols . "'"
+  let g:lmap.l.l = get(g:lmap.l, 'l', { 'name': 'list' })
+  if (s:cmdListSymbols != '')
+    exec "SpNMap 'lls', 'list-symbols', '" . s:cmdListSymbols . "'"
+  endif
   exec "SpNMap 'llr', 'list-references', '" . s:cmdListReferences . "'"
-  exec "SpNMap 'llS', 'list-project-symbols', '" . s:cmdListProjectSymbols . "'"
+  if (s:cmdListProjectSymbols != '')
+    exec "SpNMap 'llS', 'list-project-symbols', '" . s:cmdListProjectSymbols . "'"
+  endif
 
-  let g:lmap.l.e = get(g:lmap.e, 'e', { 'name': '+errors' })
+  let g:lmap.l.e = get(g:lmap.e, 'e', { 'name': 'errors' })
   if (s:cmdExplainError != '')
     exec "SpNMap 'lee', 'explain-error-at-point', '" . s:cmdExplainError . "'"
   endif
@@ -160,6 +184,8 @@ let g:spLspAutoStart = get(g:, 'spLspAutoStart', 1)
       let g:LanguageClient_serverCommands.objcpp = ['ccls']
       let g:LanguageClient_serverCommands.cc = ['ccls']
     endif
+  elseif (g:spLspBackend ==? 'ale-lsp')
+    " Nothing to set up here.
   else
     " TypeScript -- https://github.com/prabirshrestha/vim-lsp/wiki/Servers-TypeScript.
     if executable('typescript-language-server')

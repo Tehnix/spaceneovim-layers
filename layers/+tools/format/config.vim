@@ -1,6 +1,6 @@
 let g:sp_format_on_save = get(g:, 'spFormatOnSave', 1)
 
-let g:lmap.x = get(g:lmap, 'x', { 'name': '+text' })
+let g:lmap.x = get(g:lmap, 'x', { 'name': 'text' })
 SpNMap 'xf', 'format-buffer-or-selection', 'Neoformat'
 
 " Enable trimmming of trailing whitespace

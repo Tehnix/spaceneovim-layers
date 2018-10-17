@@ -1,4 +1,4 @@
-let g:lmap['N'] = get(g:lmap, 'N', { 'name': '+navigation' })
+let g:lmap['N'] = get(g:lmap, 'N', { 'name': 'navigation' })
 SpNMap 'N<', 'goto-first-line', 'normal gg'
 SpNMap 'N>', 'goto-line', 'SpaceNeovimGoToLine'
 SpNMap 'Nb', 'scroll-page-up', 'exe \"normal \<C-b>\"'

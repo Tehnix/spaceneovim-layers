@@ -42,7 +42,7 @@ function! s:spaceneovim_preinstall()
   call s:debug('>>> Run pre install')
   " Create default vim-leader-guide map and add +major-mode-cmd grouping {{{
   let g:lmap = get(g:, 'lmap', {})
-  let g:lmap.m = get(g:lmap, 'm', { 'name': '+major-mode-cmd' })
+  let g:lmap.m = get(g:lmap, 'm', { 'name': 'major-mode-cmd' })
   " }}}
 
   " Reset nerdcommenter key mappings {{{

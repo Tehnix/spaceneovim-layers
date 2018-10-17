@@ -1,4 +1,4 @@
-let g:lmap.s = get(g:lmap, 's', { 'name': '+specs' })
+let g:lmap.s = get(g:lmap, 's', { 'name': 'specs' })
 SpNMap 'sa', 'test-all', 'TestSuite'
 SpNMap 'sf', 'test-file', 'TestFile'
 SpNMap 'ss', 'test-latest', 'TestLast'

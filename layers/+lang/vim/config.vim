@@ -3,9 +3,8 @@
 
 
 " Set the key mappings for the various commands {{{
-  au FileType vim let g:lmap.m = { "name": "+major-mode-cmd",
-    \"-": ["echo 'No commands exist yet!'", "no-commands-exist!"]
-    \}
+  SpFileTypeNMap 'vim', 'm-', 'no-commands-exist!', 'noh'
+  au FileType vim let g:lmap.m = { "name": "major-mode-cmd" }
 " }}}
 
 " Layer specific configurations {{{

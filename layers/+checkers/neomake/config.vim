@@ -1,4 +1,4 @@
-let g:lmap.e = get(g:lmap, 'e', { 'name': '+errors' })
+let g:lmap.e = get(g:lmap, 'e', { 'name': 'errors' })
 SpNMap 'er', 'neomake/check-file', 'Neomake'
 SpNMap 'el', 'neomake/error-list', 'lopen'
 SpNMap 'ec', 'neomake/close-error-list', 'lclose'

@@ -90,7 +90,7 @@ The API available to layers are (`<arg>` are required, `[arg]` are optional), fo
 | -------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- |
 | SpBind         | `<map>`, `<binding>`, `<name>`, `<value>`, `<isCmd>`               | Map a key to a specific mapping type, with a description and command to execute. The `<isCmd>` argument adds `<CR>` on the end if `1` and nothing if `0`.                                                                            | `SpBind 'tmap', 'wj', 'window-down', 'wincmd j', 1`             |
 | SpMap          | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `map`/`noremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                                                             | `SpMap 'wk', 'window-up', 'wincmd k'`                           |
-| SpNMap         | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `nmap`/`nnoremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                                                           | `SpNMap 'wk', 'window-up', 'wincmd k'`                          |
+| SpMap          | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `nmap`/`nnoremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                                                           | `SpMap 'wk', 'window-up', 'wincmd k'`                           |
 | SpVMap         | `<binding>`, `<name>`, `<value>`, `[isCmd]`                        | Map a key with `vmap`/`vnoremap`, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                                                                                           | `SpVMap 'wk', 'window-up', 'wincmd k'`                          |
 | SpFileTypeBind | `<filetype>`, `<map>`, `<binding>`, `<name>`, `<value>`, `<isCmd>` | **NOTE: This is currently broken!** Map a key, only shown under a specific filetype, to a specific mapping type, with a description and command to execute. The `<isCmd>` argument adds `<CR>` on the end if `1` and nothing if `0`. | `SpBind 'tmap', 'wj', 'window-down', 'wincmd j', 1`             |
 | SpFileTypeMap  | `<filetype>`, `<binding>`, `<name>`, `<value>`, `[isCmd]`          | **NOTE: This is currently broken!** Map a key with `map`/`noremap`, only shown under a specific filetype, with a description and command to execute. `<isCmd>` defaults to `1` (i.e. adds `<CR>`).                                   | `SpFileTypeMap 'haskell', 'mgt', 'show-type-at', 'GhcModType'`  |
@@ -111,16 +111,16 @@ To add a keybinding, first make sure that the vim-leader-guide grouping exists w
 
 ```viml
 " Top level grouping (i.e. SPC e)
-let g:lmap.e = get(g:lmap, 'e', { 'name': '+errors' })
+let g:lmap.e = get(g:lmap, 'e', { 'name': 'errors' })
 " Deeper level Grouping under SPC e m
-let g:lmap.e.m = get(g:lmap.e, 'm', { 'name': '+more' })
+let g:lmap.e.m = get(g:lmap.e, 'm', { 'name': 'more' })
 ```
 
 **NOTE:** It is important to use `get()` to avoid overwriting the mapping if it exists in another layer already.
 
-**ANOTHER NOTE:** if you are adding a new language, you don't have to add the grouping, since `let g:lmap.m = { 'name': '+major-mode-cmd' }` already exists.
+**ANOTHER NOTE:** if you are adding a new language, you don't have to add the grouping, since `let g:lmap.m = { 'name': 'major-mode-cmd' }` already exists.
 
-The `e` in `g:lmap.e` denotes the key that the group is under. Then add your keybinding by using `SpBind` or the shorter `SpNMap`/`SpMap`,
+The `e` in `g:lmap.e` denotes the key that the group is under. Then add your keybinding by using `SpBind` or the shorter `SpMap`/`SpMap`,
 
 ```viml
 SpBind 'map', 'eC', 'neomake-check-file', 'Neomake', 1
@@ -129,7 +129,7 @@ SpMap 'eC', 'neomake-check-file', 'Neomake'
 
 SpBind 'nmap', 'eC', 'neomake-check-file', 'Neomake', 0
 " Is equivalent to (default value is `1`, so we explicitly say `0` to not automatically add `<CR>` behind),
-SpNMap 'eC', 'neomake-check-file', 'Neomake', 0
+SpMap 'eC', 'neomake-check-file', 'Neomake', 0
 ```
 
 which puts the keybinding at `SPC e l`. Note that the first `e` in `el` is necessary to put it under the `e` grouping.
@@ -179,13 +179,13 @@ It consist of two combined steps:
 **Step 1.** and **step 2.** is done using `au FileType MYFILETYPE`, for example, a snippet of the `haskell` keybindings,
 
 ```viml
-au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd",
+au FileType haskell let g:lmap.m = { "name": "major-mode-cmd",
 \"c": ["GhcModCheckAndLintAsync", "ghcmod/check"],
-\"r": { "name": "+haskell/refactor"
+\"r": { "name": "haskell/refactor"
      \, "b": ["call ApplyAllSuggestion()", "hlint/refactor-buffer"]
      \, "r": ["all ApplyOneSuggestion()", "hlint/refactor-at-point"]
   \ },
-\"h": { "name": "+haskell/documentation"
+\"h": { "name": "haskell/documentation"
      \, "h": ["SpaceNeovimHaskellHoogle", "search-hoogle"]
      \, "t": ["GhcModType", "ghcmod/type-at"]
      \, "i": ["GhcModInfo", "ghcmod/info"]
@@ -193,7 +193,7 @@ au FileType haskell let g:lmap.m = { "name": "+major-mode-cmd",
 \}
 ```
 
-We simply construct a new dictionary mapping for `g:lmap.m` which is only valid under our filetype, and contains the commands we want to bind. A `"name": "+haskell/grouping"` defines a simple grouping and a `["GhcModCheckAndLintAsync", "ghcmod/check"]` defines a command and description respectively.
+We simply construct a new dictionary mapping for `g:lmap.m` which is only valid under our filetype, and contains the commands we want to bind. A `"name": "haskell/grouping"` defines a simple grouping and a `["GhcModCheckAndLintAsync", "ghcmod/check"]` defines a command and description respectively.
 
 Note: The reason it's defined under a filetype in this tedious way, is so that we get unique mappings for each filetype and that the change happens automatically.
 
