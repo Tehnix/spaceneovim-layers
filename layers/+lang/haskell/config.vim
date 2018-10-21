@@ -6,7 +6,7 @@
   let g:sp_haskell_backend = get(g:, 'spHaskellBackend', 'intero')
 
   " Stitch together the correct keymappings based on the backends.
-  SpFileTypeNMap 'haskell', 'mi', 'ghcid', 'Ghcid'
+  SpFileTypeNMap 'haskell', 'md', 'ghcid', 'Ghcid'
 
   if g:sp_haskell_backend == 'intero'
     let s:haskell_backend_name = { "name": "haskell/intero" }

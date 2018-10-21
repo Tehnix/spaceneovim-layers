@@ -1,4 +1,5 @@
 # Haskell Layer
+
 This layer provides support for the Haskell language with the following packages:
 
 - [`neovimhaskell/haskell-vim`](https://github.com/neovimhaskell/haskell-vim)
@@ -14,6 +15,7 @@ This layer provides support for the Haskell language with the following packages
 - [`ndmitchell/ghcid'](https://github.com/ndmitchell/ghcid/tree/master/plugins/nvim)
 
 #### Table of Contents
+
 - [Install](#install)
   - [Binaries](#binaries)
   - [Completion](#completion)
@@ -26,6 +28,7 @@ This layer provides support for the Haskell language with the following packages
   - [Backend](#backend)
 
 ## Install
+
 Add the `+lang/haskell` layer in your configuration file,
 
 ```viml
@@ -47,6 +50,7 @@ You can change it to `intero` etc with `let g:spHaskellBackend 'intero'` in your
 To enable type info on hover (i.e. holding the cursor for ~1 second), put `let g:spHaskellTypeOnHover = 1` in your `UserInit`.
 
 ### Binaries
+
 To utilize this layer you need `ghc-mod`, `hlint` and `apply-refact` on your path. This can be done with,
 
 ```bash
@@ -54,21 +58,25 @@ $ stack install ghcid hlint
 ```
 
 ### Indentation
+
 You can configure the indentation by setting `g:sp_haskell_indentation` in your user-init block (i.e. before loading the plugin). By default it is set to `2`.
 
 ### Completion
+
 By default `g:necoghc_enable_detailed_browse` is enabled. It can be disabled by setting `g:sp_necoghc_enable_detailed_browse` to either 1 or 0.
 
 ### Checkers
+
 By default `g:neomake_haskell_enabled_makers` is set to use all makers. This can be overwritten by setting the desired makers with `g:sp_neomake_haskell_enabled_makers`.
 
 ## Key Bindings
 
 | Key Binding | Description |
 | ----------- | ----------- |
-| SPC m i     | Ghcid       |
+| SPC m d     | Ghcid       |
 
 ### REPL
+
 With `ghc-mod` backend enabled,
 
 | Key Binding | Description                     |
@@ -91,6 +99,7 @@ With `intero` backend enabled,
 | SPC m s r   | Reload the repl               |
 
 ### Navigation
+
 With `intero` or `lsp` backend enabled,
 
 | Key Binding | Description      |
@@ -98,6 +107,7 @@ With `intero` or `lsp` backend enabled,
 | SPC m g g   | Go to definition |
 
 ### Refactor
+
 | Key Binding | Description                              |
 | ----------- | ---------------------------------------- |
 | SPC m r r   | Apply Hlint refector suggestion at point |
@@ -118,6 +128,7 @@ Additionally some commands depend on the backend. With `lsp`,
 | SPC m r R   | Rename the item under the cursor |
 
 ### Documentation
+
 | Key Binding | Description                             |
 | ----------- | --------------------------------------- |
 | SPC m h h   | Start a Hoogle search query             |
@@ -142,6 +153,7 @@ With `intero`,
 | SPC m h T   | Insert the type signature of the identifier under the cursor |
 
 ### Backend
+
 With `ghc-mod` backend enabled,
 
 | Key Binding | Description             |
