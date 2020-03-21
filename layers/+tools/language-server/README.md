@@ -38,6 +38,7 @@ The LSP layer provides the choice of two different backends:
 - **vim-lsp** --> [`vim-lsp`](https://github.com/prabirshrestha/vim-lsp)
 - **nvim-lsp** (default for backwards compat.) --> [`LanguageClient-neovim`](https:/github.com/autozimu/LanguageClient-neovim)
 - **ale-lsp** Use the LSP functionality from ALE. Requires that `+checkers/ale` is enabled.
+- **coc-lsp** Use the LSP functionality from coc.nvim. Requires that `+completion/coc` is enabled.
 
 You can configure the LSP you want by setting,
 
@@ -74,6 +75,28 @@ For additional servers, take a look at https://github.com/prabirshrestha/vim-lsp
 ## Adding Support for Other Languages
 
 You can manually add more servers with e.g.,
+
+### coc-lsp
+
+A more thorough list of available extensions for coc.nvim can be found [in the coc.nvim wiki](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions).
+
+Some common ones:
+
+```viml
+:CocInstall coc-rust-analyzer
+:CocInstall coc-tsserver
+:CocInstall coc-json
+:CocInstall coc-highlight
+:CocInstall coc-snippets
+:CocInstall coc-lists
+:CocInstall coc-yaml
+:CocInstall coc-java
+:CocInstall coc-python
+:CocInstall coc-prettier
+:CocInstall coc-html
+:CocInstall coc-eslint
+:CocInstall coc-css
+```
 
 ### vim-lsp
 

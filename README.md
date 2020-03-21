@@ -18,6 +18,7 @@ Managing layers to use with [SpaceNeovim](https://github.com/Tehnix/spaceneovim)
 | [+core/behavior](layers/+core/behavior)                     | Core functionality for SpaceNeovim                  |
 | [+core/sensible](layers/+core/sensible)                     | Sensible default settings                           |
 | [+completion/asyncomplete](layers/+completion/asyncomplete) | Auto-completion with asyncomplete                   |
+| [+completion/coc](layers/+completion/coc)                   | Auto-completion with coc.nvim                       |
 | [+completion/deoplete](layers/+completion/deoplete)         | Auto-completion with deoplete                       |
 | [+completion/ncm2](layers/+completion/ncm2)                 | Auto-completion with NCM2                           |
 | [+completion/snippets](layers/+completion/snippets)         | Snippet support                                     |

@@ -1,4 +1,5 @@
 let g:lmap['!'] = ['SpaceNeovimTerminalShellCmd', 'shell-cmd']
+SpNMap  '!', 'shell-cmd', 'SpaceNeovimTerminalShellCmd'
 
 if has('nvim')
   " Use <Esc> to escape terminal insert mode
@@ -9,7 +10,7 @@ if has('nvim')
   tnoremap <C-k> <C-\><C-N><C-w>k
   tnoremap <C-l> <C-\><C-N><C-w>l
 
-  let g:lmap["'"] = ['SpaceNeovimTerminalOpen', 'terminal']
+  SpNMap  '-', 'terminal', 'SpaceNeovimTerminalOpen'
 
   " Automatically enter insert mode when going into a terminal buffer.
   augroup terminalConfig
