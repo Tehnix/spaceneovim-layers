@@ -48,23 +48,22 @@ let g:spLspAutoStart = get(g:, 'spLspAutoStart', 1)
     let s:cmdPrevError = 'ALEPreviousWrap'
     let s:cmdDiagnostics = 'lopen'
    elseif (g:spLspBackend ==? 'coc-lsp')
-    let s:cmdHover = 'CoCShowDocumentation'
+    let s:cmdHover = 'SpCocHover'
     let s:cmdGoToDef = 'call CocAction(\"jumpDefinition\")'
     let s:cmdGoToTypeDef = 'call CocAction(\"jumpTypeDefinition\")'
     let s:cmdGoToImpl = 'call CocAction(\"jumpImplementation\")'
     let s:cmdFormat = 'call CocAction(\"format\")'
-    let s:cmdFormatSelection = 'coc-format-selected'
-    let s:cmdAction = 'call CocAction(\"codeAction\", \"\")'
-    let s:cmdActionSelected = 'call CocAction(\"codeAction\", visualmode())'
-    let s:cmdFixCurrent = 'call CocAction(\"doQuickfix\")'
-    let s:cmdRename = 'call CocAction(\"rename\")'
+    let s:cmdAction = 'call CocActionAsync(\"codeAction\", \"\")'
+    let s:cmdActionSelected = 'call CocActionAsync(\"codeAction\", visualmode())'
+    let s:cmdFixCurrent = 'call CocActionAsync(\"doQuickfix\")'
+    let s:cmdRename = 'call CocActionAsync(\"rename\")'
     " +list groups.
     let s:cmdListSymbols = '<C-u>CocList outline'
     let s:cmdListReferences = 'call CocAction(\"jumpReferences\")'
     let s:cmdListProjectSymbols = '<C-u>CocList -I symbols'
     " +errros group.
-    let s:cmdNextError = 'call CocAction(\"diagnosticNext\")'
-    let s:cmdPrevError = 'call CocAction(\"diagnosticPrevious\")'
+    let s:cmdNextError = 'call CocActionAsync(\"diagnosticNext\")'
+    let s:cmdPrevError = 'call CocActionAsync(\"diagnosticPrevious\")'
     let s:cmdDiagnostics = '<C-u>CocList diagnostics'
   else
     let s:cmdHover = 'LspHover'
@@ -84,7 +83,6 @@ let g:spLspAutoStart = get(g:, 'spLspAutoStart', 1)
 
   exec "SpNMap 'li', 'show-info', '" . s:cmdHover . "'"
   exec "SpNMap 'lg', 'go-to-definition', '" . s:cmdGoToDef . "'"
-  nmap <silent> <leader>lg <Plug>(coc-definition)
   if (s:cmdFormat != '')
     exec "SpNMap 'lf', 'format', '" . s:cmdFormat . "'"
   endif
@@ -160,8 +158,7 @@ let g:spLspAutoStart = get(g:, 'spLspAutoStart', 1)
     " Configure ale-lsp.
   elseif (g:spLspBackend ==? 'coc-lsp')
     " Configure coc-lsp.
-    set updatetime=1000
-    let g:coc_global_extensions = [
+    let g:coc_global_extensions = get(g:, 'coc_global_extensions', [
       \'coc-rust-analyzer',
       \'coc-go',
       \'coc-python',
@@ -186,7 +183,7 @@ let g:spLspAutoStart = get(g:, 'spLspAutoStart', 1)
       \'coc-snippets',
       \'coc-lists',
       \'coc-git'
-      \]
+      \])
   else
     let g:lsp_auto_enable = g:spLspAutoStart
     " Configure vim-lsp.

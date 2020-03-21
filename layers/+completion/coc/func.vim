@@ -1,4 +1,4 @@
-command! -nargs=0 -bar CoCShowDocumentation call s:show_documentation()
+command! -nargs=0 -bar SpCocHover call s:show_documentation()
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -7,4 +7,3 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-

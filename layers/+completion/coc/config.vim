@@ -51,21 +51,17 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " endif
 
 
-augroup CoCBehaviourGroup
+augroup CocBehaviourGroup
   au!
-  " Setup formatexpr specified filetype(s).
-  au FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 if g:spCocHoverInfo
-  " autocmd CursorHold * silent call CocActionAsync('highlight')
-  augroup CoCHoverBehaviour
+  augroup CocHoverBehaviour
     au!
-    " Highlight the symbol and its references when holding the cursor.
-    " au CursorHold *.rs silent call CocActionAsync('highlight')
-    au CursorHold *.rs CoCShowDocumentation
+    " Show documentation on hover.
+    au CursorHold *.rs,*.php,*.java silent SpCocHover
   augroup end
 endif
 
@@ -84,10 +80,8 @@ xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
-
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 

@@ -9,7 +9,7 @@ let g:neoformat_basic_format_trim = 1
 let g:neoformat_only_msg_on_error = 1
 
 if g:sp_format_on_save
-  augroup fmt
+  augroup FormatOnSave
     au!
     au BufWritePre * Neoformat
     " au BufWritePre * undojoin | Neoformat

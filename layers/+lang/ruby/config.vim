@@ -18,6 +18,23 @@
   " Add ruby syntax highlighting for Thorfile, Rakefile, Vagrantfile and Gemfile
   au BufRead,BufNewFile {Gemfile,Guardfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 
+  if SpaceNeovimIsLayerEnabled('+completion/coc')
+    if g:spCocHoverInfo
+      augroup RubyCocHoverBehaviour
+        au!
+        " Show documentation on hover.
+        au CursorHold *.rb silent SpCocHover
+      augroup end
+    endif
+    if g:sp_format_on_save
+      augroup RubyCocFormatBehaviour
+        au!
+        " Setup formatexpr specified filetype(s).
+        au FileType ruby setl formatexpr=CocAction('formatSelected')
+      augroup end
+    endif
+  endif
+
   if SpaceNeovimIsLayerEnabled('+completion/deoplete')
     " Configure deoplete
     if !exists('g:deoplete#sources')

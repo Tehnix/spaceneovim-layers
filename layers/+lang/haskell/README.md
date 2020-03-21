@@ -41,6 +41,7 @@ endfunction
 
 The available backends are:
 
+- `lsp`
 - `ghc-mod`
 - `intero` (default)
 - `both`

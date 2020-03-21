@@ -3,7 +3,7 @@
 " }}}
 
 " Backend keymappings {{{
-  let g:sp_haskell_backend = get(g:, 'spHaskellBackend', 'intero')
+  let g:sp_haskell_backend = get(g:, 'spHaskellBackend', 'lsp')
 
   " Stitch together the correct keymappings based on the backends.
   SpFileTypeNMap 'haskell', 'md', 'ghcid', 'Ghcid'
@@ -54,7 +54,7 @@
     SpFileTypeNMap 'haskell', 'mrf', 'ghcmod/split-fun', 'GhcModSplitFunCase'
     SpFileTypeNMap 'haskell', 'mrg', 'ghcmod/sig-gen-code', 'GhcModSigCodegen'
     SpFileTypeNMap 'haskell', 'mre', 'ghcmod/expand', 'GhcModExpand'
-  else " ghc-mod
+  elseif g:sp_haskell_backend == 'ghc-mod'
     let s:haskell_backend_name = { "name": "haskell/ghcmod" }
     SpFileTypeNMap 'haskell', 'mic', 'ghcmod/check', 'GhcModCheckAndLintAsync'
     " haskell/repl.
@@ -73,6 +73,8 @@
     SpFileTypeNMap 'haskell', 'mrf', 'ghcmod/split-fun', 'GhcModSplitFunCase'
     SpFileTypeNMap 'haskell', 'mrg', 'ghcmod/sig-gen-code', 'GhcModSigCodegen'
     SpFileTypeNMap 'haskell', 'mre', 'ghcmod/expand', 'GhcModExpand'
+  else
+    let s:haskell_backend_name = { "name": "haskell/lsp" }
   endif
 " }}}
 
@@ -125,20 +127,8 @@
         " au BufWritePost *.hs GhcModCheckAndLintAsync
       augroup END
 
-    elseif g:sp_haskell_backend == 'lsp'
-      let g:intero_start_immediately = 0
-      let g:ghci_start_immediately = 1
-      " Add HIE as the Haskell language server.
-      let g:LanguageClient_serverCommands = get(g:, 'LanguageClient_serverCommands', {})
-      let g:LanguageClient_serverCommands.haskell = ['hie-wrapper', '--lsp']
-      augroup haskellLinter
-        au!
-        " Automatically reload on save.
-        au BufWritePost *.hs GhciReload
-      augroup END
-
-    else " 'ghc-mod'
-      " If we are using 'ghc-mod', then don't start Intero, but use regular GHCi instead.
+    elseif g:sp_haskell_backend == 'ghc-mod'
+    " If we are using 'ghc-mod', then don't start Intero, but use regular GHCi instead.
       let g:intero_start_immediately = 0
       let g:ghci_start_immediately = 1
       augroup haskellLinter
@@ -147,12 +137,26 @@
         au BufWritePost *.hs GhciReload
         " au BufWritePost *.hs GhcModCheckAndLintAsync
       augroup END
+    else " 'lsp'
+      let g:intero_start_immediately = 0
+      let g:ghci_start_immediately = 1
+      if  (g:spLspBackend !=? 'coc-lsp')
+        " Add ghcide as the Haskell language server if we are not using coc.nvim.
+        let g:LanguageClient_serverCommands = get(g:, 'LanguageClient_serverCommands', {})
+        let g:LanguageClient_serverCommands.haskell = ['stack', 'exec', 'ghcide', '--', '--lsp']
+      endif
 
+      augroup haskellLinter
+        au!
+        " Automatically reload on save.
+        au BufWritePost *.hs silent !GhciReload
+      augroup END
     endif
 
-    " Display type information on hover (off by default).
+    " Display type information on hover (off by default). This was the legacy way of doing it before
+    " coc.nvim came around.
     let g:sp_haskell_show_type_on_hover = get(g:, 'spHaskellTypeOnHover', 0)
-    if g:sp_haskell_show_type_on_hover && (g:sp_haskell_backend == 'both' || g:sp_haskell_backend == 'intero' || g:sp_haskell_backend == 'ghc-mod' || g:sp_haskell_backend == 'ghcmod' || g:sp_haskell_backend == 'lsp')
+    if (g:spLspBackend !=? 'coc-lsp') && g:sp_haskell_show_type_on_hover && (g:sp_haskell_backend == 'both' || g:sp_haskell_backend == 'intero' || g:sp_haskell_backend == 'ghc-mod' || g:sp_haskell_backend == 'ghcmod' || g:sp_haskell_backend == 'lsp')
       " Make the update time shorter, so the info will trigger faster.
       set updatetime=1000
       " Get type information when you hold the cursor still for some time.
@@ -160,7 +164,6 @@
         au!
         au CursorHold *.hs SpaceNeovimHaskellTypeOnHold
       augroup END
-
     endif
   " }}}
 
@@ -191,6 +194,45 @@
         \ 'cm_refresh_patterns':['[\w\-]+\s*:\s+'],
         \ 'cm_refresh': {'omnifunc': 'necoghc#omnifunc'},
         \ })
+  endif
+
+  if SpaceNeovimIsLayerEnabled('+completion/coc')
+    if g:spCocHoverInfo
+      augroup HaskellCocHoverBehaviour
+        au!
+        " Show documentation on hover.
+        au CursorHold *.hs,*.lhs silent SpCocHover
+      augroup end
+    endif
+    if g:sp_format_on_save
+      augroup HaskellCocFormatBehaviour
+        au!
+        " Setup formatexpr specified filetype(s).
+        au FileType haskell setl formatexpr=CocAction('formatSelected')
+      augroup end
+    endif
+    let s:haskell_coc = {
+      \  'command': 'stack',
+      \  'args': ['exec', 'ghcide', '--', '--lsp'],
+      \  'rootPatterns': [
+      \    '.stack.yaml',
+      \    '.hie-bios',
+      \    'BUILD.bazel',
+      \    'cabal.config',
+      \    'package.yaml'
+      \  ],
+      \  'filetypes': ['hs', 'lhs', 'haskell'],
+      \  'settings': {
+      \    'languageServerHaskell': {
+      \      'hlintOn': "true",
+      \      'maxNumberOfProblems': 10,
+      \      'completionSnippetsOn': "true"
+      \    }
+      \  }
+      \}
+    let g:coc_user_config = get(g:, 'coc_user_config', {})
+    let g:coc_user_config.languageserver = get(g:coc_user_config, 'languageserver', {})
+    let g:coc_user_config.languageserver.haskell = get(g:coc_user_config.languageserver, 'haskell', s:haskell_coc)
   endif
 
   if SpaceNeovimIsLayerEnabled('+completion/deoplete')
