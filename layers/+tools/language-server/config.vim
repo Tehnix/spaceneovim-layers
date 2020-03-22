@@ -158,32 +158,6 @@ let g:spLspAutoStart = get(g:, 'spLspAutoStart', 1)
     " Configure ale-lsp.
   elseif (g:spLspBackend ==? 'coc-lsp')
     " Configure coc-lsp.
-    let g:coc_global_extensions = get(g:, 'coc_global_extensions', [
-      \'coc-rust-analyzer',
-      \'coc-go',
-      \'coc-python',
-      \'coc-flutter',
-      \'coc-java',
-      \'coc-clangd',
-      \'coc-floaterm',
-      \'coc-sourcekit',
-      \'coc-vimlsp',
-      \'coc-xml',
-      \'coc-tsserver',
-      \'coc-json',
-      \'coc-vetur',
-      \'coc-markdownlint',
-      \'coc-html',
-      \'coc-eslint',
-      \'coc-css',
-      \'coc-prettier',
-      \'coc-highlight',
-      \'coc-explorer',
-      \'coc-yank',
-      \'coc-snippets',
-      \'coc-lists',
-      \'coc-git'
-      \])
   else
     let g:lsp_auto_enable = g:spLspAutoStart
     " Configure vim-lsp.

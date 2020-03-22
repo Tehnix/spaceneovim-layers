@@ -1,6 +1,41 @@
 let g:spCocHoverInfo = get(g:, 'spCocHoverInfo', 1)
+
+" Set up some default coc.nvim extensions, to allow people to get quickly
+" going.
+let g:coc_global_extensions = get(g:, 'coc_global_extensions', [
+      \'coc-rust-analyzer',
+      \'coc-go',
+      \'coc-python',
+      \'coc-flutter',
+      \'coc-java',
+      \'coc-phpls',
+      \'coc-fsharp',
+      \'coc-solargraph',
+      \'coc-metals',
+      \'coc-clangd',
+      \'coc-floaterm',
+      \'coc-sourcekit',
+      \'coc-vimlsp',
+      \'coc-xml',
+      \'coc-tsserver',
+      \'coc-json',
+      \'coc-vetur',
+      \'coc-markdownlint',
+      \'coc-html',
+      \'coc-eslint',
+      \'coc-css',
+      \'coc-prettier',
+      \'coc-highlight',
+      \'coc-explorer',
+      \'coc-cmake',
+      \'coc-yank',
+      \'coc-snippets',
+      \'coc-lists',
+      \'coc-git'
+      \])
+
 "
-" Settings taken from https://github.com/neoclide/coc.nvim.
+" Settings extracted from https://github.com/neoclide/coc.nvim.
 "
 
 " TextEdit might fail if hidden is not set.
@@ -58,10 +93,11 @@ augroup CocBehaviourGroup
 augroup end
 
 if g:spCocHoverInfo
+  " Set up hover for some file extensions which don't have layers yet.
   augroup CocHoverBehaviour
     au!
     " Show documentation on hover.
-    au CursorHold *.rs,*.php,*.java silent SpCocHover
+    au CursorHold *.c,*.cpp silent SpCocHover
   augroup end
 endif
 

@@ -22,6 +22,10 @@ let g:hlintRefactor#disableDefaultKeybindings = 1
   " Set the default indentation for the language
   SpSpaceIndent 'example-language', 2
 
+  if SpaceNeovimIsLayerEnabled('+completion/coc')
+    " Configure coc.nvim
+  endif
+
   if SpaceNeovimIsLayerEnabled('+completion/deoplete')
     " Configure deoplete
   endif

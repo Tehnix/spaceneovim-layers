@@ -56,11 +56,17 @@ Language layers
 | ------------------------------------------- | ------------------------------------------- |
 | [+lang/-example](layers/+lang/-example)     | A template for creating new language layers |
 | [+lang/elm](layers/+lang/elm)               | Support for Elm                             |
+| [+lang/fsharp](layers/+lang/fsharp)         | Support for F#                              |
+| [+lang/go](layers/+lang/go)                 | Support for Go                              |
 | [+lang/haskell](layers/+lang/haskell)       | Support for Haskell                         |
+| [+lang/java](layers/+lang/java)             | Support for Java                            |
 | [+lang/javascript](layers/+lang/javascript) | Support for JavaScript                      |
+| [+lang/php](layers/+lang/php)               | Support for PHP                             |
+| [+lang/purescript](layers/+lang/purescript) | Support for PureScript                      |
 | [+lang/python](layers/+lang/python)         | Support for python                          |
-| [+lang/ruby](layers/+lang/ruby)             | Support for ruby                            |
-| [+lang/vim](layers/+lang/vim)               | Support for vim                             |
+| [+lang/ruby](layers/+lang/ruby)             | Support for Ruby                            |
+| [+lang/rust](layers/+lang/rust)             | Support for Rust                            |
+| [+lang/vim](layers/+lang/vim)               | Support for VimL                            |
 
 ## Adding a New Layer
 
