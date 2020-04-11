@@ -1,10 +1,15 @@
+" Configuration {{{
+  " Control whether the LSP should use stack or not [default true].
+  let g:sp_haskell_lsp_use_stack = get(g:, 'spHaskellLspUseStack', 1)
+  " Control which backend should be used [default lsp].
+  let g:sp_haskell_backend = get(g:, 'spHaskellBackend', 'lsp')
+" }}}
+
 " Remove default mappings {{{
   let g:hlintRefactor#disableDefaultKeybindings = 1
 " }}}
 
 " Backend keymappings {{{
-  let g:sp_haskell_backend = get(g:, 'spHaskellBackend', 'lsp')
-
   " Stitch together the correct keymappings based on the backends.
   SpFileTypeNMap 'haskell', 'md', 'ghcid', 'Ghcid'
 
@@ -211,7 +216,9 @@
         au FileType haskell setl formatexpr=CocAction('formatSelected')
       augroup end
     endif
-    let s:haskell_coc = {
+
+    if g:sp_haskell_lsp_use_stack
+      let s:haskell_coc = {
       \  'command': 'stack',
       \  'args': ['exec', 'ghcide', '--', '--lsp'],
       \  'rootPatterns': [
@@ -230,6 +237,27 @@
       \    }
       \  }
       \}
+    else
+      let s:haskell_coc = {
+      \  'command': 'ghcide',
+      \  'args': ['--lsp'],
+      \  'rootPatterns': [
+      \    '.stack.yaml',
+      \    '.hie-bios',
+      \    'BUILD.bazel',
+      \    'cabal.config',
+      \    'package.yaml'
+      \  ],
+      \  'filetypes': ['hs', 'lhs', 'haskell'],
+      \  'settings': {
+      \    'languageServerHaskell': {
+      \      'hlintOn': "true",
+      \      'maxNumberOfProblems': 10,
+      \      'completionSnippetsOn': "true"
+      \    }
+      \  }
+      \}
+    endif
     let g:coc_user_config = get(g:, 'coc_user_config', {})
     let g:coc_user_config.languageserver = get(g:coc_user_config, 'languageserver', {})
     let g:coc_user_config.languageserver.haskell = get(g:coc_user_config.languageserver, 'haskell', s:haskell_coc)
