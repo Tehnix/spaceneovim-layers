@@ -28,7 +28,7 @@ SpNMap 'feC', 'clean-plugins', 'PlugClean!'
 SpNMap 'feR', 'sync-configuration', 'SpaceNeovimSyncConfiguration'
 
 " NERDTree Git
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
 \ "Modified"  : "·",
 \ "Staged"    : "+",
 \ "Untracked" : "*",
@@ -41,7 +41,7 @@ let g:NERDTreeIndicatorMapCustom = {
 \ "Unknown"   : " "
 \ }
 
-let g:NERDTreeShowIgnoredStatus = 1  "enables ignored highlighting
+let g:NERDTreeGitStatusShowIgnored = 1  "enables ignored highlighting
 let g:NERDTreeGitStatusNodeColorization = 1  "enables colorization
 let g:NERDTreeGitStatusWithFlags = 1  "enables flags, (may be default), required for colorization
 
