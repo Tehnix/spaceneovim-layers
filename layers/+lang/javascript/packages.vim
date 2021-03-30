@@ -1,4 +1,5 @@
-SpAddPlugin 'elzr/vim-json'
+SpAddPlugin 'kevinoid/vim-jsonc'
+SpAddPlugin 'neoclide/jsonc.vim'
 SpAddPlugin 'mxw/vim-jsx'
 SpAddPlugin 'leafgarland/typescript-vim'
 SpAddPlugin 'Quramy/vim-js-pretty-template'
