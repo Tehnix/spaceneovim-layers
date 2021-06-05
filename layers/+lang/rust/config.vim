@@ -8,6 +8,7 @@
 " }}}
 
 " Layer specific configurations {{{
+  let g:sp_format_on_save = get(g:, 'spFormatOnSave', 1)
   " Set the default indentation for the language
   SpSpaceIndent 'rust', 4
 
